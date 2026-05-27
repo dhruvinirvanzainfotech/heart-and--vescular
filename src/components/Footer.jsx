@@ -206,7 +206,7 @@ export default function Footer() {
                     (718) 555-0101
                   </a>
                 </div>
-              </div>
+              </div>    
 
               {/* EMAIL */}
               <div
