@@ -1,12 +1,17 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaLinkedinIn,
+} from "react-icons/fa";
 
 const quickLinks = [
   { label: "Home", to: "/" },
-  { label: "About Us", to: "/about" },
+  { label: "About", to: "/about" },
   { label: "Services", to: "/services" },
   { label: "Locations", to: "/locations" },
   { label: "Insurance", to: "/insurance" },
-  { label: "Contact", to: "/contact" },
+  { label: "Contact Us", to: "/contact" },
 ];
 
 const services = [
@@ -29,270 +34,424 @@ const services = [
 ];
 
 export default function Footer() {
+
   const navigate = useNavigate();
 
+  // PAGE TOP SCROLL
+  const goToPage = (path) => {
+
+    navigate(path);
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+  // SERVICE PAGE TOP SCROLL
   const goService = (id) => {
+
     navigate(`/services/${id}`);
-    window.scrollTo(0, 0);
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
 
   return (
-    <footer className="relative overflow-hidden bg-[#071018] text-white">
+    <footer
+      className="
+        relative
+        overflow-hidden
+        rounded-t-[70px]
+        mt-20
+        text-white
+        bg-cover
+        bg-center
+      "
+      style={{
+        backgroundImage:
+          "linear-gradient(rgba(3,10,18,0.82), rgba(3,10,18,0.88)), url('/image/banner1.jpg')",
+      }}
+    >
 
-      {/* BACKGROUND LIGHTS */}
-      <div className="absolute top-[-120px] left-[-120px] w-[320px] h-[320px] bg-cyan-500/10 blur-[120px] rounded-full"></div>
+      {/* GLASS OVERLAY */}
+      <div className="absolute inset-0 bg-black/20 backdrop-blur-[2px]"></div>
 
-      <div className="absolute bottom-[-120px] right-[-120px] w-[320px] h-[320px] bg-sky-400/10 blur-[120px] rounded-full"></div>
+      {/* LIGHT EFFECT */}
+      <div className="absolute top-[-100px] left-[-100px] w-[260px] h-[260px] bg-cyan-400/10 blur-[120px] rounded-full"></div>
 
-      <div className="relative max-w-7xl mx-auto px-6 lg:px-8 pt-14">
+      <div className="absolute bottom-[-100px] right-[-100px] w-[260px] h-[260px] bg-sky-400/10 blur-[120px] rounded-full"></div>
 
-        {/* FOOTER GRID */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 pb-14">
+      <div className="relative max-w-7xl mx-auto px-6 lg:px-10 py-16">
+
+        {/* GRID */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
 
           {/* ABOUT */}
           <div>
 
-            <img
-              src="/image/logo.png"
-              alt="Logo"
-              className="h-12 w-auto object-contain mb-6"
-            />
+            {/* LOGO */}
+            <div className="bg-white/95 backdrop-blur-xl rounded-3xl p-4 inline-block mb-6 shadow-2xl">
 
-            <p className="text-slate-400 text-[14px] leading-relaxed mb-6">
-              Advanced cardiac and vascular care focused on modern
-              diagnostics, patient comfort, and compassionate treatment
-              for every patient.
+              <img
+                src="/image/logo.png"
+                alt="logo"
+                className="h-16 object-contain"
+              />
+
+            </div>
+
+            {/* TEXT */}
+            <p className="text-[15px] leading-[32px] text-slate-200 mb-7">
+              Welcome to Heart & Vascular Center,
+              where advanced cardiac care meets
+              compassion and modern treatment for
+              every patient.
             </p>
 
             {/* SOCIAL */}
             <div className="flex items-center gap-3">
 
-              {["F", "I", "L"].map((item, index) => (
-                <div
-                  key={index}
-                  className="
-                    w-11
-                    h-11
-                    rounded-2xl
-                    bg-white/5
-                    border
-                    border-white/10
-                    flex
-                    items-center
-                    justify-center
-                    text-sm
-                    font-semibold
-                    text-slate-300
-                    hover:bg-cyan-500
-                    hover:text-white
-                    hover:-translate-y-1
-                    transition-all
-                    duration-300
-                    cursor-pointer
-                  "
-                >
-                  {item}
-                </div>
-              ))}
+              {/* FACEBOOK */}
+              <a
+                href="https://facebook.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="
+                  w-11
+                  h-11
+                  rounded-2xl
+                  bg-white/10
+                  backdrop-blur-xl
+                  border
+                  border-white/10
+                  flex
+                  items-center
+                  justify-center
+                  text-white
+                  hover:bg-cyan-500
+                  transition-all
+                  duration-300
+                  hover:-translate-y-1
+                "
+              >
+                <FaFacebookF />
+              </a>
+
+              {/* INSTAGRAM */}
+              <a
+                href="https://instagram.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="
+                  w-11
+                  h-11
+                  rounded-2xl
+                  bg-white/10
+                  backdrop-blur-xl
+                  border
+                  border-white/10
+                  flex
+                  items-center
+                  justify-center
+                  text-white
+                  hover:bg-pink-500
+                  transition-all
+                  duration-300
+                  hover:-translate-y-1
+                "
+              >
+                <FaInstagram />
+              </a>
+
+              {/* LINKEDIN */}
+              <a
+                href="https://linkedin.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="
+                  w-11
+                  h-11
+                  rounded-2xl
+                  bg-white/10
+                  backdrop-blur-xl
+                  border
+                  border-white/10
+                  flex
+                  items-center
+                  justify-center
+                  text-white
+                  hover:bg-cyan-500
+                  transition-all
+                  duration-300
+                  hover:-translate-y-1
+                "
+              >
+                <FaLinkedinIn />
+              </a>
+
             </div>
           </div>
 
           {/* QUICK LINKS */}
           <div>
 
-            <h3 className="text-[20px] font-semibold mb-6">
+            <h3 className="text-[30px] font-bold mb-3 text-cyan-400">
               Quick Links
             </h3>
 
-            <ul className="space-y-4">
+            <div className="w-14 h-1 bg-cyan-400 rounded-full mb-7"></div>
+
+            <ul className="space-y-5">
 
               {quickLinks.map((item) => (
                 <li key={item.label}>
-                  <Link
-                    to={item.to}
+
+                  <button
+                    onClick={() => goToPage(item.to)}
                     className="
-                      text-slate-400
-                      text-[14px]
-                      no-underline
+                      text-white
+                      text-[16px]
                       hover:text-cyan-400
                       transition-all
                       duration-300
-                      hover:translate-x-1
-                      inline-block
+                      flex
+                      items-center
+                      gap-3
+                      bg-transparent
+                      border-none
+                      cursor-pointer
+                      p-0
                     "
                   >
-                    → {item.label}
-                  </Link>
+
+                    <span className="text-cyan-400 text-xl">
+                      +
+                    </span>
+
+                    {item.label}
+
+                  </button>
+
                 </li>
               ))}
+
             </ul>
           </div>
 
           {/* SERVICES */}
           <div>
 
-            <h3 className="text-[20px] font-semibold mb-6">
+            <h3 className="text-[30px] font-bold mb-3 text-cyan-400">
               Our Services
             </h3>
 
-            <div className="space-y-4">
+            <div className="w-14 h-1 bg-cyan-400 rounded-full mb-7"></div>
+
+            <div className="space-y-5">
 
               {services.map((service, index) => (
                 <button
                   key={index}
                   onClick={() => goService(service.id)}
                   className="
-                    w-full
                     flex
                     items-center
                     gap-3
-                    text-left
-                    text-slate-400
-                    text-[14px]
+                    text-white
+                    text-[16px]
                     hover:text-cyan-400
                     transition-all
                     duration-300
-                    border-none
                     bg-transparent
+                    border-none
                     cursor-pointer
-                    hover:translate-x-1
+                    p-0
                   "
                 >
-                  <div className="w-2 h-2 rounded-full bg-cyan-400"></div>
 
-                  <span>{service.label}</span>
+                  <span className="text-cyan-400 text-xl">
+                    +
+                  </span>
+
+                  {service.label}
+
                 </button>
               ))}
+
             </div>
           </div>
 
           {/* CONTACT */}
           <div>
 
-            <h3 className="text-[20px] font-semibold mb-6">
-              Contact Info
+            <h3 className="text-[30px] font-bold mb-3 text-cyan-400">
+              Reach Us
             </h3>
 
-            <div className="space-y-5">
+            <div className="w-14 h-1 bg-cyan-400 rounded-full mb-7"></div>
 
-              {/* PHONE */}
-              <div
+            <div className="space-y-6">
+
+              {/* LOCATION */}
+              <a
+                href="https://maps.google.com/?q=100-12+101st+Ave,+Ozone+Park,+NY+11416"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="
                   flex
+                  items-start
                   gap-4
-                  p-4
-                  rounded-2xl
-                  bg-white/5
-                  border
-                  border-white/10
-                  hover:border-cyan-400/40
+                  text-white
+                  no-underline
+                  hover:text-cyan-400
                   transition-all
-                  duration-300
                 "
               >
+
+                <div className="text-cyan-400 text-xl mt-1">
+                  📍
+                </div>
+
+                <div className="text-[16px] leading-8 text-slate-200">
+                  100-12 101st Ave,
+                  <br />
+                  Ozone Park, NY 11416
+                </div>
+
+              </a>
+
+              {/* PHONE */}
+              <a
+                href="tel:+17185550101"
+                className="
+                  flex
+                  items-center
+                  gap-4
+                  text-white
+                  no-underline
+                  hover:text-cyan-400
+                  transition-all
+                "
+              >
+
                 <div className="text-cyan-400 text-xl">
                   📞
                 </div>
 
-                <div>
-                  <p className="text-white text-sm font-medium mb-1">
-                    Call Us
-                  </p>
-
-                  <a
-                    href="tel:+17185550101"
-                    className="text-slate-400 text-sm no-underline hover:text-cyan-400"
-                  >
-                    (718) 555-0101
-                  </a>
+                <div className="text-[16px] text-slate-200">
+                  +1 (718) 555-0101
                 </div>
-              </div>    
+
+              </a>
 
               {/* EMAIL */}
-              <div
+              <a
+                href="mailto:info@drankurshah.com"
                 className="
                   flex
+                  items-center
                   gap-4
-                  p-4
-                  rounded-2xl
-                  bg-white/5
-                  border
-                  border-white/10
-                  hover:border-cyan-400/40
+                  text-white
+                  no-underline
+                  hover:text-cyan-400
                   transition-all
-                  duration-300
                 "
               >
+
                 <div className="text-cyan-400 text-xl">
-                  📧
+                  ✉️
                 </div>
 
-                <div>
-                  <p className="text-white text-sm font-medium mb-1">
-                    Email
-                  </p>
-
-                  <a
-                    href="mailto:info@drankurshah.com"
-                    className="text-slate-400 text-sm no-underline hover:text-cyan-400"
-                  >
-                    info@drankurshah.com
-                  </a>
+                <div className="text-[16px] text-slate-200 break-all">
+                  info@drankurshah.com
                 </div>
-              </div>
 
-              {/* LOCATION */}
-              <div
+              </a>
+
+              {/* SECOND LOCATION */}
+              <a
+                href="https://maps.google.com/?q=2501+86th+St,+Brooklyn,+NY"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="
                   flex
+                  items-start
                   gap-4
-                  p-4
-                  rounded-2xl
-                  bg-white/5
-                  border
-                  border-white/10
-                  hover:border-cyan-400/40
+                  text-white
+                  no-underline
+                  hover:text-cyan-400
                   transition-all
-                  duration-300
                 "
               >
-                <div className="text-cyan-400 text-xl">
-                  📍
+
+                <div className="text-cyan-400 text-xl mt-1">
+                  🏥
                 </div>
 
-                <div>
-                  <p className="text-white text-sm font-medium mb-1">
-                    Location
-                  </p>
-
-                  <p className="text-slate-400 text-sm leading-relaxed">
-                    100-12 101st Ave, Ozone Park, NY 11416
-                  </p>
+                <div className="text-[16px] leading-8 text-slate-200">
+                  2501 86th St,
+                  <br />
+                  Brooklyn, NY 11214
                 </div>
-              </div>
+
+              </a>
+
             </div>
           </div>
         </div>
 
-        {/* DIVIDER */}
-        <div className="border-t border-white/10 py-6">
+        {/* BOTTOM */}
+        <div className="border-t border-white/10 mt-14 pt-6">
 
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
 
-            <p className="text-slate-500 text-[13px] text-center md:text-left">
-              © {new Date().getFullYear()} Heart & Vascular.
-              All rights reserved.
+            {/* COPYRIGHT */}
+            <p className="text-slate-300 text-[15px] text-center md:text-left">
+
+              © {new Date().getFullYear()}{" "}
+
+              <span className="text-cyan-400 font-semibold">
+                Heart & Vascular
+              </span>
+
+              . All Rights Reserved.
+
             </p>
 
-            <div className="flex items-center gap-6 text-[13px] text-slate-500">
+            {/* LINKS */}
+            <div className="flex items-center gap-6">
 
-              <span className="hover:text-cyan-400 transition-all cursor-pointer">
+              <button
+                className="
+                  text-slate-300
+                  hover:text-cyan-400
+                  transition-all
+                  bg-transparent
+                  border-none
+                  cursor-pointer
+                  text-[15px]
+                "
+              >
                 Privacy Policy
-              </span>
+              </button>
 
-              <span className="hover:text-cyan-400 transition-all cursor-pointer">
+              <button
+                className="
+                  text-slate-300
+                  hover:text-cyan-400
+                  transition-all
+                  bg-transparent
+                  border-none
+                  cursor-pointer
+                  text-[15px]
+                "
+              >
                 Terms & Conditions
-              </span>
+              </button>
+
             </div>
           </div>
         </div>

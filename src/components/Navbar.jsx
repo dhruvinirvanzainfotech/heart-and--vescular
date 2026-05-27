@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+
 
 const serviceItems = [
   { label: "Cardiac Testing", id: "cardiac" },
@@ -9,6 +10,7 @@ const serviceItems = [
 ];
 
 export default function Navbar() {
+
   const [open, setOpen] = useState(false);
   const [showDrop, setShowDrop] = useState(false);
   const [mobSvc, setMobSvc] = useState(false);
@@ -20,6 +22,7 @@ export default function Navbar() {
   const location = useLocation();
 
   useEffect(() => {
+
     const scrollFn = () => {
       setScrolled(window.scrollY > 10);
     };
@@ -27,12 +30,42 @@ export default function Navbar() {
     window.addEventListener("scroll", scrollFn);
 
     return () => window.removeEventListener("scroll", scrollFn);
+
   }, []);
 
   useEffect(() => {
+
+    requestAnimationFrame(() => {
+      setOpen(false);
+      setShowDrop(false);
+    });
+
+  }, [location.pathname]);
+
+  // SCROLL TOP FUNCTION
+  const goToPage = (path) => {
+
+    navigate(path);
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+  // SERVICES PAGE SCROLL TOP
+  const goService = (id) => {
+
     setOpen(false);
     setShowDrop(false);
-  }, [location.pathname]);
+
+    navigate(`/services/${id}`);
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
   const openDrop = () => {
     clearTimeout(dropTimer.current);
@@ -43,12 +76,6 @@ export default function Navbar() {
     dropTimer.current = setTimeout(() => {
       setShowDrop(false);
     }, 120);
-  };
-
-  const goService = (id) => {
-    setOpen(false);
-    setShowDrop(false);
-    navigate(`/services/${id}`);
   };
 
   const isActive = (path) =>
@@ -64,7 +91,6 @@ export default function Navbar() {
       font-semibold
       transition-all
       duration-300
-      no-underline
       whitespace-nowrap
       ${
         active
@@ -90,44 +116,51 @@ export default function Navbar() {
         }
       `}
     >
+
       <div className="max-w-7xl mx-auto px-4 lg:px-8">
 
         {/* HEADER */}
         <div className="h-[78px] flex items-center justify-between gap-4">
 
           {/* LOGO */}
-          <Link
-            to="/"
-            className="flex items-center shrink-0 no-underline"
+          <button
+            onClick={() => goToPage("/")}
+            className="flex items-center shrink-0 bg-transparent border-none cursor-pointer p-0"
           >
+
             <img
               src="/image/logo.png"
               alt="Logo"
               className="h-11 md:h-12 w-auto object-contain"
             />
-          </Link>
+
+          </button>
 
           {/* DESKTOP MENU */}
           <ul className="hidden lg:flex items-center gap-2 list-none m-0 p-0">
 
             {/* HOME */}
             <li>
-              <Link
-                to="/"
+
+              <button
+                onClick={() => goToPage("/")}
                 className={navLink(location.pathname === "/")}
               >
                 Home
-              </Link>
+              </button>
+
             </li>
 
             {/* ABOUT */}
             <li>
-              <Link
-                to="/about"
+
+              <button
+                onClick={() => goToPage("/about")}
                 className={navLink(isActive("/about"))}
               >
                 About
-              </Link>
+              </button>
+
             </li>
 
             {/* SERVICES */}
@@ -136,8 +169,9 @@ export default function Navbar() {
               onMouseEnter={openDrop}
               onMouseLeave={closeDrop}
             >
-              <Link
-                to="/services"
+
+              <button
+                onClick={() => goToPage("/services")}
                 className={`
                   flex
                   items-center
@@ -149,7 +183,8 @@ export default function Navbar() {
                   font-semibold
                   transition-all
                   duration-300
-                  no-underline
+                  border-none
+                  cursor-pointer
                   ${
                     isActive("/services")
                       ? "bg-cyan-50 text-cyan-700 shadow-sm"
@@ -157,6 +192,7 @@ export default function Navbar() {
                   }
                 `}
               >
+
                 Services
 
                 <span
@@ -169,7 +205,8 @@ export default function Navbar() {
                 >
                   ▼
                 </span>
-              </Link>
+
+              </button>
 
               {/* DROPDOWN */}
               <div
@@ -188,6 +225,7 @@ export default function Navbar() {
                   }
                 `}
               >
+
                 <div
                   className="
                     bg-white/95
@@ -200,11 +238,12 @@ export default function Navbar() {
                   "
                 >
 
-                  {/* TITLE */}
                   <div className="px-4 pb-3 pt-1 border-b border-slate-100 mb-2">
+
                     <p className="text-[11px] uppercase tracking-[2px] text-cyan-600 font-bold">
                       Our Services
                     </p>
+
                   </div>
 
                   {serviceItems.map((s) => (
@@ -233,6 +272,7 @@ export default function Navbar() {
                         cursor-pointer
                       "
                     >
+
                       <span>{s.label}</span>
 
                       <span
@@ -248,40 +288,48 @@ export default function Navbar() {
                       >
                         →
                       </span>
+
                     </button>
                   ))}
+
                 </div>
               </div>
             </li>
 
             {/* LOCATIONS */}
             <li>
-              <Link
-                to="/locations"
+
+              <button
+                onClick={() => goToPage("/locations")}
                 className={navLink(isActive("/locations"))}
               >
                 Locations
-              </Link>
+              </button>
+
             </li>
 
             {/* INSURANCE */}
             <li>
-              <Link
-                to="/insurance"
+
+              <button
+                onClick={() => goToPage("/insurance")}
                 className={navLink(isActive("/insurance"))}
               >
                 Insurance
-              </Link>
+              </button>
+
             </li>
 
             {/* CONTACT */}
             <li>
-              <Link
-                to="/contact"
+
+              <button
+                onClick={() => goToPage("/contact")}
                 className={navLink(isActive("/contact"))}
               >
                 Contact
-              </Link>
+              </button>
+
             </li>
           </ul>
 
@@ -302,8 +350,8 @@ export default function Navbar() {
               (718) 555-0101
             </a>
 
-            <Link
-              to="/appointment"
+            <button
+              onClick={() => goToPage("/appointment")}
               className="
                 px-5
                 py-3
@@ -313,7 +361,8 @@ export default function Navbar() {
                 text-white
                 text-[13px]
                 font-semibold
-                no-underline
+                border-none
+                cursor-pointer
                 transition-all
                 duration-300
                 hover:shadow-xl
@@ -322,7 +371,8 @@ export default function Navbar() {
               "
             >
               Book Appointment
-            </Link>
+            </button>
+
           </div>
 
           {/* MOBILE BUTTON */}
@@ -344,6 +394,7 @@ export default function Navbar() {
               cursor-pointer
             "
           >
+
             <span
               className={`
                 w-5
@@ -379,6 +430,7 @@ export default function Navbar() {
                 ${open ? "-rotate-45 -translate-y-[6px]" : ""}
               `}
             />
+
           </button>
         </div>
       </div>
@@ -396,10 +448,11 @@ export default function Navbar() {
           ${open ? "max-h-[700px] py-4" : "max-h-0"}
         `}
       >
+
         <div className="px-4 flex flex-col gap-2">
 
-          <Link
-            to="/"
+          <button
+            onClick={() => goToPage("/")}
             className="
               px-4
               py-3
@@ -407,15 +460,18 @@ export default function Navbar() {
               text-[14px]
               font-medium
               text-slate-700
-              no-underline
               hover:bg-cyan-50
+              border-none
+              bg-transparent
+              text-left
+              cursor-pointer
             "
           >
             Home
-          </Link>
+          </button>
 
-          <Link
-            to="/about"
+          <button
+            onClick={() => goToPage("/about")}
             className="
               px-4
               py-3
@@ -423,12 +479,15 @@ export default function Navbar() {
               text-[14px]
               font-medium
               text-slate-700
-              no-underline
               hover:bg-cyan-50
+              border-none
+              bg-transparent
+              text-left
+              cursor-pointer
             "
           >
             About
-          </Link>
+          </button>
 
           {/* MOBILE SERVICES */}
           <div className="bg-slate-50 rounded-3xl p-2">
@@ -450,11 +509,13 @@ export default function Navbar() {
                 cursor-pointer
               "
             >
+
               Services
 
               <span className="text-sm">
                 {mobSvc ? "−" : "+"}
               </span>
+
             </button>
 
             {mobSvc && (
@@ -482,12 +543,13 @@ export default function Navbar() {
                     {s.label}
                   </button>
                 ))}
+
               </div>
             )}
           </div>
 
-          <Link
-            to="/locations"
+          <button
+            onClick={() => goToPage("/locations")}
             className="
               px-4
               py-3
@@ -495,15 +557,18 @@ export default function Navbar() {
               text-[14px]
               font-medium
               text-slate-700
-              no-underline
               hover:bg-cyan-50
+              border-none
+              bg-transparent
+              text-left
+              cursor-pointer
             "
           >
             Locations
-          </Link>
+          </button>
 
-          <Link
-            to="/insurance"
+          <button
+            onClick={() => goToPage("/insurance")}
             className="
               px-4
               py-3
@@ -511,15 +576,18 @@ export default function Navbar() {
               text-[14px]
               font-medium
               text-slate-700
-              no-underline
               hover:bg-cyan-50
+              border-none
+              bg-transparent
+              text-left
+              cursor-pointer
             "
           >
             Insurance
-          </Link>
+          </button>
 
-          <Link
-            to="/contact"
+          <button
+            onClick={() => goToPage("/contact")}
             className="
               px-4
               py-3
@@ -527,15 +595,18 @@ export default function Navbar() {
               text-[14px]
               font-medium
               text-slate-700
-              no-underline
               hover:bg-cyan-50
+              border-none
+              bg-transparent
+              text-left
+              cursor-pointer
             "
           >
             Contact
-          </Link>
+          </button>
 
-          <Link
-            to="/appointment"
+          <button
+            onClick={() => goToPage("/appointment")}
             className="
               mt-3
               bg-slate-900
@@ -546,13 +617,15 @@ export default function Navbar() {
               rounded-full
               text-[14px]
               font-semibold
-              no-underline
+              border-none
+              cursor-pointer
               transition-all
               duration-300
             "
           >
             Book Appointment
-          </Link>
+          </button>
+
         </div>
       </div>
     </nav>

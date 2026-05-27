@@ -53,7 +53,7 @@ export default function Hero() {
   }, [nextSlide]);
 
   return (
-    <section className="relative h-[88vh] min-h-[620px] w-full overflow-hidden bg-white">
+<section className="relative h-[88vh] min-h-[0px] sm:min-h-[620px] w-full overflow-hidden bg-white">
 
       {/* SLIDES */}
       {slides.map((slide, index) => (
@@ -86,7 +86,7 @@ export default function Hero() {
           <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/55 to-white/10"></div>
 
           {/* SOFT GLOW */}
-          <div className="absolute top-[-120px] left-[-100px] w-[420px] h-[420px] bg-cyan-400/20 blur-[120px] rounded-full"></div>
+<div className="absolute top-[-120px] left-[-100px] w-[420px] h-[420px] bg-cyan-400/20 blur-[120px] rounded-full hidden sm:block"></div>
 
           {/* CONTENT */}
           <div className="absolute inset-0 z-30 flex items-center">
