@@ -1,0 +1,124 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand: #c0392b;
+  --color-brand-dark: #a93226;
+  --color-navy: #1a1a2e;
+  --color-navy2: #0f3460;
+}
+
+/* Custom keyframes needed for splash screen */
+@keyframes splashIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes drawEcg {
+  to { stroke-dashoffset: 0; }
+}
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.18); }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes loadBar {
+  to { width: 100%; }
+}
+@keyframes fadeSlide {
+  from { opacity: 0; transform: translateX(16px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes dropIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(40px) scale(0.96); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes titleIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulseRing {
+  0%   { transform: scale(1);    opacity: 0.6; }
+  100% { transform: scale(1.55); opacity: 0; }
+}
+
+.animate-splashIn   { animation: splashIn 0.6s ease forwards; }
+.animate-drawEcg    { stroke-dasharray: 300; stroke-dashoffset: 300; animation: drawEcg 1.4s ease forwards 0.3s; }
+.animate-heartbeat  { animation: heartbeat 0.8s ease-in-out infinite; }
+.animate-fadeUp1    { opacity: 0; animation: fadeUp 0.5s ease forwards 0.8s; }
+.animate-fadeUp2    { opacity: 0; animation: fadeUp 0.5s ease forwards 1s; }
+.animate-fadeUp3    { opacity: 0; animation: fadeUp 0.4s ease forwards 1.1s; }
+.animate-loadBar    { width: 0%; animation: loadBar 1s ease forwards 1.2s; }
+.animate-fadeSlide  { animation: fadeSlide 0.3s ease; }
+.animate-dropIn     { animation: dropIn 0.18s ease forwards; }
+.animate-titleIn    { animation: titleIn 0.6s ease forwards; }
+.animate-card-0     { opacity: 0; animation: cardIn 0.55s ease forwards 0.15s; }
+.animate-card-1     { opacity: 0; animation: cardIn 0.55s ease forwards 0.3s; }
+.animate-card-2     { opacity: 0; animation: cardIn 0.55s ease forwards 0.45s; }
+.animate-card-3     { opacity: 0; animation: cardIn 0.55s ease forwards 0.6s; }
+.animate-pulseRing  { animation: pulseRing 1.4s ease-out infinite; }
+
+/* Hero slider Ken Burns zoom */
+@keyframes kenBurns {
+  0%   { transform: scale(1)    translateX(0);    }
+  100% { transform: scale(1.12) translateX(-2%);  }
+}
+@keyframes kenBurns2 {
+  0%   { transform: scale(1)    translateX(0);   }
+  100% { transform: scale(1.1)  translateX(2%);  }
+}
+@keyframes slideTextIn {
+  from { opacity: 0; transform: translateY(36px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-kenBurns  { animation: kenBurns  8s ease-in-out forwards; }
+.animate-kenBurns2 { animation: kenBurns2 8s ease-in-out forwards; }
+.animate-slideText { animation: slideTextIn 0.7s ease forwards; }
+@keyframes heroFadeLeft {
+  from { opacity: 0; transform: translateX(-50px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes heroFadeRight {
+  from { opacity: 0; transform: translateX(50px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes floatUpDown {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-12px); }
+}
+@keyframes rotateSlow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes ripple {
+  0%   { transform: scale(0.8); opacity: 1; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+.animate-heroLeft   { animation: heroFadeLeft 0.8s ease forwards; }
+.animate-heroRight  { animation: heroFadeRight 0.8s ease forwards 0.3s; opacity: 0; }
+.animate-float      { animation: floatUpDown 4s ease-in-out infinite; }
+.animate-rotateSlow { animation: rotateSlow 18s linear infinite; }
+.animate-stat-0     { opacity: 0; animation: countUp 0.5s ease forwards 0.6s; }
+.animate-stat-1     { opacity: 0; animation: countUp 0.5s ease forwards 0.8s; }
+.animate-stat-2     { opacity: 0; animation: countUp 0.5s ease forwards 1s; }
+.animate-ripple     { animation: ripple 2s ease-out infinite; }
+
+html { scroll-behavior: smooth; }
+* { box-sizing: border-box; }
+html, body, #root { min-height: 100%; font-family: 'Kanit', 'Segoe UI', system-ui, sans-serif; }
+body { margin: 0; }
+:target { scroll-margin-top: 110px; }
+
+/* Ensure anchor navigation and manual scroll positions don't hide content behind the sticky header */
+html { scroll-padding-top: 110px; }
+
