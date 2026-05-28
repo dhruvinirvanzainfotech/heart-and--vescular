@@ -44,9 +44,8 @@ export default function WhyUs() {
             rounded-full
             bg-cyan-100
             text-cyan-700
-            text-[11px]
-            font-semibold
-            tracking-[3px]
+            text-[12px]
+            font-semisemibold            tracking-[3px]
             uppercase
             mb-5
           ">
@@ -56,8 +55,7 @@ export default function WhyUs() {
           <h2 className="
             text-3xl
             md:text-4xl
-            font-bold
-            text-slate-900
+            font-semibold            text-slate-900
             leading-tight
             mb-4
           ">
@@ -68,7 +66,7 @@ export default function WhyUs() {
             text-slate-600
             text-[15px]
             leading-relaxed
-          ">
+            font-semisemibold          ">
             Modern cardiac care with advanced diagnostics,
             experienced specialists, and patient-focused treatment.
           </p>
@@ -113,7 +111,7 @@ export default function WhyUs() {
                     Personalized Patient Care
                   </h3>
 
-                  <p className="text-slate-500 text-sm mt-1">
+                  <p className="text-slate-500 text-sm mt-1 font-semibold ">
                     Advanced treatment with compassionate support.
                   </p>
                 </div>
@@ -122,8 +120,7 @@ export default function WhyUs() {
               <h2 className="
                 text-3xl
                 md:text-5xl
-                font-bold
-                text-slate-900
+                font-semibold                text-slate-900
                 leading-tight
                 mb-6
               ">
@@ -140,7 +137,7 @@ export default function WhyUs() {
                 leading-relaxed
                 mb-8
                 max-w-xl
-              ">
+                font-semisemibold              ">
                 We provide comprehensive heart and vascular care
                 using modern medical technology and a patient-first approach
                 designed for comfort, trust, and better outcomes.
@@ -162,14 +159,13 @@ export default function WhyUs() {
                 ">
                   <h4 className="
                     text-3xl
-                    font-bold
-                    text-slate-900
+                    font-semibold                    text-slate-900
                     mb-1
                   ">
                     15+
                   </h4>
 
-                  <p className="text-slate-600 text-sm">
+                  <p className="text-slate-600 text-12px font-semibold">
                     Years Experience
                   </p>
                 </div>
@@ -187,14 +183,13 @@ export default function WhyUs() {
                 ">
                   <h4 className="
                     text-3xl
-                    font-bold
-                    text-slate-900
+                    font-semibold                    text-slate-900
                     mb-1
                   ">
                     5000+
                   </h4>
 
-                  <p className="text-slate-600 text-sm">
+                  <p className="text-slate-600 text-12px font-semibold">
                     Happy Patients
                   </p>
                 </div>
@@ -216,8 +211,7 @@ export default function WhyUs() {
                     hover:bg-slate-800
                     text-white
                     text-sm
-                    font-semibold
-                    no-underline
+                    font-semisemibold                    no-underline
                     transition-all
                     duration-300
                     hover:-translate-y-1
@@ -243,8 +237,7 @@ export default function WhyUs() {
                     border-slate-300
                     text-slate-700
                     text-sm
-                    font-semibold
-                    no-underline
+                    font-bold                    no-underline
                     hover:bg-white
                     hover:-translate-y-1
                     transition-all
@@ -291,8 +284,7 @@ export default function WhyUs() {
                     items-center
                     justify-center
                     text-cyan-600
-                    font-bold
-                    text-lg
+                    font-semibold                    text-lg
                     mb-5
                     group-hover:bg-cyan-500
                     group-hover:text-white
@@ -305,8 +297,7 @@ export default function WhyUs() {
 
                   <h3 className="
                     text-[20px]
-                    font-bold
-                    text-slate-900
+                    font-semibold                    text-slate-900
                     mb-3
                     group-hover:text-cyan-600
                     transition-all
@@ -316,8 +307,9 @@ export default function WhyUs() {
 
                   <p className="
                     text-slate-600
-                    text-[14px]
+                    text-[15px]
                     leading-relaxed
+                    font-semibold
                   ">
                     {item.desc}
                   </p>

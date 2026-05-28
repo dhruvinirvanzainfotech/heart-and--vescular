@@ -1,162 +1,603 @@
-import { useParams, useNavigate, Link } from 'react-router-dom'
+import { useParams, useNavigate, Link } from "react-router-dom";
 
 const allServices = {
   cardiac: {
-    icon: '/image/cardiac.png',
-    fallback: '🫀',
-    title: 'Cardiac Testing and Treatment',
-    teal: true,
-    intro: 'Our cardiac testing and treatment services provide comprehensive evaluation and management of all heart conditions using the latest diagnostic technology and evidence-based treatments.',
-    items: [
-      { name: 'Routine Cardiac Testing',            desc: 'Complete cardiovascular health screening and risk assessment.' },
-      { name: 'Pre-operative Cardiac Clearance',    desc: 'Thorough cardiac evaluation before surgical procedures.' },
-      { name: 'Evaluation of Abnormal Cardiac Rhythms', desc: 'Diagnosis and management of irregular heart rhythms.' },
-      { name: 'Stress Testing: Treadmill, Stress Echocardiography', desc: 'Exercise and imaging-based heart performance evaluation.' },
-      { name: 'Echocardiography / Doppler (heart ultrasound)', desc: 'Detailed ultrasound imaging of heart structure and function.' },
-      { name: 'Holter Monitor (24 hour heart rhythm / EKG monitors)', desc: 'Continuous 24–48 hour cardiac rhythm recording.' },
-      { name: 'Event Monitor (long term rhythm / EKG monitors)', desc: 'Extended monitoring for infrequent cardiac events.' },
-      { name: 'Cardiac Catheterization and Percutaneous Coronary Intervention', desc: 'Minimally invasive procedures to open blocked coronary arteries.' },
-    ],
-  },
-  varicose: {
-    icon: '/image/varicos.png',
-    fallback: '🦵',
-    title: 'Varicose Veins, Ulcer and Lymphedema Treatment Center',
-    teal: false,
-    intro: 'We offer advanced, minimally invasive treatments for varicose veins, venous ulcers, and lymphedema to relieve symptoms and restore quality of life.',
-    items: [
-      { name: 'Venous Reflux Testing (air plethysmography) Varicose Vein Doppler', desc: 'Comprehensive venous mapping and reflux evaluation.' },
-      { name: 'Endovenous Laser Ablation for Symptomatic Varicose Veins', desc: 'Laser-based minimally invasive vein closure procedure.' },
-      { name: 'Sclerotherapy for Varicose Veins', desc: 'Chemical injection treatment to eliminate varicose and spider veins.' },
-      { name: 'Sequential Compression Device Therapy for Lymphedema', desc: 'Pneumatic compression to reduce lymphatic swelling.' },
-      { name: '*Manual Lymphatic Drainage', desc: 'Specialized massage technique to stimulate lymph flow.' },
-    ],
-  },
-  vascular: {
-    icon: '/image/vascular.png',
-    fallback: '🩺',
-    title: 'Vascular Testing and Treatment',
-    teal: false,
-    intro: 'Our vascular services provide non-invasive diagnostic testing and interventional treatment for diseases of the arteries and veins throughout the body.',
-    items: [
-      { name: 'Carotid Doppler (ultrasound)', desc: 'Ultrasound evaluation of neck arteries for stroke risk.' },
-      { name: 'Aorta Doppler',               desc: 'Imaging of the main body artery for aneurysm detection.' },
-      { name: 'Arterial Doppler of Legs & Arms', desc: 'Blood flow assessment in peripheral arteries.' },
-      { name: 'Venous Doppler of Legs & Arms',   desc: 'Evaluation of venous circulation and clot detection.' },
-      { name: 'Kidney Artery Doppler',           desc: 'Renal artery imaging for hypertension evaluation.' },
-      { name: 'ABI (Arm – Brachial Index)',       desc: 'Peripheral artery disease screening test.' },
-      { name: 'Percutaneous Endovascular Interventions', desc: 'Minimally invasive procedures to treat vascular blockages.' },
-    ],
-  },
-  nutrition: {
-    icon: '/image/nutrition.png',
-    fallback: '🥗',
-    title: 'Nutrition Counseling',
-    teal: true,
-    intro: 'Personalized nutrition counseling to support heart health, manage weight, and reduce cardiovascular risk through evidence-based dietary guidance.',
-    items: [
-      { name: 'In-office Nutrition Consultation', desc: 'One-on-one dietary assessment and personalized meal planning.' },
-      { name: 'Body Mass Index Consultation',     desc: 'BMI evaluation and healthy weight goal setting.' },
-      { name: 'Body Fat Percentage Analysis',     desc: 'Body composition assessment for targeted health improvement.' },
-    ],
-  },
-}
+    image: "/image/service1.jpg",
+    icon: "/image/cardiac.png",
+    fallback: "🫀",
+    title: "Cardiac Testing & Treatment",
+    accent: "#2563eb",
 
-const order = ['cardiac', 'varicose', 'vascular', 'nutrition']
+    intro:
+      "Advanced cardiac diagnostics and modern heart treatment solutions designed with compassionate patient care and latest medical technology.",
+
+    items: [
+      {
+        name: "Routine Cardiac Testing",
+        desc: "Complete heart evaluation and preventive cardiac screening services.",
+      },
+      {
+        name: "Stress Testing",
+        desc: "Professional treadmill and stress echocardiography procedures.",
+      },
+      {
+        name: "Heart Ultrasound",
+        desc: "Detailed echocardiography imaging for accurate diagnosis.",
+      },
+      {
+        name: "Holter Monitoring",
+        desc: "24-hour ECG and heart rhythm monitoring solutions.",
+      },
+      {
+        name: "Cardiac Catheterization",
+        desc: "Minimally invasive procedures for blocked coronary arteries.",
+      },
+      {
+        name: "Arrhythmia Evaluation",
+        desc: "Diagnosis and treatment for abnormal heart rhythms.",
+      },
+    ],
+  },
+
+  vascular: {
+    image: "/image/service2.jpg",
+    icon: "/image/vascular.png",
+    fallback: "🩺",
+    title: "Vascular Treatment",
+    accent: "#7c3aed",
+
+    intro:
+      "Modern vascular care and advanced circulation treatment using minimally invasive procedures and expert diagnostics.",
+
+    items: [
+      {
+        name: "Carotid Doppler",
+        desc: "Stroke risk evaluation and artery ultrasound testing.",
+      },
+      {
+        name: "Aorta Doppler",
+        desc: "Advanced aortic imaging and circulation evaluation.",
+      },
+      {
+        name: "ABI Testing",
+        desc: "Peripheral artery disease and circulation analysis.",
+      },
+      {
+        name: "Venous Doppler",
+        desc: "Vein circulation and blood clot detection services.",
+      },
+      {
+        name: "Kidney Artery Doppler",
+        desc: "Renal artery imaging and hypertension assessment.",
+      },
+      {
+        name: "Endovascular Procedures",
+        desc: "Modern minimally invasive vascular treatments.",
+      },
+    ],
+  },
+
+  varicose: {
+    image: "/image/service3.jpg",
+    icon: "/image/varicos.png",
+    fallback: "🦵",
+    title: "Varicose Vein Care",
+    accent: "#db2777",
+
+    intro:
+      "Advanced minimally invasive vein treatment procedures to improve circulation and provide long-term vein health.",
+
+    items: [
+      {
+        name: "Laser Vein Ablation",
+        desc: "Modern laser treatment for symptomatic varicose veins.",
+      },
+      {
+        name: "Sclerotherapy",
+        desc: "Injection therapy for spider and varicose veins.",
+      },
+      {
+        name: "Vein Doppler Testing",
+        desc: "Detailed vein circulation and reflux evaluation.",
+      },
+      {
+        name: "Compression Therapy",
+        desc: "Professional compression treatment for vein disorders.",
+      },
+      {
+        name: "Lymphedema Therapy",
+        desc: "Advanced swelling management and drainage therapy.",
+      },
+      {
+        name: "Vein Consultation",
+        desc: "Complete vein examination and personalized planning.",
+      },
+    ],
+  },
+
+  nutrition: {
+    image: "/image/service4.jpg",
+    icon: "/image/nutrition.png",
+    fallback: "🥗",
+    title: "Nutrition Counseling",
+    accent: "#f59e0b",
+
+    intro:
+      "Personalized nutrition programs and healthy lifestyle guidance for improved cardiovascular wellness and healthy living.",
+
+    items: [
+      {
+        name: "Nutrition Consultation",
+        desc: "Personalized dietary assessment and meal planning.",
+      },
+      {
+        name: "Weight Management",
+        desc: "Healthy weight and wellness improvement programs.",
+      },
+      {
+        name: "Body Fat Analysis",
+        desc: "Professional body composition evaluation services.",
+      },
+      {
+        name: "Lifestyle Coaching",
+        desc: "Healthy routine planning for long-term wellness.",
+      },
+      {
+        name: "Diet Planning",
+        desc: "Custom nutrition plans for healthy living.",
+      },
+      {
+        name: "Wellness Monitoring",
+        desc: "Continuous nutrition and health improvement tracking.",
+      },
+    ],
+  },
+};
+
+const order = ["cardiac", "vascular", "varicose", "nutrition"];
 
 export default function ServiceDetailPage() {
-  const { id }   = useParams()
-  const navigate = useNavigate()
-  const svc      = allServices[id]
+  const { id } = useParams();
 
-  if (!svc) return (
-    <div className="min-h-screen flex flex-col items-center justify-center gap-4">
-      <p className="text-slate-500 text-lg">Service not found.</p>
-      <Link to="/services" className="text-[#00bcd4] font-semibold no-underline hover:underline">← Back to Services</Link>
-    </div>
-  )
+  const navigate = useNavigate();
 
-  const isTeal = svc.teal
-  const currentIdx = order.indexOf(id)
-  const prevId = order[currentIdx - 1]
-  const nextId = order[currentIdx + 1]
+  const svc = allServices[id];
+
+  if (!svc) {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center bg-white">
+        <h2 className="text-3xl font-bold text-slate-700 mb-4">
+          Service Not Found
+        </h2>
+
+        <Link
+          to="/services"
+          className="
+            px-6
+            py-3
+            rounded-full
+            bg-slate-900
+            text-white
+            no-underline
+          "
+        >
+          Back to Services
+        </Link>
+      </div>
+    );
+  }
+
+  const currentIdx = order.indexOf(id);
+
+  const prevId = order[currentIdx - 1];
+
+  const nextId = order[currentIdx + 1];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="bg-[#f8fafc] min-h-screen overflow-hidden">
+      {/* HERO */}
+      <section className="relative pt-24 pb-20 overflow-hidden bg-white">
+        {/* BG SHAPES */}
+        <div
+          className="absolute top-[-120px] left-[-100px] w-[300px] h-[300px] rounded-full blur-[120px] opacity-20"
+          style={{
+            background: svc.accent,
+          }}
+        ></div>
 
-      {/* Hero banner */}
-      <div className={`${isTeal ? 'bg-[#00bcd4]' : 'bg-[#1a1a2e]'} py-14 px-6 text-center animate-titleIn`}>
-        {/* Icon */}
-        <div className="relative inline-block mb-5">
-          <div className={`absolute inset-0 rounded-full animate-pulseRing ${isTeal ? 'bg-white/30' : 'bg-[#00bcd4]/30'}`} />
-          <div className={`relative w-20 h-20 rounded-full flex items-center justify-center border-2 mx-auto ${isTeal ? 'border-white/60 bg-white/20' : 'border-[#00bcd4] bg-[#00bcd4]/10'}`}>
-            <img src={svc.icon} alt={svc.title} className="w-11 h-11 object-contain"
-              onError={e => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'block' }} />
-            <span className="hidden text-3xl">{svc.fallback}</span>
-          </div>
-        </div>
-        <h1 className={`text-2xl md:text-3xl font-bold mb-3 ${isTeal ? 'text-white' : 'text-white'}`}>{svc.title}</h1>
-        <p className={`text-sm max-w-xl mx-auto leading-relaxed ${isTeal ? 'text-white/80' : 'text-slate-400'}`}>{svc.intro}</p>
-      </div>
+        <div
+          className="absolute bottom-[-120px] right-[-100px] w-[320px] h-[320px] rounded-full blur-[120px] opacity-20"
+          style={{
+            background: svc.accent,
+          }}
+        ></div>
 
-      {/* Breadcrumb */}
-      <div className="bg-slate-50 border-b border-slate-100 px-6 py-3">
-        <div className="max-w-3xl mx-auto flex items-center gap-2 text-xs text-slate-400">
-          <Link to="/" className="hover:text-[#00bcd4] no-underline transition-colors">Home</Link>
-          <span>›</span>
-          <Link to="/services" className="hover:text-[#00bcd4] no-underline transition-colors">Services</Link>
-          <span>›</span>
-          <span className="text-slate-600 font-medium">{svc.title}</span>
-        </div>
-      </div>
-
-      {/* Service items */}
-      <div className="max-w-3xl mx-auto px-6 py-12">
-        <h2 className="text-lg font-semibold text-slate-700 mb-7 text-center tracking-wide">What We Offer</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {svc.items.map((item, i) => (
-            <div
-              key={item.name}
-              className={`animate-card-${Math.min(i, 3)} flex items-start gap-4 bg-white border border-slate-100 rounded-xl p-5 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200`}
+        <div className="relative z-10 max-w-7xl mx-auto px-6">
+          {/* BREADCRUMB */}
+          <div className="flex items-center gap-2 text-sm text-slate-400 mb-10">
+            <Link
+              to="/"
+              className="hover:text-slate-700 no-underline"
             >
-              <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-white text-sm font-bold ${isTeal ? 'bg-[#00bcd4]' : 'bg-[#1a1a2e]'}`}>
-                {i + 1}
+              Home
+            </Link>
+
+            <span>•</span>
+
+            <Link
+              to="/services"
+              className="hover:text-slate-700 no-underline"
+            >
+              Services
+            </Link>
+
+            <span>•</span>
+
+            <span className="text-slate-700 font-medium">
+              {svc.title}
+            </span>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-14 items-center">
+            {/* LEFT */}
+            <div>
+              {/* ICON */}
+              <div
+                className="
+                  w-24
+                  h-24
+                  rounded-[28px]
+                  flex
+                  items-center
+                  justify-center
+                  mb-7
+                  shadow-lg
+                "
+                style={{
+                  background: `${svc.accent}15`,
+                }}
+              >
+                <img
+                  src={svc.icon}
+                  alt={svc.title}
+                  className="w-12 h-12 object-contain"
+                  onError={(e) => {
+                    e.target.style.display = "none";
+
+                    if (e.target.nextSibling) {
+                      e.target.nextSibling.style.display = "block";
+                    }
+                  }}
+                />
+
+                <span className="hidden text-5xl">
+                  {svc.fallback}
+                </span>
               </div>
-              <div>
-                <div className="text-[13.5px] font-semibold text-slate-700 mb-1">{item.name}</div>
-                <div className="text-[12px] text-slate-400 leading-relaxed">{item.desc}</div>
+
+              {/* TAG */}
+              <span
+                className="
+                  inline-block
+                  px-5
+                  py-2
+                  rounded-full
+                  text-sm
+                  font-semibold
+                  mb-5
+                "
+                style={{
+                  background: `${svc.accent}15`,
+                  color: svc.accent,
+                }}
+              >
+                Specialized Medical Care
+              </span>
+
+              {/* TITLE */}
+              <h1
+                className="
+                  text-4xl
+                  md:text-6xl
+                  font-bold
+                  text-slate-800
+                  leading-tight
+                  mb-6
+                "
+              >
+                {svc.title}
+              </h1>
+
+              {/* DESC */}
+              <p
+                className="
+                  text-slate-500
+                  text-[17px]
+                  leading-8
+                  max-w-2xl
+                  mb-10
+                "
+              >
+                {svc.intro}
+              </p>
+
+              {/* BUTTONS */}
+              <div className="flex flex-wrap gap-4">
+                <Link
+                  to="/appointment"
+                  className="
+                    px-8
+                    py-4
+                    rounded-full
+                    text-white
+                    text-sm
+                    font-semibold
+                    no-underline
+                    transition-all
+                    duration-300
+                    hover:-translate-y-1
+                    shadow-lg
+                  "
+                  style={{
+                    background: svc.accent,
+                  }}
+                >
+                  Book Appointment
+                </Link>
+
+                <Link
+                  to="/contact"
+                  className="
+                    px-8
+                    py-4
+                    rounded-full
+                    border
+                    border-slate-200
+                    bg-white
+                    text-slate-700
+                    text-sm
+                    font-semibold
+                    no-underline
+                    transition-all
+                    duration-300
+                    hover:-translate-y-1
+                    hover:shadow-lg
+                  "
+                >
+                  Contact Us
+                </Link>
               </div>
             </div>
-          ))}
-        </div>
 
-        {/* CTA */}
-        <div className="mt-12 text-center">
-          <a href="/#appointment"
-            className={`inline-block ${isTeal ? 'bg-[#00bcd4] hover:bg-[#00acc1]' : 'bg-[#1a1a2e] hover:bg-[#0f3460]'} text-white font-semibold px-8 py-3.5 rounded-full transition-all hover:-translate-y-0.5 no-underline text-sm`}>
-            Book an Appointment →
-          </a>
-        </div>
+            {/* IMAGE */}
+            <div className="relative">
+              {/* BOX */}
+              <div
+                className="
+                  relative
+                  overflow-hidden
+                  rounded-[35px]
+                  bg-white
+                  p-4
+                  shadow-[0_20px_60px_rgba(0,0,0,0.08)]
+                "
+              >
+                <img
+                  src={svc.image}
+                  alt={svc.title}
+                  className="
+                    w-full
+                    h-[500px]
+                    object-cover
+                    rounded-[28px]
+                    hover:scale-105
+                    transition-all
+                    duration-700
+                  "
+                />
 
-        {/* Prev / Next navigation */}
-        <div className="mt-10 flex justify-between items-center border-t border-slate-100 pt-8">
-          {prevId ? (
-            <button onClick={() => navigate(`/services/${prevId}`)}
-              className="flex items-center gap-2 text-sm text-slate-500 hover:text-[#00bcd4] transition-colors border-none bg-transparent cursor-pointer">
-              ← {allServices[prevId].title}
-            </button>
-          ) : <div />}
-          <Link to="/services" className="text-xs font-semibold text-slate-400 hover:text-[#00bcd4] no-underline transition-colors">
-            All Services
-          </Link>
-          {nextId ? (
-            <button onClick={() => navigate(`/services/${nextId}`)}
-              className="flex items-center gap-2 text-sm text-slate-500 hover:text-[#00bcd4] transition-colors border-none bg-transparent cursor-pointer">
-              {allServices[nextId].title} →
-            </button>
-          ) : <div />}
+                {/* FLOAT CARD */}
+                <div
+                  className="
+                    absolute
+                    bottom-8
+                    left-8
+                    bg-white/90
+                    backdrop-blur-xl
+                    rounded-3xl
+                    px-6
+                    py-5
+                    shadow-xl
+                  "
+                >
+                  <h3
+                    className="text-3xl font-bold"
+                    style={{
+                      color: svc.accent,
+                    }}
+                  >
+                    15+
+                  </h3>
+
+                  <p className="text-slate-500 text-sm mt-1">
+                    Years Experience
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
+
+      {/* SERVICES */}
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-6">
+          {/* HEADER */}
+          <div className="text-center mb-16">
+            <span
+              className="uppercase tracking-[4px] text-sm font-semibold"
+              style={{
+                color: svc.accent,
+              }}
+            >
+              Treatment Services
+            </span>
+
+            <h2 className="text-4xl font-bold text-slate-800 mt-4">
+              Complete Healthcare Solutions
+            </h2>
+          </div>
+
+          {/* GRID */}
+          <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-7">
+            {svc.items.map((item, index) => (
+              <div
+                key={item.name}
+                className="
+                  group
+                  relative
+                  bg-white
+                  rounded-[30px]
+                  p-7
+                  border
+                  border-slate-100
+                  transition-all
+                  duration-500
+                  hover:-translate-y-2
+                  hover:shadow-[0_20px_50px_rgba(0,0,0,0.08)]
+                "
+              >
+                {/* NUMBER */}
+                <div
+                  className="
+                    w-14
+                    h-14
+                    rounded-2xl
+                    flex
+                    items-center
+                    justify-center
+                    text-white
+                    text-lg
+                    font-bold
+                    mb-6
+                  "
+                  style={{
+                    background: svc.accent,
+                  }}
+                >
+                  {index + 1}
+                </div>
+
+                {/* TITLE */}
+                <h3 className="text-[22px] font-bold text-slate-800 mb-4">
+                  {item.name}
+                </h3>
+
+                {/* TEXT */}
+                <p className="text-slate-500 leading-7 text-[15px]">
+                  {item.desc}
+                </p>
+
+                {/* BORDER */}
+                <div
+                  className="
+                    absolute
+                    bottom-0
+                    left-0
+                    w-0
+                    h-[4px]
+                    rounded-full
+                    transition-all
+                    duration-500
+                    group-hover:w-full
+                  "
+                  style={{
+                    background: svc.accent,
+                  }}
+                ></div>
+              </div>
+            ))}
+          </div>
+
+          {/* NAVIGATION */}
+          <div className="mt-20 flex flex-col md:flex-row items-center justify-between gap-5">
+            {/* PREV */}
+            {prevId ? (
+              <button
+                onClick={() => navigate(`/services/${prevId}`)}
+                className="
+                  px-7
+                  py-4
+                  rounded-full
+                  bg-white
+                  border
+                  border-slate-200
+                  text-slate-700
+                  text-sm
+                  font-semibold
+                  transition-all
+                  duration-300
+                  hover:-translate-y-1
+                  hover:shadow-lg
+                "
+              >
+                ← Previous Service
+              </button>
+            ) : (
+              <div></div>
+            )}
+
+            {/* CENTER */}
+            <Link
+              to="/services"
+              className="
+                px-8
+                py-4
+                rounded-full
+                text-white
+                text-sm
+                font-semibold
+                no-underline
+                transition-all
+                duration-300
+                hover:-translate-y-1
+                shadow-lg
+              "
+              style={{
+                background: svc.accent,
+              }}
+            >
+              View All Services
+            </Link>
+
+            {/* NEXT */}
+            {nextId ? (
+              <button
+                onClick={() => navigate(`/services/${nextId}`)}
+                className="
+                  px-7
+                  py-4
+                  rounded-full
+                  bg-white
+                  border
+                  border-slate-200
+                  text-slate-700
+                  text-sm
+                  font-semibold
+                  transition-all
+                  duration-300
+                  hover:-translate-y-1
+                  hover:shadow-lg
+                "
+              >
+                Next Service →
+              </button>
+            ) : (
+              <div></div>
+            )}
+          </div>
+        </div>
+      </section>
     </div>
-  )
+  );
 }

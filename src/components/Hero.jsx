@@ -48,12 +48,12 @@ export default function Hero() {
   };
 
   useEffect(() => {
-    const timer = setInterval(nextSlide, 5000);
+    const timer = setInterval(nextSlide, 2000);
     return () => clearInterval(timer);
   }, [nextSlide]);
 
   return (
-<section className="relative h-[88vh] min-h-[0px] sm:min-h-[620px] w-full overflow-hidden bg-white">
+    <section className="relative h-[88vh] min-h-[620px] w-full overflow-hidden bg-white">
 
       {/* SLIDES */}
       {slides.map((slide, index) => (
@@ -61,8 +61,8 @@ export default function Hero() {
           key={slide.id}
           className={`absolute inset-0 transition-all duration-1000 ${
             index === current
-              ? "opacity-100 scale-100 z-20"
-              : "opacity-0 scale-105 z-10"
+              ? "opacity-1000 scale-100 z-20"
+              : "opacity-0 scale-120 z-10"
           }`}
         >
           {/* IMAGE */}
@@ -75,35 +75,33 @@ export default function Hero() {
               object-cover
               object-center
               animate-[slowZoom_14s_linear_infinite]
-              brightness-[1.02]
-              contrast-[1.12]
-              saturate-[1.12]
-            
+              brightness-[0.95]
+              contrast-[1.1]
+              saturate-[1.05]
             "
           />
 
-          {/* CLEAN OVERLAY */}
-          <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/55 to-white/10"></div>
+          {/* DARK PROFESSIONAL OVERLAY */}
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-900/70 to-slate-900/20"></div>
 
-          {/* SOFT GLOW */}
-<div className="absolute top-[-120px] left-[-100px] w-[420px] h-[420px] bg-cyan-400/20 blur-[120px] rounded-full hidden sm:block"></div>
-
+          {/* CYAN GLOW */}
+         
           {/* CONTENT */}
           <div className="absolute inset-0 z-30 flex items-center">
-            <div className="max-w-7xl mx-auto px-6 lg:px-12 w-full">
+            <div className="max-w-7xl mx-auto px-5 lg:px-12 w-full">
 
-              <div className="max-w-2xl">
+              <div className="max-w-4xl">
 
                 {/* TAG */}
                 <div className="mb-5 inline-flex items-center gap-3 animate-[fadeUp_1s_ease]">
 
-                  <span className="w-12 h-[2px] bg-cyan-600 rounded-full"></span>
+                  <span className="w- h-[2px] bg-cyan-400 rounded-full"></span>
 
                   <span
                     className="
                       uppercase
                       tracking-[3px]
-                      text-cyan-700
+                      text-white
                       text-[12px]
                       font-bold
                     "
@@ -115,7 +113,7 @@ export default function Hero() {
                 {/* TITLE */}
                 <h1
                   className="
-                    text-slate-900
+                    text-white
                     text-4xl
                     md:text-6xl
                     font-bold
@@ -128,7 +126,7 @@ export default function Hero() {
 
                   <br />
 
-                  <span className="text-cyan-600">
+                  <span className="text-red-400 bg-pink">
                     {slide.subtitle}
                   </span>
                 </h1>
@@ -136,8 +134,8 @@ export default function Hero() {
                 {/* DESCRIPTION */}
                 <p
                   className="
-                    text-slate-700
-                    text-[17px]
+                    text-slate-200
+                    text-[20px]
                     leading-relaxed
                     max-w-xl
                     mb-9
@@ -157,16 +155,16 @@ export default function Hero() {
                       px-8
                       py-4
                       rounded-full
-                      bg-slate-900
+                      bg-cyan-500
                       text-white
-                      text-[14px]
+                      text-[17px]
                       font-semibold
                       no-underline
                       transition-all
                       duration-300
-                      hover:bg-cyan-600
+                      hover:bg-cyan-400
                       hover:-translate-y-1
-                      hover:shadow-[0_15px_35px_rgba(8,145,178,0.25)]
+                      hover:shadow-[0_15px_35px_rgba(8,145,178,0.35)]
                     "
                   >
                     Book Appointment
@@ -179,17 +177,18 @@ export default function Hero() {
                       px-8
                       py-4
                       rounded-full
-                      bg-white/90
+                      bg-white/10
                       backdrop-blur-md
                       border
-                      border-white
-                      text-slate-800
-                      text-[14px]
+                      border-green/20
+                      text-white
+                      text-[17px]
                       font-semibold
                       no-underline
                       transition-all
                       duration-300
                       hover:bg-white
+                      hover:text-slate-900
                       hover:-translate-y-1
                       hover:shadow-xl
                     "
@@ -215,15 +214,15 @@ export default function Hero() {
           w-12
           h-12
           rounded-full
-          bg-white/90
+          bg-black-900/80
           border
-          border-cyan-100
-          text-slate-700
+          border-white-400/30
+          text-white
           backdrop-blur-md
           transition-all
           duration-300
-          hover:bg-cyan-600
-          hover:text-white
+          hover:bg-white
+          hover:text-black
           hover:scale-110
           shadow-lg
         "
@@ -243,15 +242,15 @@ export default function Hero() {
           w-12
           h-12
           rounded-full
-          bg-white/90
+          bg-slate-900/80
           border
-          border-cyan-100
-          text-slate-700
+          border-white
+          text-white
           backdrop-blur-md
           transition-all
           duration-300
-          hover:bg-cyan-600
-          hover:text-white
+          hover:bg-white
+          hover:text-black
           hover:scale-110
           shadow-lg
         "
@@ -260,24 +259,7 @@ export default function Hero() {
       </button>
 
       {/* DOTS */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-40 flex items-center gap-3">
-        {slides.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrent(index)}
-            className={`
-              rounded-full
-              transition-all
-              duration-500
-              ${
-                current === index
-                  ? "w-10 h-2 bg-cyan-600"
-                  : "w-2.5 h-2.5 bg-cyan-300 hover:bg-cyan-500"
-              }
-            `}
-          ></button>
-        ))}
-      </div>
+      
 
       {/* FLOATING STATS */}
       <div
@@ -288,38 +270,37 @@ export default function Hero() {
           bottom-8
           right-8
           z-40
-          bg-white/85
-          backdrop-blur-xl
-          border
-          border-cyan-100
-          rounded-3xl
+          bg-slate-900/70
+           border
+          border-white
+          rounded-2xl
           px-7
           py-5
           items-center
           gap-7
-          shadow-[0_20px_50px_rgba(0,0,0,0.08)]
+          shadow-[0_210px_510px_rgba(0,0,0,0.3)]
         "
       >
         {/* CARD */}
         <div>
-          <h3 className="text-cyan-600 text-3xl font-bold">
+          <h3 className="text-white text-3xl font-bold">
             15+
           </h3>
 
-          <p className="text-slate-500 text-sm mt-1">
+          <p className="text-red-300 text-sm mt-1">
             Years Experience
           </p>
         </div>
 
-        <div className="w-px h-12 bg-cyan-100"></div>
+        <div className="w-px h-12 bg-cyan-400/20"></div>
 
         {/* CARD */}
         <div>
-          <h3 className="text-cyan-600 text-3xl font-bold">
+          <h3 className="text-white text-3xl font-bold">
             5000+
           </h3>
 
-          <p className="text-slate-500 text-sm mt-1">
+          <p className="text-red-300 text-sm mt-1">
             Patients Treated
           </p>
         </div>
@@ -330,7 +311,7 @@ export default function Hero() {
         {`
           @keyframes fadeUp {
             from {
-              opacity: 100;
+              opacity: 0;
               transform: translateY(30px);
             }
 

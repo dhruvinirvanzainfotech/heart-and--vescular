@@ -1,221 +1,349 @@
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const services = [
   {
     id: "cardiac",
-    icon: "/image/cardiac.png",
-    fallback: "🫀",
-    title: "Cardiac Testing",
-    desc: "Advanced heart diagnostics and complete cardiac care.",
+    image: "/image/service1.jpg",
+    title: "Advanced Cardiac Testing",
+    desc:
+      "Comprehensive heart diagnostic services including ECG, Echocardiogram, Stress Testing, Holter Monitoring, and advanced cardiac evaluation for complete heart health assessment.",
   },
-  {
-    id: "varicose",
-    icon: "/image/varicos.png",
-    fallback: "🦵",
-    title: "Varicose Vein Care",
-    desc: "Modern minimally invasive vein treatment solutions.",
-  },
+
   {
     id: "vascular",
-    icon: "/image/vascular.png",
-    fallback: "🩺",
-    title: "Vascular Treatment",
-    desc: "Professional vascular testing and circulation care.",
+    image: "/image/service2.jpg",
+    title: "Vascular Treatment Care",
+    desc:
+      "Professional vascular treatment solutions designed to improve blood circulation, diagnose artery conditions, and provide advanced minimally invasive procedures.",
   },
+
+  {
+    id: "varicose",
+    image: "/image/service3.jpg",
+    title: "Varicose Vein Treatment",
+    desc:
+      "Modern varicose vein treatment with laser therapy, minimally invasive care, vein screening, and advanced vascular procedures for long-term comfort.",
+  },
+
   {
     id: "nutrition",
-    icon: "/image/nutrition.png",
-    fallback: "🥗",
-    title: "Nutrition Support",
-    desc: "Healthy lifestyle and wellness consultation programs.",
+    image: "/image/service4.jpg",
+    title: "Nutrition & Wellness",
+    desc:
+      "Personalized nutrition counseling and healthy lifestyle guidance focused on cardiovascular wellness, cholesterol management, and long-term heart health.",
+  },
+
+  {
+    id: "heart",
+    image: "/image/service5.jpg",
+    title: "Preventive Heart Screening",
+    desc:
+      "Complete preventive heart screening and cardiovascular checkups to detect early heart risks and maintain healthy heart function.",
+  },
+
+  {
+    id: "echo",
+    image: "/image/service6.jpg",
+    title: "2D Echo & Ultrasound",
+    desc:
+      "Advanced 2D echo imaging and ultrasound diagnostics for detailed heart structure analysis and accurate cardiovascular monitoring.",
+  },
+
+  {
+    id: "blood",
+    image: "/image/service7.jpg",
+    title: "Blood Pressure Monitoring",
+    desc:
+      "Continuous blood pressure monitoring and hypertension management designed to reduce cardiovascular risks and improve overall wellness.",
+  },
+
+  {
+    id: "consultation",
+    image: "/image/service8.jpg",
+    title: "Heart Specialist Consultation",
+    desc:
+      "Expert consultation with experienced cardiovascular specialists offering personalized treatment plans and advanced cardiac care solutions.",
   },
 ];
 
 export default function HomeServices() {
-  return (
-    <section className="relative py-20 bg-[#f8fcfd] overflow-hidden">
-      {/* LIGHT BG EFFECT */}
-      <div className="absolute top-0 left-0 w-[250px] h-[250px] bg-cyan-100 blur-[100px] rounded-full"></div>
+  const [current, setCurrent] = useState(0);
 
-      <div className="absolute bottom-0 right-0 w-[300px] h-[300px] bg-cyan-50 blur-[120px] rounded-full"></div>
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrent((prev) =>
+        prev === services.length - 4 ? 0 : prev + 1
+      );
+    }, 3000);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <section className="relative py-24 overflow-hidden bg-[#f4f8fc]">
+
+      {/* BACKGROUND EFFECTS */}
+      <div className="absolute top-0 left-0 w-[350px] h-[350px] bg-blue-100 blur-[120px] rounded-full opacity-60"></div>
+
+      <div className="absolute bottom-0 right-0 w-[350px] h-[350px] bg-sky-100 blur-[120px] rounded-full opacity-60"></div>
 
       {/* HEADER */}
-      <div className="relative z-10 text-center px-6 mb-14">
-        <span className="uppercase tracking-[4px] text-cyan-600 text-[11px] font-semibold">
-          Our Services
+      <div className="relative z-10 text-center px-6 mb-16">
+
+        <span
+          className="
+            uppercase
+            tracking-[5px]
+            text-sky-700
+            text-[16px]
+            font-bold
+          "
+        >
+          OUR SERVICES
         </span>
 
-        <h2 className="text-3xl md:text-4xl font-bold text-slate-800 mt-3 leading-tight">
-          Heart & Vascular
-          <span className="text-cyan-600"> Care</span>
+       <h2
+  className="
+    text-5xl
+    font-bold
+    mt-4
+    leading-tight
+    text-red-500
+  "
+>
+          <span className="text-red">
+            Complete Heart & Vascular Care
+          </span>
+
+          <br />
+
+          
         </h2>
 
-        <p className="text-slate-500 text-[14px] max-w-xl mx-auto mt-4 leading-relaxed">
-          Comprehensive cardiovascular and wellness services
-          designed with expert care and modern treatment.
+        <p
+          className="
+            text-slate-500
+            text-[16px]
+            max-w-2xl
+                font-bold
+
+            mx-auto
+            mt-6
+            leading-8
+          "
+        >
+          Advanced cardiovascular healthcare solutions with
+          expert treatment, modern diagnostics, and
+          compassionate patient care.
         </p>
       </div>
 
-      {/* SERVICES GRID */}
-      <div className="relative z-10 max-w-6xl mx-auto px-6">
-        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
-          {services.map((svc, index) => (
-            <Link
-              key={svc.id}
-              to={`/services/${svc.id}`}
+      {/* SLIDER */}
+      <div className="relative z-10 overflow-hidden">
+
+        <div
+          className="flex transition-all duration-700 ease-in-out"
+          style={{
+            transform: `translateX(-${current * 25}%)`,
+          }}
+        >
+          {services.map((service, index) => (
+            <div
+              key={index}
               className="
-                group
-                relative
-                overflow-hidden
-                rounded-[24px]
-                bg-white
-                border
-                border-cyan-100
-                p-6
-                no-underline
-                transition-all
-                duration-500
-                hover:-translate-y-2
-                hover:border-cyan-300
-                hover:shadow-[0_18px_40px_rgba(8,145,178,0.12)]
+                min-w-[100%]
+                sm:min-w-[50%]
+                lg:min-w-[25%]
+                px-4
               "
-              style={{
-                animation: `fadeUp 0.7s ease ${index * 0.1}s both`,
-              }}
             >
-              {/* TOP BORDER */}
-              <div className="absolute top-0 left-0 w-full h-[3px] bg-cyan-600"></div>
-
-              {/* ICON */}
-              <div
-                className="
-                  w-16
-                  h-16
-                  rounded-2xl
-                  bg-cyan-50
-                  flex
-                  items-center
-                  justify-center
-                  mb-5
-                  transition-all
-                  duration-500
-                  group-hover:bg-cyan-600
-                  group-hover:scale-105
-                "
+              <Link
+                to={`/services/${service.id}`}
+                className="no-underline"
               >
-                <img
-                  src={svc.icon}
-                  alt={svc.title}
-                  className="w-8 h-8 object-contain"
-                  onError={(e) => {
-                    e.target.style.display = "none";
+                <div
+                  className="
+                    group
+                    relative
+                    overflow-hidden
+                    rounded-[30px]
+                    bg-white
+                    border
+                    border-slate-200
+                    shadow-[0_15px_40px_rgba(0,0,0,0.06)]
+                    hover:shadow-[0_20px_50px_rgba(37,99,235,0.18)]
+                    transition-all
+                    duration-500
+                    hover:-translate-y-3
+                  "
+                >
 
-                    if (e.target.nextSibling) {
-                      e.target.nextSibling.style.display = "block";
-                    }
-                  }}
-                />
+                  {/* IMAGE */}
+                  <div className="relative h-[250px] overflow-hidden">
 
-                <span className="hidden text-2xl">
-                  {svc.fallback}
-                </span>
-              </div>
+                    <img
+                      src={service.image}
+                      alt={service.title}
+                      className="
+                        w-full
+                        h-full
+                        object-cover
+                        transition-all
+                        duration-700
+                        group-hover:scale-110
+                      "
+                    />
 
-              {/* TITLE */}
-              <h3 className="text-[18px] font-semibold text-slate-800 mb-3 group-hover:text-cyan-600 transition-all duration-300">
-                {svc.title}
-              </h3>
+                    {/* OVERLAY */}
+                    <div
+                      className="
+                        absolute
+                        inset-0
+                        bg-gradient-to-t
+                        from-black/70
+                        via-black/20
+                        to-transparent
+                      "
+                    ></div>
 
-              {/* DESCRIPTION */}
-              <p className="text-slate-500 text-[13px] leading-6 mb-6">
-                {svc.desc}
-              </p>
+                    {/* NUMBER */}
+                    
 
-              {/* BUTTON */}
-              <div
-                className="
-                  inline-flex
-                  items-center
-                  gap-2
-                  text-cyan-600
-                  text-[13px]
-                  font-semibold
-                  transition-all
-                  duration-300
-                  group-hover:gap-3
-                "
-              >
-                Learn More
+                    {/* TITLE ON IMAGE */}
+                    <div className="absolute bottom-5 left-5 right-5">
 
-                <span className="transition-transform duration-300 group-hover:translate-x-1">
-                  →
-                </span>
-              </div>
+                      <h3
+                        className="
+                          text-white
+                          text-[24px]
+                          font-bold
+                          leading-tight
+                        "
+                      >
+                        {service.title}
+                      </h3>
 
-              {/* HOVER GLOW */}
-              <div
-                className="
-                  absolute
-                  inset-0
-                  opacity-0
-                  group-hover:opacity-100
-                  transition-all
-                  duration-700
-                  bg-gradient-to-b
-                  from-cyan-50/50
-                  to-transparent
-                  pointer-events-none
-                "
-              ></div>
-            </Link>
+                    </div>
+                  </div>
+
+                  {/* CONTENT */}
+                  <div className="p-7">
+
+                    <p
+                      className="
+                        text-slate-500
+                        text-[15px]
+                        leading-7
+                        mb-6
+                            font-bold
+
+                      "
+                    >
+                      {service.desc}
+                    </p>
+
+                    {/* BUTTON */}
+                    <div
+                      className="
+                        inline-flex
+                        items-center
+                        gap-3
+                        text-sky-700
+                        font-semibold
+                        transition-all
+                        duration-300
+                        group-hover:gap-5
+                      "
+                    >
+                      Explore Service
+
+                      <span
+                        className="
+                          transition-all
+                          duration-300
+                          group-hover:translate-x-2
+                        "
+                      >
+                        →
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* HOVER LIGHT */}
+                  <div
+                    className="
+                      absolute
+                      inset-0
+                      opacity-0
+                      group-hover:opacity-100
+                      transition-all
+                      duration-700
+                      bg-gradient-to-b
+                      from-blue-100/20
+                      to-transparent
+                      pointer-events-none
+                    "
+                  ></div>
+                </div>
+              </Link>
+            </div>
           ))}
         </div>
       </div>
 
+      {/* DOTS */}
+      <div className="flex justify-center mt-12 gap-3">
+
+        {services.slice(0, 5).map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrent(index)}
+            className={`
+              rounded-full
+              transition-all
+              duration-500
+              ${
+                current === index
+                  ? "w-10 h-3 bg-gradient-to-r from-sky-700 to-blue-900"
+                  : "w-3 h-3 bg-slate-300"
+              }
+            `}
+          ></button>
+        ))}
+
+      </div>
+
       {/* BUTTON */}
-      <div className="relative z-10 text-center mt-14">
+      <div className="text-center mt-14">
+
         <Link
           to="/services"
           className="
             inline-flex
             items-center
-            gap-2
-            px-7
-            py-3
+            gap-3
+            px-8
+            py-4
             rounded-full
-            bg-cyan-600
+            bg-gradient-to-r
+            from-sky-700
+            to-blue-900
             text-white
-            text-[13px]
+            text-[14px]
             font-semibold
             no-underline
             transition-all
             duration-500
-            hover:bg-cyan-700
             hover:scale-105
-            hover:shadow-[0_12px_30px_rgba(8,145,178,0.25)]
+            hover:shadow-[0_15px_40px_rgba(37,99,235,0.25)]
           "
         >
           View All Services →
 
         </Link>
+
       </div>
-
-      {/* ANIMATION */}
-      <style>
-        {`
-          @keyframes fadeUp {
-            from {
-              opacity: 0;
-              transform: translateY(40px);
-            }
-
-            to {
-              opacity: 1;
-              transform: translateY(0);
-            }
-          }
-        `}
-      </style>
     </section>
   );
 }

@@ -1,7 +1,7 @@
-import RevealSection from "../components/RevealSection";
 import InsuranceSection from "../components/InsuranceSection";
 import InsuranceRightImage from "../components/InsuranceRightImage";
 import { Link } from "react-router-dom";
+
 
 export default function InsurancePage() {
   return (
@@ -120,9 +120,8 @@ export default function InsurancePage() {
         <div className="max-w-7xl mx-auto">
 
           {/* INSURANCE COMPONENT */}
-          <RevealSection>
-            <InsuranceSection />
-          </RevealSection>
+          <InsuranceSection />
+
 
         </div>
       </section>

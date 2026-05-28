@@ -45,7 +45,7 @@ export default function SplashScreen({ onDone }) {
           to-black
           z-20
           transition-all
-          duration-[180ms]
+          duration-[1800ms]
           ease-in-out
           ${
             phase === "out"
@@ -74,7 +74,7 @@ export default function SplashScreen({ onDone }) {
           to-black
           z-20
           transition-all
-          duration-[180ms]
+          duration-[1800ms]
           ease-in-out
           ${
             phase === "out"
@@ -92,10 +92,10 @@ export default function SplashScreen({ onDone }) {
       {/* CENTER CONTENT */}
       <div className="relative z-30 w-full h-full flex items-center justify-center">
 
-        <div className="text-center">
+        <div className="text-center px-4">
 
           {/* ECG LINE */}
-          <div className="w-64 mx-auto mb-6 animate-fadeUp">
+          <div className="w-72 mx-auto mb-6 animate-fadeUp">
 
             <svg viewBox="0 0 100 60" className="w-full h-auto">
 
@@ -128,55 +128,70 @@ export default function SplashScreen({ onDone }) {
           </div>
 
           {/* LOGO */}
-          <div className="w-40 h-40 mx-auto mb-5 animate-logoZoom">
+          <div className="w-52 h-52 mx-auto mb-6 animate-logoZoom">
 
             <img
-              src="/favicon.png"
+              src="/public/image/favicon.png"
               alt="Logo"
               className="
                 w-full
                 h-full
                 object-contain
-                drop-shadow-[0_0_30px_rgba(0,255,255,0.35)]
+                drop-shadow-[0_0_35px_rgba(0,255,255,0.35)]
               "
             />
 
           </div>
 
-          {/* TITLE */}
+          {/* DOCTOR NAME */}
           <h1
             className="
               text-white
-              text-3xl
-              md:text-5xl
-              font-bold
+              text-4xl
+              md:text-6xl
+              font-extrabold
               tracking-wide
               mb-3
               animate-fadeUp2
             "
           >
-            Heart & Vascular
+            Dr. Ankur Shah
           </h1>
+
+          {/* SPECIALIST */}
+          <h2
+            className="
+              text-cyan-300
+              text-lg
+              md:text-2xl
+              font-semibold
+              tracking-[2px]
+              mb-4
+              animate-fadeUp3
+            "
+          >
+            Heart & Vascular Specialist
+          </h2>
 
           {/* SUBTITLE */}
           <p
             className="
-              text-cyan-300/80
+              text-slate-300/80
               text-sm
               md:text-base
               tracking-[5px]
               uppercase
               mb-8
-              animate-fadeUp3
+              animate-fadeUp4
             "
           >
-            Advanced Cardiac Care
+         
           </p>
 
           {/* LOADING BAR */}
           <div
             className="
-              w-56
+              w-64
               h-[4px]
               bg-white/10
               rounded-full
@@ -211,6 +226,7 @@ export default function SplashScreen({ onDone }) {
               stroke-dasharray: 400;
               stroke-dashoffset: 400;
             }
+
             100% {
               stroke-dashoffset: 0;
             }
@@ -224,6 +240,7 @@ export default function SplashScreen({ onDone }) {
             0% {
               width: 0%;
             }
+
             100% {
               width: 100%;
             }

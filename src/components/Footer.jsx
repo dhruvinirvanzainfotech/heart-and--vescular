@@ -72,19 +72,90 @@ export default function Footer() {
       "
       style={{
         backgroundImage:
-          "linear-gradient(rgba(3,10,18,0.82), rgba(3,10,18,0.88)), url('/image/banner1.jpg')",
+          "linear-gradient(rgba(3,10,18,0.88), rgba(3,10,18,0.92)), url('/image/banner1.jpg')",
       }}
     >
 
       {/* GLASS OVERLAY */}
       <div className="absolute inset-0 bg-black/20 backdrop-blur-[2px]"></div>
 
-      {/* LIGHT EFFECT */}
+      {/* LIGHT EFFECTS */}
       <div className="absolute top-[-100px] left-[-100px] w-[260px] h-[260px] bg-cyan-400/10 blur-[120px] rounded-full"></div>
 
       <div className="absolute bottom-[-100px] right-[-100px] w-[260px] h-[260px] bg-sky-400/10 blur-[120px] rounded-full"></div>
 
       <div className="relative max-w-7xl mx-auto px-6 lg:px-10 py-16">
+
+        {/* TOP BOX */}
+        <div
+          className="
+            mb-14
+            bg-white/5
+            border
+            border-white/10
+            rounded-[35px]
+            backdrop-blur-xl
+            p-8
+            flex
+            flex-col
+            lg:flex-row
+            items-center
+            justify-between
+            gap-8
+          "
+        >
+
+          {/* LEFT */}
+          <div className="flex items-center gap-5">
+
+            <div className="bg-white rounded-3xl p-4 shadow-2xl">
+
+              <img
+                src="/image/logo3.png"
+                alt="logo"
+                className="h-20 object-contain"
+              />
+
+            </div>
+
+            <div>
+
+              <h2 className="text-3xl font-bold text-white mb-2">
+                Dr. Ankur Shah
+              </h2>
+
+              <p className="text-cyan-300 text-lg">
+                Heart & Vascular Specialist
+              </p>
+
+            </div>
+          </div>
+
+          {/* BUTTON */}
+          <button
+            onClick={() => goToPage("/appointment")}
+            className="
+              px-8
+              py-4
+              rounded-full
+              bg-gradient-to-r
+              from-cyan-500
+              to-sky-600
+              text-white
+              font-bold
+              text-[15px]
+              border-none
+              cursor-pointer
+              hover:scale-105
+              transition-all
+              duration-300
+              shadow-[0_10px_30px_rgba(0,180,255,0.35)]
+            "
+          >
+            Book Appointment
+          </button>
+
+        </div>
 
         {/* GRID */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
@@ -92,29 +163,22 @@ export default function Footer() {
           {/* ABOUT */}
           <div>
 
-            {/* LOGO */}
-            <div className="bg-white/95 backdrop-blur-xl rounded-3xl p-4 inline-block mb-6 shadow-2xl">
+            <h3 className="text-[28px] font-bold mb-3 text-cyan-400">
+              About Clinic
+            </h3>
 
-              <img
-                src="/image/logo.png"
-                alt="logo"
-                className="h-16 object-contain"
-              />
+            <div className="w-16 h-1 bg-cyan-400 rounded-full mb-7"></div>
 
-            </div>
-
-            {/* TEXT */}
             <p className="text-[15px] leading-[32px] text-slate-200 mb-7">
-              Welcome to Heart & Vascular Center,
-              where advanced cardiac care meets
-              compassion and modern treatment for
-              every patient.
+              Complete Heart & Vascular Care provides
+              advanced cardiac and vascular treatments
+              with compassionate patient-centered care
+              and modern medical technology.
             </p>
 
             {/* SOCIAL */}
             <div className="flex items-center gap-3">
 
-              {/* FACEBOOK */}
               <a
                 href="https://facebook.com/"
                 target="_blank"
@@ -124,7 +188,6 @@ export default function Footer() {
                   h-11
                   rounded-2xl
                   bg-white/10
-                  backdrop-blur-xl
                   border
                   border-white/10
                   flex
@@ -140,7 +203,6 @@ export default function Footer() {
                 <FaFacebookF />
               </a>
 
-              {/* INSTAGRAM */}
               <a
                 href="https://instagram.com/"
                 target="_blank"
@@ -150,7 +212,6 @@ export default function Footer() {
                   h-11
                   rounded-2xl
                   bg-white/10
-                  backdrop-blur-xl
                   border
                   border-white/10
                   flex
@@ -166,7 +227,6 @@ export default function Footer() {
                 <FaInstagram />
               </a>
 
-              {/* LINKEDIN */}
               <a
                 href="https://linkedin.com/"
                 target="_blank"
@@ -176,7 +236,6 @@ export default function Footer() {
                   h-11
                   rounded-2xl
                   bg-white/10
-                  backdrop-blur-xl
                   border
                   border-white/10
                   flex
@@ -198,11 +257,11 @@ export default function Footer() {
           {/* QUICK LINKS */}
           <div>
 
-            <h3 className="text-[30px] font-bold mb-3 text-cyan-400">
+            <h3 className="text-[28px] font-bold mb-3 text-cyan-400">
               Quick Links
             </h3>
 
-            <div className="w-14 h-1 bg-cyan-400 rounded-full mb-7"></div>
+            <div className="w-16 h-1 bg-cyan-400 rounded-full mb-7"></div>
 
             <ul className="space-y-5">
 
@@ -228,7 +287,7 @@ export default function Footer() {
                   >
 
                     <span className="text-cyan-400 text-xl">
-                      +
+                      →
                     </span>
 
                     {item.label}
@@ -244,11 +303,11 @@ export default function Footer() {
           {/* SERVICES */}
           <div>
 
-            <h3 className="text-[30px] font-bold mb-3 text-cyan-400">
+            <h3 className="text-[28px] font-bold mb-3 text-cyan-400">
               Our Services
             </h3>
 
-            <div className="w-14 h-1 bg-cyan-400 rounded-full mb-7"></div>
+            <div className="w-16 h-1 bg-cyan-400 rounded-full mb-7"></div>
 
             <div className="space-y-5">
 
@@ -273,7 +332,7 @@ export default function Footer() {
                 >
 
                   <span className="text-cyan-400 text-xl">
-                    +
+                    →
                   </span>
 
                   {service.label}
@@ -287,11 +346,11 @@ export default function Footer() {
           {/* CONTACT */}
           <div>
 
-            <h3 className="text-[30px] font-bold mb-3 text-cyan-400">
-              Reach Us
+            <h3 className="text-[28px] font-bold mb-3 text-cyan-400">
+              Contact Info
             </h3>
 
-            <div className="w-14 h-1 bg-cyan-400 rounded-full mb-7"></div>
+            <div className="w-16 h-1 bg-cyan-400 rounded-full mb-7"></div>
 
             <div className="space-y-6">
 
@@ -349,7 +408,7 @@ export default function Footer() {
 
               {/* EMAIL */}
               <a
-                href="mailto:info@drankurshah.com"
+                href="mailto:drankur@completeheartandvascularcare.com"
                 className="
                   flex
                   items-center
@@ -365,8 +424,34 @@ export default function Footer() {
                   ✉️
                 </div>
 
-                <div className="text-[16px] text-slate-200 break-all">
-                  info@drankurshah.com
+                <div className="text-[15px] text-slate-200 break-all leading-7">
+                  drankur@completeheartandvascularcare.com
+                </div>
+
+              </a>
+
+              {/* WEBSITE */}
+              <a
+                href="https://completeheartandvascularcare.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="
+                  flex
+                  items-center
+                  gap-4
+                  text-white
+                  no-underline
+                  hover:text-cyan-400
+                  transition-all
+                "
+              >
+
+                <div className="text-cyan-400 text-xl">
+                  🌐
+                </div>
+
+                <div className="text-[15px] text-slate-200 break-all leading-7">
+                  completeheartandvascularcare.com
                 </div>
 
               </a>
@@ -414,7 +499,7 @@ export default function Footer() {
               © {new Date().getFullYear()}{" "}
 
               <span className="text-cyan-400 font-semibold">
-                Heart & Vascular
+                Complete Heart & Vascular Care
               </span>
 
               . All Rights Reserved.

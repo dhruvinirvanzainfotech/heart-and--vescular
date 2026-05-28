@@ -4,39 +4,44 @@ export default function About() {
       id="about"
       className="
         relative
+        overflow-hidden
         py-24
         px-5
         md:px-10
-        overflow-hidden
-        bg-[#f8fcfd]
+        bg-[#f8fafc]
       "
     >
-      {/* BACKGROUND EFFECTS */}
-      <div className="absolute top-0 left-0 w-[300px] h-[300px] bg-cyan-100 blur-[120px] rounded-full opacity-50"></div>
+      {/* SOFT BACKGROUND GLOW */}
+      <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-[#c4b5fd] blur-[140px] opacity-20 rounded-full"></div>
 
-      <div className="absolute bottom-0 right-0 w-[260px] h-[260px] bg-sky-100 blur-[100px] rounded-full opacity-50"></div>
+      <div className="absolute bottom-0 right-0 w-[350px] h-[350px] bg-[#f9a8d4] blur-[140px] opacity-20 rounded-full"></div>
 
       <div className="relative max-w-7xl mx-auto">
 
-        {/* TOP HEADER */}
-        <div className="text-center mb-16">
+        {/* SECTION HEADER */}
+        <div className="text-center mb-20">
 
           <span
             className="
-              inline-block
+              inline-flex
+              items-center
+              gap-2
               px-5
               py-2
               rounded-full
-              bg-cyan-100
-              text-cyan-700
-              text-[11px]
+              bg-white
+              border
+              border-[#f3e8ff]
+              text-[#a855f7]
+              text-xs
               font-semibold
-              tracking-[3px]
+              tracking-[2px]
               uppercase
-              mb-5
+              shadow-sm
+              mb-6
             "
           >
-            About Specialist
+            ✨ About Doctor
           </span>
 
           <h2
@@ -46,149 +51,155 @@ export default function About() {
               font-bold
               text-slate-900
               leading-tight
-              max-w-3xl
-              mx-auto
             "
           >
-            Advanced Cardiology Care <br />
-
-            <span className="text-cyan-600">
-              With Trusted Experience
-            </span>
+            Modern Cardiology <br />
+            With Human Care
           </h2>
         </div>
 
         {/* MAIN GRID */}
-        <div className="grid lg:grid-cols-2 gap-14 items-center">
+        <div className="grid lg:grid-cols-2 gap-20 items-center">
 
-          {/* LEFT IMAGE */}
+          {/* LEFT SIDE */}
           <div className="relative">
 
-            {/* IMAGE CARD */}
+            {/* IMAGE BOX */}
             <div
               className="
                 relative
-                overflow-hidden
                 rounded-[40px]
-                shadow-[0_20px_60px_rgba(0,0,0,0.10)]
-                group
+                overflow-hidden
+                bg-white
+                p-4
+                shadow-[0_20px_80px_rgba(15,23,42,0.08)]
               "
             >
-              <img
-                src="/image/doctor2.jpg"
-                alt="Doctor"
-                className="
-                  w-full
-                  h-[540px]
-                  object-cover
-                  object-top
-                  transition-all
-                  duration-700
-                  group-hover:scale-105
-                "
-              />
 
-              {/* OVERLAY */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/5 to-transparent"></div>
+              {/* IMAGE */}
+              <div className="relative overflow-hidden rounded-[30px]">
 
-              {/* FLOAT CARD */}
+                <img
+                  src="/image/doctor2.jpg"
+                  alt="Dr. Ankur Shah"
+                  className="
+                    w-full
+                    h-[650px]
+                    object-cover
+                    object-top
+                    transition-all
+                    duration-700
+                    hover:scale-105
+                  "
+                />
+
+                {/* OVERLAY */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
+
+              </div>
+
+              {/* EXPERIENCE CARD */}
               <div
                 className="
                   absolute
-                  bottom-6
-                  left-6
-                  right-6
+                  bottom-10
+                  left-10
                   bg-white/90
                   backdrop-blur-xl
-                  rounded-3xl
-                  p-5
-                  shadow-xl
+                  px-7
+                  py-5
+                  rounded-[24px]
+                  shadow-2xl
                   border
-                  border-white/50
-                  flex
-                  items-center
-                  justify-between
-                  gap-4
+                  border-white/40
                 "
               >
-                <div>
-                  <h3 className="text-2xl font-bold text-cyan-600">
-                    15+
-                  </h3>
+                <h3 className="text-4xl font-bold text-[#ec4899]">
+                  15+
+                </h3>
 
-                  <p className="text-slate-600 text-sm">
-                    Years Experience
-                  </p>
-                </div>
-
-                <div className="w-[1px] h-10 bg-slate-200"></div>
-
-                <div>
-                  <h3 className="text-2xl font-bold text-cyan-600">
-                    5000+
-                  </h3>
-
-                  <p className="text-slate-600 text-sm">
-                    Happy Patients
-                  </p>
-                </div>
+                <p className="text-slate-500 text-sm mt-1">
+                  Years of Excellence
+                </p>
               </div>
-            </div>
 
-            {/* FLOATING BADGE */}
-            <div
-              className="
-                hidden
-                md:flex
-                absolute
-                -top-5
-                -right-5
-                bg-white
-                shadow-2xl
-                rounded-3xl
-                px-6
-                py-5
-                border
-                border-cyan-100
-                items-center
-                gap-4
-                animate-bounceSlow
-              "
-            >
+              {/* FLOATING MINI CARD */}
               <div
                 className="
-                  w-14
-                  h-14
-                  rounded-2xl
-                  bg-cyan-100
-                  flex
+                  hidden
+                  md:flex
+                  absolute
+                  -top-6
+                  -right-6
+                  bg-white
+                  rounded-[28px]
+                  px-5
+                  py-4
+                  shadow-[0_20px_60px_rgba(0,0,0,0.10)]
                   items-center
-                  justify-center
-                  text-2xl
+                  gap-4
+                  border
+                  border-slate-100
+                  animate-float
                 "
               >
-                ❤️
-              </div>
+                <div
+                  className="
+                    w-14
+                    h-14
+                    rounded-2xl
+                    bg-gradient-to-r
+                    from-[#ec4899]
+                    to-[#a855f7]
+                    flex
+                    items-center
+                    justify-center
+                    text-white
+                    text-2xl
+                  "
+                >
+                  ❤️
+                </div>
 
-              <div>
-                <h4 className="text-slate-900 font-semibold text-sm">
-                  Trusted Heart Care
-                </h4>
+                <div>
+                  <h4 className="text-slate-900 font-semibold text-sm">
+                    Trusted Heart Care
+                  </h4>
 
-                <p className="text-slate-500 text-xs mt-1">
-                  Modern diagnostics & treatment
-                </p>
+                  <p className="text-slate-500 text-xs mt-1">
+                    Modern treatment & diagnosis
+                  </p>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* RIGHT CONTENT */}
+          {/* RIGHT SIDE */}
           <div>
 
+            {/* TAG */}
+            <span
+              className="
+                font-19px
+                inline-flex
+                items-center
+                px-5
+                py-2
+                rounded-full
+                bg-[#fdf4ff]
+                text-[#db2777]
+                font-semibold
+                mb-6
+              "
+            >
+              🩺 Cardiologist & Vascular Specialist
+            </span>
+
+            {/* NAME */}
             <h3
               className="
-                text-2xl
-                md:text-4xl
+                text-xl
+                md:text-6xl
                 font-bold
                 text-slate-900
                 leading-tight
@@ -198,145 +209,147 @@ export default function About() {
               Dr. Ankur Shah
             </h3>
 
+            {/* SUBTEXT */}
             <p
               className="
-                text-cyan-600
-                font-semibold
-                text-[14px]
+                text-lg
+                text-[#a855f7]
+                font-medium
                 mb-8
+                font-semibold
+
               "
             >
-              Cardiologist & Vascular Specialist · New York
+              Advanced Heart & Vascular Care Specialist
             </p>
 
-            <div className="space-y-5">
+            {/* PARAGRAPH */}
+            <div className="space-y-6">
 
-              <p className="text-slate-600 text-[15px] leading-relaxed">
-                Dr. Ankur Shah specializes in advanced heart and
-                vascular care using modern diagnostics, preventive
-                treatment, and patient-focused medical solutions.
+              <p className="text-slate-600 leading-8 text-[16px] font-semibold">
+                Dr. Ankur Shah specializes in advanced cardiology,
+                vascular treatment, preventive heart care, and
+                minimally invasive procedures with patient-first care.
               </p>
 
-              <p className="text-slate-600 text-[15px] leading-relaxed">
-                His approach combines clinical expertise with
-                compassionate support to help patients achieve
-                healthier lifestyles and long-term wellness.
+              <p className="text-slate-600 leading-8 text-[16px] font-semibold">
+                Combining modern medical technology with compassionate
+                treatment, he has helped thousands of patients improve
+                long-term cardiovascular health and quality of life.
               </p>
 
-              <p className="text-slate-600 text-[15px] leading-relaxed">
-                Thousands of patients trust his experience in
-                cardiovascular treatment, accurate diagnosis,
-                and personalized care planning.
-              </p>
             </div>
 
-            {/* FEATURE BOXES */}
-            <div className="grid sm:grid-cols-2 gap-5 mt-10">
+            {/* FEATURES */}
+            <div className="grid sm:grid-cols-2 gap-6 mt-12">
 
+              {/* CARD */}
               <div
                 className="
                   bg-white
+                  p-7
+                  rounded-[30px]
                   border
-                  border-cyan-100
-                  rounded-3xl
-                  p-6
-                  shadow-md
-                  hover:-translate-y-1
-                  hover:shadow-xl
+                  border-slate-100
+                  shadow-[0_10px_40px_rgba(0,0,0,0.04)]
+                  hover:-translate-y-2
                   transition-all
-                  duration-300
+                  duration-500
                 "
               >
                 <div
                   className="
-                    w-12
-                    h-12
+                    w-14
+                    h-14
                     rounded-2xl
-                    bg-cyan-100
+                    bg-[#fdf2f8]
                     flex
                     items-center
                     justify-center
-                    text-xl
-                    mb-4
+                    text-2xl
+                    mb-5
+                    font-semibold
+                  "
+                >
+                  💓
+                </div>
+
+                <h4 className="text-slate-900 font-semibold text-lg mb-3">
+                  Cardiac Diagnostics
+                </h4>
+
+                <p className="text-slate-500 text-12px leading-7 font-semibold">
+                  ECG, Echo, stress testing, and advanced heart
+                  evaluations with precision diagnosis.
+                </p>
+              </div>
+
+              {/* CARD */}
+              <div
+                className="
+                  bg-white
+                  p-7
+                  rounded-[30px]
+                  border
+                  border-slate-100
+                  shadow-[0_10px_40px_rgba(0,0,0,0.04)]
+                  hover:-translate-y-2
+                  transition-all
+                  duration-500
+                "
+              >
+                <div
+                  className="
+                    w-14
+                    h-14
+                    rounded-2xl
+                    bg-[#eef2ff]
+                    flex
+                    items-center
+                    justify-center
+                    text-2xl
+                    mb-5
                   "
                 >
                   🩺
                 </div>
 
-                <h4 className="text-slate-900 font-semibold mb-2">
-                  Advanced Diagnostics
+                <h4 className="text-slate-900 font-semibold text-lg mb-3">
+                  Personalized Treatment
                 </h4>
 
-                <p className="text-slate-500 text-sm leading-relaxed">
-                  Modern cardiac testing and personalized treatment plans.
-                </p>
-              </div>
-
-              <div
-                className="
-                  bg-white
-                  border
-                  border-cyan-100
-                  rounded-3xl
-                  p-6
-                  shadow-md
-                  hover:-translate-y-1
-                  hover:shadow-xl
-                  transition-all
-                  duration-300
-                "
-              >
-                <div
-                  className="
-                    w-12
-                    h-12
-                    rounded-2xl
-                    bg-cyan-100
-                    flex
-                    items-center
-                    justify-center
-                    text-xl
-                    mb-4
-                  "
-                >
-                  💙
-                </div>
-
-                <h4 className="text-slate-900 font-semibold mb-2">
-                  Patient-Focused Care
-                </h4>
-
-                <p className="text-slate-500 text-sm leading-relaxed">
-                  Compassionate support designed around patient comfort.
+                <p className="text-slate-500 text-14px leading-7 font-semibold">
+                  Patient-focused care plans for long-term heart
+                  wellness and healthy living.
                 </p>
               </div>
             </div>
 
             {/* BUTTONS */}
-            <div className="flex flex-wrap gap-4 mt-10">
+            <div className="flex flex-wrap gap-5 mt-14">
 
               <a
                 href="/appointment"
                 className="
                   inline-flex
                   items-center
-                  gap-2
-                  px-7
-                  py-3.5
+                  gap-3
+                  px-8
+                  py-4
                   rounded-full
-                  bg-cyan-500
-                  hover:bg-cyan-600
+                  bg-gradient-to-r
+                  from-[#ec4899]
+                  to-[#a855f7]
                   text-white
-                  text-sm
                   font-semibold
                   no-underline
                   transition-all
-                  duration-300
-                  hover:-translate-y-1
-                  hover:shadow-[0_15px_35px_rgba(6,182,212,0.25)]
+                  duration-500
+                  hover:scale-105
+                  hover:shadow-[0_20px_50px_rgba(168,85,247,0.25)]
                 "
               >
-                Schedule Consultation
+                Book Appointment
                 <span>→</span>
               </a>
 
@@ -345,20 +358,18 @@ export default function About() {
                 className="
                   inline-flex
                   items-center
-                  gap-2
-                  px-7
-                  py-3.5
+                  gap-3
+                  px-8
+                  py-4
                   rounded-full
                   bg-white
                   border
-                  border-cyan-200
-                  text-cyan-700
-                  text-sm
+                  border-slate-200
+                  text-slate-700
                   font-semibold
                   no-underline
+                  hover:bg-slate-50
                   transition-all
-                  duration-300
-                  hover:bg-cyan-50
                 "
               >
                 View Services
@@ -368,16 +379,16 @@ export default function About() {
         </div>
       </div>
 
-      {/* ANIMATION */}
+      {/* CUSTOM FLOAT ANIMATION */}
       <style>
         {`
-          @keyframes bounceSlow {
+          @keyframes float {
             0% {
               transform: translateY(0px);
             }
 
             50% {
-              transform: translateY(-8px);
+              transform: translateY(-10px);
             }
 
             100% {
@@ -385,8 +396,8 @@ export default function About() {
             }
           }
 
-          .animate-bounceSlow {
-            animation: bounceSlow 5s ease-in-out infinite;
+          .animate-float {
+            animation: float 4s ease-in-out infinite;
           }
         `}
       </style>

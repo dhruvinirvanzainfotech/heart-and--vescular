@@ -1,0 +1,12 @@
+/* Import fonts (via Google Fonts link in index.html) */
+:root {
+  --font-sans: "Manrope", "Inter", system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+}
+
+html,
+body,
+#root {
+  font-family: var(--font-sans) !important;
+}
+
