@@ -18,7 +18,7 @@ const insuranceCards = [
   },
 ];
 
-export default function WhyUs() {
+export default function InsuranceSection() {
   return (
     <section className="relative py-20 bg-[#f7fcfd] overflow-hidden">
 
@@ -47,7 +47,9 @@ export default function WhyUs() {
         </div>
 
         {/* MAIN SECTION */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-center">
+
+
 
           {/* LEFT IMAGE CARD */}
           <div
@@ -55,7 +57,8 @@ export default function WhyUs() {
               relative
               overflow-hidden
               rounded-[32px]
-              h-[520px]
+              h-[420px] sm:h-[480px] lg:h-[520px]
+
               group
               shadow-xl
             "
@@ -77,7 +80,7 @@ export default function WhyUs() {
             <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent"></div>
 
             {/* CONTENT */}
-            <div className="absolute bottom-0 left-0 p-8 text-white">
+            <div className="absolute bottom-0 left-0 p-6 sm:p-8 text-white">
 
               <div className="mb-4 inline-flex items-center gap-2 bg-white/15 backdrop-blur-md px-4 py-2 rounded-full text-[12px]">
                 ❤️ Trusted Cardiology Care
@@ -114,7 +117,7 @@ export default function WhyUs() {
                   hover:gap-3
                 "
               >
-                Book Appointment
+                Book an Appointment
                 <span>→</span>
               </Link>
             </div>

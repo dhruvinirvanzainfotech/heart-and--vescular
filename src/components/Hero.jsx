@@ -48,12 +48,13 @@ export default function Hero() {
   };
 
   useEffect(() => {
-    const timer = setInterval(nextSlide, 2000);
+    const timer = setInterval(nextSlide, 5000);
     return () => clearInterval(timer);
   }, [nextSlide]);
 
   return (
-    <section className="relative h-[88vh] min-h-[620px] w-full overflow-hidden bg-white">
+    <section className="relative h-[70vh] sm:h-[80vh] lg:h-[88vh] min-h-[520px] sm:min-h-[620px] w-full overflow-hidden bg-white">
+
 
       {/* SLIDES */}
       {slides.map((slide, index) => (
@@ -101,7 +102,7 @@ export default function Hero() {
                     className="
                       uppercase
                       tracking-[3px]
-                      text-white
+                      text-[#00838f]
                       text-[12px]
                       font-bold
                     "
@@ -126,7 +127,7 @@ export default function Hero() {
 
                   <br />
 
-                  <span className="text-red-400 bg-pink">
+                  <span className="text-[#00838f] bg-transparent">
                     {slide.subtitle}
                   </span>
                 </h1>
@@ -156,7 +157,7 @@ export default function Hero() {
                       py-4
                       rounded-full
                       bg-cyan-500
-                      text-white
+                      text-
                       text-[17px]
                       font-semibold
                       no-underline
@@ -167,7 +168,7 @@ export default function Hero() {
                       hover:shadow-[0_15px_35px_rgba(8,145,178,0.35)]
                     "
                   >
-                    Book Appointment
+                    Book an Appointment
                   </Link>
 
                   {/* BUTTON 2 */}

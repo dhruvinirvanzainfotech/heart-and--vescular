@@ -26,20 +26,20 @@ export default function ContactPage() {
       </div>
 
       {/* Info cards */}
-      <div className="max-w-5xl mx-auto px-6 py-12">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-14">
+      <div className="max-w-7xl mx-auto px-6 py-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 mb-14">
           {cards.map((card, i) => (
             <div key={card.title} className={`animate-card-${i} bg-white border border-slate-100 rounded-2xl p-7 text-center hover:-translate-y-1 hover:shadow-lg hover:border-[#00bcd4] transition-all duration-200`}>
-              <div className="text-4xl mb-3">{card.icon}</div>
-              <h4 className="text-sm font-bold text-[#1a1a2e] mb-2">{card.title}</h4>
-              {card.lines.map(l => <p key={l} className="text-xs text-slate-500 leading-relaxed">{l}</p>)}
+              <div className="text-xl mb-3">{card.icon}</div>
+              <h4 className="text-12px font-bold text-[#00838f] mb-2">{card.title}</h4>
+              {card.lines.map(l => <p key={l} className="text-sm text-slate-900 leading-relaxed">{l}</p>)}
             </div>
           ))}
         </div>
 
         {/* Contact form */}
         <div className="max-w-2xl mx-auto">
-          <h2 className="text-xl font-semibold text-[#1a1a2e] text-center mb-8">Send Us a Message</h2>
+          <h2 className="text-20px font-semibold text-[#00838f] text-center mb-8">Send Us a Message</h2>
 
           {submitted ? (
             <div className="bg-white rounded-2xl shadow p-14 text-center">
@@ -76,7 +76,7 @@ export default function ContactPage() {
                 <label className={labelCls}>Message *</label>
                 <textarea name="message" value={form.message} onChange={handle} rows={5} required placeholder="Write your message here..." className={inputCls + ' resize-none'} />
               </div>
-              <button type="submit" className="w-full bg-[#00bcd4] hover:bg-[#0097a7] text-white font-semibold py-3.5 rounded-xl text-sm transition-all hover:-translate-y-0.5 cursor-pointer border-none">
+              <button type="submit" className="w-full bg-[#00838f] hover:bg-[#00838f] text-white font-semibold py-3.5 rounded-xl text-sm transition-all hover:-translate-y-0.5 cursor-pointer border-none">
                 Send Message →
               </button>
             </form>

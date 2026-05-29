@@ -46,7 +46,7 @@ export default function InsurancePage() {
             <h1 className="text-4xl md:text-6xl font-black text-slate-900 leading-tight mb-6">
               Insurance Support <br />
 
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-sky-500">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-900 to-sky-800">
                 Made Simple
               </span>
             </h1>
@@ -66,8 +66,8 @@ export default function InsurancePage() {
                   px-7
                   py-3.5
                   rounded-full
-                  bg-cyan-500
-                  hover:bg-cyan-600
+                  bg-cyan-800
+                  hover:bg-cyan-900
                   text-white
                   text-sm
                   font-semibold
@@ -89,10 +89,10 @@ export default function InsurancePage() {
                   py-3.5
                   rounded-full
                   border
-                  border-cyan-200
+                  border-cyan-900
                   bg-white
-                  hover:bg-cyan-50
-                  text-cyan-700
+                  hover:bg-cyan-700
+                  text-white-800
                   text-sm
                   font-semibold
                   no-underline
@@ -100,7 +100,7 @@ export default function InsurancePage() {
                   duration-300
                 "
               >
-                Book Appointment
+                Book an Appointment
               </Link>
             </div>
           </div>

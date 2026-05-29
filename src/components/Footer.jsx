@@ -1,8 +1,11 @@
 import { useNavigate } from "react-router-dom";
+import { IoMdCall } from "react-icons/io";
+import { CiLocationOn } from "react-icons/ci";
 import {
   FaFacebookF,
   FaInstagram,
   FaLinkedinIn,
+  FaLink
 } from "react-icons/fa";
 
 const quickLinks = [
@@ -124,7 +127,7 @@ export default function Footer() {
                 Dr. Ankur Shah
               </h2>
 
-              <p className="text-cyan-300 text-lg">
+              <p className="text-cyan-400 text-lg">
                 Heart & Vascular Specialist
               </p>
 
@@ -139,8 +142,8 @@ export default function Footer() {
               py-4
               rounded-full
               bg-gradient-to-r
-              from-cyan-500
-              to-sky-600
+              from-cyan-900
+              to-cyan-600
               text-white
               font-bold
               text-[15px]
@@ -152,7 +155,7 @@ export default function Footer() {
               shadow-[0_10px_30px_rgba(0,180,255,0.35)]
             "
           >
-            Book Appointment
+            Book an Appointment
           </button>
 
         </div>
@@ -356,7 +359,7 @@ export default function Footer() {
 
               {/* LOCATION */}
               <a
-                href="https://maps.google.com/?q=100-12+101st+Ave,+Ozone+Park,+NY+11416"
+                href="https://www.google.com/maps/place/Dr.+Ankur+Shah/@40.6853059,-73.8416326,17z/data=!3m1!4b1!4m6!3m5!1s0x89c26758014ec2ab:0x4779d9a2d868e93f!8m2!3d40.6853059!4d-73.8416326!16s%2Fg%2F11p0f_dv0d!18m1!1e1?entry=ttu&g_ep=EgoyMDI2MDUyNi4wIKXMDSoASAFQAw%3D%3D"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="
@@ -371,13 +374,13 @@ export default function Footer() {
               >
 
                 <div className="text-cyan-400 text-xl mt-1">
-                  📍
+                       <CiLocationOn  size={22} color="cyan" />
                 </div>
 
                 <div className="text-[16px] leading-8 text-slate-200">
-                  100-12 101st Ave,
+                  100-12 101st Ave, Ozone Park,
                   <br />
-                  Ozone Park, NY 11416
+                   NY 11416 Unites States
                 </div>
 
               </a>
@@ -396,12 +399,9 @@ export default function Footer() {
                 "
               >
 
-                <div className="text-cyan-400 text-xl">
-                  📞
-                </div>
-
+                  <IoMdCall size={24} color="cyan" />
                 <div className="text-[16px] text-slate-200">
-                  +1 (718) 555-0101
+                  (917) 300-2728
                 </div>
 
               </a>
@@ -421,7 +421,8 @@ export default function Footer() {
               >
 
                 <div className="text-cyan-400 text-xl">
-                  ✉️
+                  <FaLink />
+
                 </div>
 
                 <div className="text-[15px] text-slate-200 break-all leading-7">
@@ -447,7 +448,8 @@ export default function Footer() {
               >
 
                 <div className="text-cyan-400 text-xl">
-                  🌐
+                  <FaLink />
+
                 </div>
 
                 <div className="text-[15px] text-slate-200 break-all leading-7">
@@ -457,33 +459,7 @@ export default function Footer() {
               </a>
 
               {/* SECOND LOCATION */}
-              <a
-                href="https://maps.google.com/?q=2501+86th+St,+Brooklyn,+NY"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="
-                  flex
-                  items-start
-                  gap-4
-                  text-white
-                  no-underline
-                  hover:text-cyan-400
-                  transition-all
-                "
-              >
-
-                <div className="text-cyan-400 text-xl mt-1">
-                  🏥
-                </div>
-
-                <div className="text-[16px] leading-8 text-slate-200">
-                  2501 86th St,
-                  <br />
-                  Brooklyn, NY 11214
-                </div>
-
-              </a>
-
+              
             </div>
           </div>
         </div>

@@ -218,7 +218,7 @@ export default function WhyUs() {
                     hover:shadow-2xl
                   "
                 >
-                  Book Appointment
+                  Book an Appointment
                   <span className="group-hover:translate-x-1 transition-all">
                     →
                   </span>

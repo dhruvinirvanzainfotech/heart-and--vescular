@@ -9,7 +9,7 @@ export default function AdsSection() {
       title: 'Quick Appointments, Clear Results',
       desc: 'Get expert care with fast scheduling and modern diagnostics for better patient care.',
       cta: {
-        label: 'Book Appointment',
+        label: 'Book an Appointment',
         to: '/appointment',
       },
     },
@@ -54,7 +54,7 @@ export default function AdsSection() {
             <span className="
               inline-block
               text-cyan-600
-              text-[11px]
+              text-[15px]
               font-semibold
               tracking-[3px]
               uppercase
@@ -75,11 +75,12 @@ export default function AdsSection() {
             </h2>
 
             <p className="
-              text-slate-500
+              text-cyan-900
               text-[14px]
               max-w-2xl
               mx-auto
               leading-relaxed
+              font-semibold
             ">
               Personalized cardiac and vascular care with advanced diagnostics and compassionate treatment.
             </p>
@@ -148,7 +149,7 @@ export default function AdsSection() {
 
                     <span className="
                       bg-white
-                      text-cyan-700
+                      text-slate-700
                       text-[10px]
                       font-semibold
                       px-3
@@ -200,7 +201,7 @@ export default function AdsSection() {
                       text-center
                       py-3
                       rounded-full
-                      bg-cyan-500
+                      bg-cyan-900
                       hover:bg-cyan-600
                       text-white
                       text-[13px]

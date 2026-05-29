@@ -1,13 +1,14 @@
 import { useState } from 'react'
 
+
 const locations = [
   {
     id: 0,
     name: 'Ozone Park Office',
     address: '100-12 101st Ave',
     city: 'Ozone Park, NY 11416',
-    phone: '(718) 555-0101',
-    fax: '(718) 555-0103',
+    phone: '(917) 300-2728',
+    fax: '(917) 300-2785',
     email: 'ozonepark@drankurshah.com',
     hours: [
       { day: 'Monday – Friday', time: '9:00 am – 5:00 pm' },
@@ -17,22 +18,7 @@ const locations = [
     mapSrc: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3025.123!2d-73.8456!3d40.6789!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25f0000000001%3A0x1!2s100-12+101st+Ave%2C+Ozone+Park%2C+NY+11416!5e0!3m2!1sen!2sus!4v1234567890',
     dirLink: 'https://maps.google.com/?q=100-12+101st+Ave,+Ozone+Park,+NY+11416',
   },
-  {
-    id: 1,
-    name: 'Brooklyn Office',
-    address: '2501 86th St',
-    city: 'Brooklyn, NY 11214',
-    phone: '(718) 555-0202',
-    fax: '(718) 555-0204',
-    email: 'brooklyn@drankurshah.com',
-    hours: [
-      { day: 'Monday – Friday', time: '9:00 am – 5:00 pm' },
-      { day: 'Saturday',        time: '9:00 am – 1:00 pm' },
-      { day: 'Sunday',          time: 'Closed' },
-    ],
-    mapSrc: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3028.456!2d-73.9876!3d40.5987!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24f0000000001%3A0x1!2s2501+86th+St%2C+Brooklyn%2C+NY!5e0!3m2!1sen!2sus!4v1234567891',
-    dirLink: 'https://maps.google.com/?q=2501+86th+St,+Brooklyn,+NY',
-  },
+ 
 ]
 
 export default function Locations() {
@@ -41,9 +27,9 @@ export default function Locations() {
 
   return (
     <section id="locations" className="bg-slate-50 py-16 px-0">
-      <div className="max-w-6xl mx-auto px-6 mb-10 text-center">
-        <span className="text-[#00bcd4] text-xs font-bold tracking-[2px] uppercase block mb-2">Find Us</span>
-        <p className="text-slate-500 text-sm">Two convenient New York City locations to serve you better</p>
+      <div className="max-w-6xl mx-auto px-6 mb-10 text-center ">
+        <span className="text-[#00bcd4] text-sm md:text-base font-semibold tracking-[4px] uppercase block mb-2">Find Us</span>
+        <p className="text-slate-500 text-2xl md:text-3xl font-bold">Two convenient New York City locations to serve you better</p>
       </div>
 
       {/* Location tabs */}
@@ -55,7 +41,7 @@ export default function Locations() {
                 ? 'bg-[#00bcd4] border-[#00bcd4] text-white shadow-md'
                 : 'bg-white border-slate-200 text-slate-600 hover:border-[#00bcd4] hover:text-[#00838f]'
             }`}>
-            📍 {l.name}
+             {l.name}
           </button>
         ))}
       </div>
@@ -63,6 +49,7 @@ export default function Locations() {
       {/* Map + Details */}
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 rounded-2xl overflow-hidden shadow-xl border border-slate-200">
+
 
           {/* Google Map */}
           <div className="relative h-80 lg:h-auto min-h-[400px] bg-slate-200">
@@ -88,7 +75,7 @@ export default function Locations() {
             <div>
               {/* Office name */}
               <div className="flex items-center gap-3 mb-6 pb-5 border-b border-slate-100">
-                <div className="w-10 h-10 bg-[#e0f7fa] border-2 border-[#00bcd4] rounded-xl flex items-center justify-center text-xl">
+                <div className="w-10 h-10 bg-[#00838f] border-2 border-[#00bcd4] rounded-xl flex items-center justify-center text-xl">
                   📍
                 </div>
                 <div>
@@ -143,7 +130,7 @@ export default function Locations() {
 
             {/* CTA */}
             <a href={loc.dirLink} target="_blank" rel="noreferrer"
-              className="flex items-center justify-center gap-2 bg-[#00bcd4] hover:bg-[#0097a7] text-white font-semibold text-sm px-6 py-3 rounded-xl transition-all hover:-translate-y-0.5 no-underline">
+              className="flex items-center justify-center gap-2 bg-[#00838f] hover:bg-[#0097a7] text-white font-semibold text-sm px-6 py-3 rounded-xl transition-all hover:-translate-y-0.5 no-underline">
               🗺️ Get Directions
             </a>
           </div>

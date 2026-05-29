@@ -1,75 +1,145 @@
+import { IoMdCall } from "react-icons/io";
+import { MdEmail } from "react-icons/md";
+import { IoTimeOutline } from "react-icons/io5";
+
 export default function TopBar() {
   return (
     <div
       className="
-        bg-[#1a1a2e]
-        text-slate-300
-        text-[13px]
-        sm:text-[15px]
-        md:text-[17px]
-        px-3
+        w-full
+        bg-black
+        from-[#ec4899]
+        to-[#db2777]
+        text-white
+        px-4
         sm:px-6
         md:px-10
-        py-2.5
-        flex
-        flex-wrap
-        items-center
-        justify-between
-        gap-2.5
+        py-3
       "
     >
-      {/* LEFT */}
-      <div className="flex items-center gap-3 sm:gap-4 flex-wrap">
+      <div
+        className="
+          max-w-7xl
+          mx-auto
+          flex
+          flex-col
+          lg:flex-row
+          items-center
+          justify-between
+          gap-3
+        "
+      >
 
-        <span className="flex items-center gap-2">
-          <span className="text-base">📞</span>
+        {/* LEFT SIDE */}
+        <div
+          className="
+            flex
+            flex-wrap
+            items-center
+            justify-center
+            lg:justify-start
+            gap-4
+            text-[13px]
+            sm:text-[14px]
+            font-medium
+          "
+        >
 
+          {/* PHONE */}
           <a
             href="tel:7185550101"
             className="
-              text-slate-200
-              hover:text-[#00bcd4]
-              transition-colors
-              font-medium
+              flex
+              items-center
+              gap-2
+              text-white
+              no-underline
+              hover:opacity-80
+              transition-all
             "
           >
-            (718) 555-0101
+            <div
+              className="
+                w-8
+                h-8
+                rounded-full
+                bg-white/20
+                flex
+                items-center
+                justify-center
+              "
+            >
+              <IoMdCall size={16} />
+            </div>
+
+            <span>917-300-2728</span>
           </a>
-        </span>
 
-        <span className="text-slate-600 hidden sm:inline">
-          |
-        </span>
+          {/* DIVIDER */}
+          <div className="hidden sm:block w-[1px] h-5 bg-white/30"></div>
 
-        <span className="hidden sm:flex items-center gap-2">
-          <span className="text-base">📧</span>
-
+          {/* EMAIL */}
           <a
             href="mailto:info@drankurshah.com"
             className="
-              text-slate-200
-              hover:text-[#00bcd4]
-              transition-colors
-              font-medium
+              flex
+              items-center
+              gap-2
+              text-white
+              no-underline
+              hover:opacity-80
+              transition-all
             "
           >
-            info@drankurshah.com
+            <div
+              className="
+                w-8
+                h-8
+                rounded-full
+                bg-white/20
+                flex
+                items-center
+                justify-center
+              "
+            >
+              <MdEmail size={16} />
+            </div>
+
+            <span>info@drankurshah.com</span>
           </a>
-        </span>
+        </div>
 
-      </div>
+        {/* RIGHT SIDE */}
+        <div
+          className="
+            flex
+            items-center
+            gap-2
+            text-[13px]
+            sm:text-[14px]
+            font-medium
+            text-center
+          "
+        >
 
-      {/* RIGHT */}
-      <div className="flex items-center gap-2 text-slate-300">
+          <div
+            className="
+              w-8
+              h-8
+              rounded-full
+              bg-white/20
+              flex
+              items-center
+              justify-center
+            "
+          >
+            <IoTimeOutline size={16} />
+          </div>
 
-        <span className="text-base text-slate-400">
-          🕐
-        </span>
-
-        <span className="font-medium text-center sm:text-left leading-tight">
-          Mon–Fri: 9am–5pm &nbsp;|&nbsp; Sat: 9am–1pm
-        </span>
-
+          <span>
+            Mon – Fri: 9am – 5pm &nbsp; | &nbsp; Sat: 9am – 1pm
+          </span>
+        </div>
       </div>
     </div>
   );
