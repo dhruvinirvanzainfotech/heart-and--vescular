@@ -1,8 +1,14 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { HeartPulse } from "lucide-react";
 import "./TreatmentSidebar.css";
 
+import DoctorProfileCard from "./DoctorProfileCard";
+import AppointmentModal from "./AppointmentModal";
+
 export default function TreatmentSidebar() {
+  const [showAppointmentModal, setShowAppointmentModal] = useState(false);
+
   return (
     <div className="treatment-sidebar">
       <h3>Our Treatments</h3>
@@ -48,6 +54,20 @@ export default function TreatmentSidebar() {
           </Link>
         </li>
       </ul>
+
+      <DoctorProfileCard
+        openAppointmentModal={() =>
+          setShowAppointmentModal(true)
+        }
+      />
+
+      {showAppointmentModal && (
+        <AppointmentModal
+          onClose={() =>
+            setShowAppointmentModal(false)
+          }
+        />
+      )}
     </div>
   );
 }

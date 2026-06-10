@@ -19,6 +19,7 @@ import CardiacTesting from "./pages/CardiacTesting";
 import VaricoseVeins from './pages/VaricoseVeins'
 import VascularTesting from './pages/VascularTesting'
 import NutritionCounseling from './pages/NutritionCounseling'
+
 import RouteLoader from "./components/RouteLoader";
 import GalleryPage from './pages/GalleryPage';
 import Insurance from './components/Insurance'
@@ -73,6 +74,7 @@ function Layout() {
         <FloatingContact />
         <BackToTop />
         <ScrollToTop />
+       
       </main>
       <Footer />
     </div>
