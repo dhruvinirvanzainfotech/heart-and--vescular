@@ -1,0 +1,242 @@
+/* =========================
+   SERVICE PAGE
+========================= */
+
+.service-page {
+  background: #ffffff;
+  overflow-x: hidden;
+}
+
+.service-section {
+  padding: 80px 20px;
+}
+
+.service-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 3fr 340px;
+  gap: 50px;
+  align-items: start;
+}
+
+/* =========================
+   LEFT CONTENT
+========================= */
+
+.service-content {
+  width: 100%;
+}
+
+.service-image {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  border-radius: 24px;
+  margin-bottom: 30px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+}
+
+.service-content h1 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #09aec4;
+  margin-bottom: 25px;
+  line-height: 1.2;
+}
+
+.service-content h2 {
+  font-size: 26px;
+  font-weight: 600;
+  color: #0c0d0e;
+  margin-top: 40px;
+  margin-bottom: 14px;
+}
+
+.service-content h2::after {
+  content: "";
+  display: block;
+  width: 70px;
+  height: 3px;
+  background: #06b6d4;
+  border-radius: 50px;
+  margin-top: 8px;
+}
+
+/* Paragraphs */
+.service-content p {
+  font-size: 16.5px;
+  line-height: 1.85;
+  color: #64748b;
+  margin-bottom: 20px;
+}
+
+/* Service List */
+.service-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.service-list p {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.8;
+  color: #475569;
+}
+
+.list-icon-red,
+.list-icon {
+  flex-shrink: 0;
+  margin-top: 4px;
+  color: #dc2626;           /* Consistent red icon color */
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.service-sidebar {
+  position: sticky;
+  top: 100px;
+  background: #fff;
+  padding: 28px 24px;
+  border-radius: 24px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.06);
+  height: fit-content;
+}
+
+/* =========================
+   WHY CHOOSE US - 2x2 GRID
+========================= */
+
+.why-choose {
+  margin-top: 60px;
+}
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.why-card {
+  background: #fff;
+  padding: 28px 24px;
+  border-radius: 18px;
+  border-top: 5px solid #06b6d4;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  transition: all 0.4s ease;
+  height: 100%;
+}
+
+.why-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.why-card h4 {
+  color: #0891b2;
+  margin-bottom: 12px;
+  font-size: 19px;
+  transition: 0.4s;
+}
+
+.why-card p {
+  color: #64748b;
+  margin: 0;
+  line-height: 1.7;
+  transition: 0.4s;
+}
+
+.why-card:hover h4,
+.why-card:hover p {
+  color: #fff;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+/* Tablet */
+@media (max-width: 992px) {
+  .service-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .service-sidebar {
+    position: static;
+  }
+
+  .service-image {
+    height: 380px;
+  }
+
+  .service-content h1 {
+    font-size: 30px;
+  }
+
+  .why-grid {
+    grid-template-columns: repeat(2, 1fr);   /* Keep 2x2 on tablet */
+    gap: 20px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .service-section {
+    padding: 60px 16px;
+  }
+
+  .service-image {
+    height: 280px;
+  }
+
+  .service-content h1 {
+    font-size: 26px;
+  }
+
+  .service-content h2 {
+    font-size: 22px;
+  }
+
+  .service-content p,
+  .service-list p {
+    font-size: 15.5px;
+  }
+
+  .why-grid {
+    grid-template-columns: 1fr;   /* 1 column on mobile */
+    gap: 20px;
+  }
+
+  .why-card {
+    padding: 24px 20px;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .service-section {
+    padding: 50px 12px;
+  }
+
+  .service-image {
+    height: 240px;
+    border-radius: 16px;
+  }
+
+  .service-content h1 {
+    font-size: 24px;
+  }
+
+  .service-sidebar {
+    padding: 22px 18px;
+  }
+}

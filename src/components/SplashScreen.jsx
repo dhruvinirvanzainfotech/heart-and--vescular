@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
+import Favicon from "../image/favicon.png";
 
 export default function SplashScreen({ onDone }) {
   const [phase, setPhase] = useState("show");
 
   useEffect(() => {
-    const t1 = setTimeout(() => setPhase("out"), 3200);
-    const t2 = setTimeout(() => onDone(), 4000);
+    const t1 = setTimeout(() => setPhase("out"), 2500);
+    const t2 = setTimeout(() => onDone(), 3200);
 
     return () => {
       clearTimeout(t1);
@@ -45,7 +46,7 @@ export default function SplashScreen({ onDone }) {
           to-black
           z-20
           transition-all
-          duration-[1800ms]
+          duration-[1500ms]
           ease-in-out
           ${
             phase === "out"
@@ -54,10 +55,7 @@ export default function SplashScreen({ onDone }) {
           }
         `}
       >
-
-        {/* LIGHT EFFECT */}
-        <div className="absolute top-0 right-0 w-40 h-full bg-cyan-400/10 blur-3xl"></div>
-
+        <div className="absolute top-0 right-0 w-24 h-full bg-cyan-400/10 blur-3xl"></div>
       </div>
 
       {/* RIGHT CURTAIN */}
@@ -74,7 +72,7 @@ export default function SplashScreen({ onDone }) {
           to-black
           z-20
           transition-all
-          duration-[1800ms]
+          duration-[1500ms]
           ease-in-out
           ${
             phase === "out"
@@ -83,10 +81,7 @@ export default function SplashScreen({ onDone }) {
           }
         `}
       >
-
-        {/* LIGHT EFFECT */}
-        <div className="absolute top-0 left-0 w-40 h-full bg-cyan-400/10 blur-3xl"></div>
-
+        <div className="absolute top-0 left-0 w-24 h-full bg-cyan-400/10 blur-3xl"></div>
       </div>
 
       {/* CENTER CONTENT */}
@@ -95,7 +90,7 @@ export default function SplashScreen({ onDone }) {
         <div className="text-center px-4">
 
           {/* ECG LINE */}
-          <div className="w-72 mx-auto mb-6 animate-fadeUp">
+          <div className="w-44 mx-auto mb-4 animate-fadeUp">
 
             <svg viewBox="0 0 100 60" className="w-full h-auto">
 
@@ -128,16 +123,16 @@ export default function SplashScreen({ onDone }) {
           </div>
 
           {/* LOGO */}
-          <div className="w-52 h-52 mx-auto mb-6 animate-logoZoom">
+          <div className="w-28 h-28 mx-auto mb-4 animate-logoZoom">
 
             <img
-              src="/public/image/favicon.png"
+              src={Favicon}
               alt="Logo"
               className="
                 w-full
                 h-full
                 object-contain
-                drop-shadow-[0_0_35px_rgba(0,255,255,0.35)]
+                drop-shadow-[0_0_25px_rgba(0,255,255,0.35)]
               "
             />
 
@@ -147,11 +142,11 @@ export default function SplashScreen({ onDone }) {
           <h1
             className="
               text-white
-              text-4xl
-              md:text-6xl
-              font-extrabold
+              text-2xl
+              md:text-4xl
+              font-bold
               tracking-wide
-              mb-3
+              mb-2
               animate-fadeUp2
             "
           >
@@ -162,37 +157,22 @@ export default function SplashScreen({ onDone }) {
           <h2
             className="
               text-cyan-300
-              text-lg
-              md:text-2xl
-              font-semibold
+              text-sm
+              md:text-lg
+              font-medium
               tracking-[2px]
-              mb-4
+              mb-5
               animate-fadeUp3
             "
           >
             Heart & Vascular Specialist
           </h2>
 
-          {/* SUBTITLE */}
-          <p
-            className="
-              text-slate-300/80
-              text-sm
-              md:text-base
-              tracking-[5px]
-              uppercase
-              mb-8
-              animate-fadeUp4
-            "
-          >
-         
-          </p>
-
           {/* LOADING BAR */}
           <div
             className="
-              w-64
-              h-[4px]
+              w-44
+              h-[3px]
               bg-white/10
               rounded-full
               overflow-hidden
@@ -233,7 +213,7 @@ export default function SplashScreen({ onDone }) {
           }
 
           .animate-drawEcg {
-            animation: drawEcg 2s ease forwards;
+            animation: drawEcg 1.8s ease forwards;
           }
 
           @keyframes loadBar {
@@ -247,7 +227,7 @@ export default function SplashScreen({ onDone }) {
           }
 
           .animate-loadBar {
-            animation: loadBar 3s linear forwards;
+            animation: loadBar 2.5s linear forwards;
           }
 
           @keyframes logoZoom {
@@ -263,13 +243,13 @@ export default function SplashScreen({ onDone }) {
           }
 
           .animate-logoZoom {
-            animation: logoZoom 1s ease forwards;
+            animation: logoZoom 0.8s ease forwards;
           }
 
           @keyframes fadeUp {
             0% {
               opacity: 0;
-              transform: translateY(40px);
+              transform: translateY(30px);
             }
 
             100% {
@@ -279,25 +259,25 @@ export default function SplashScreen({ onDone }) {
           }
 
           .animate-fadeUp {
-            animation: fadeUp 0.8s ease forwards;
+            animation: fadeUp 0.7s ease forwards;
           }
 
           .animate-fadeUp2 {
             opacity: 0;
-            animation: fadeUp 0.8s ease forwards;
-            animation-delay: 0.3s;
+            animation: fadeUp 0.7s ease forwards;
+            animation-delay: 0.2s;
           }
 
           .animate-fadeUp3 {
             opacity: 0;
-            animation: fadeUp 0.8s ease forwards;
-            animation-delay: 0.6s;
+            animation: fadeUp 0.7s ease forwards;
+            animation-delay: 0.4s;
           }
 
           .animate-fadeUp4 {
             opacity: 0;
-            animation: fadeUp 0.8s ease forwards;
-            animation-delay: 0.9s;
+            animation: fadeUp 0.7s ease forwards;
+            animation-delay: 0.6s;
           }
         `}
       </style>

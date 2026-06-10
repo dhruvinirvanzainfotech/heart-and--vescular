@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, useCallback } from 'react'
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
+import { AppointmentProvider } from './components/AppointmentContext'
 import SplashScreen from './components/SplashScreen'
 import TopBar from './components/TopBar'
 import Navbar from './components/Navbar'
@@ -11,29 +12,67 @@ import ServiceDetailPage from './pages/ServiceDetailPage'
 import LocationsPage from './pages/LocationsPage'
 import ContactPage from './pages/ContactPage'
 import AppointmentPage from './pages/AppointmentPage'
-import InsurancePage from './pages/InsurancePage'
-import InsuranceSection from './components/InsuranceSection'
+import BackToTop from './components/BackToTop';
+import ScrollToTop from './components/ScrollToTop';
+import FloatingContact from './components/FloatingContact';
+import CardiacTesting from "./pages/CardiacTesting";
+import VaricoseVeins from './pages/VaricoseVeins'
+import VascularTesting from './pages/VascularTesting'
+import NutritionCounseling from './pages/NutritionCounseling'
+import RouteLoader from "./components/RouteLoader";
+import GalleryPage from './pages/GalleryPage';
+import Insurance from './components/Insurance'
 
 
 function Layout() {
   return (
+    
     <div className="flex flex-col min-h-screen">
       <TopBar />
       <Navbar />
       <main className="flex-1">
         <Routes>
-          <Route path="/"              element={<HomePage />} />
-          <Route path="/about"         element={<AboutPage />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/aboutpage" element={<AboutPage />} />
+          <Route path="/contactpage" element={<ContactPage />} />
+
+
           <Route path="/treatments" element={<ServicesPage />} />
-
-<Route path="/treatments/:id" element={<ServiceDetailPage />} />
-          <Route path="/locations"     element={<LocationsPage />} />
-          <Route path="/contact"       element={<ContactPage />} />
-          <Route path="/appointment"   element={<AppointmentPage />} />
-          <Route path="/insurance"     element={<InsurancePage />} />
-          <Route path="/insuranceSection" element={<InsuranceSection />} />
-
+          <Route path="/treatments/:id" element={<ServiceDetailPage />} />
+          <Route path="/locations" element={<LocationsPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/appointment" element={<AppointmentPage />} />
+          <Route path="/gallery" element={<GalleryPage />} />
+          <Route path="/insurance" element={<Insurance />}  />
+          <Route
+            path="/treatment/cardiactesting"
+            element={<CardiacTesting />}
+          />
+          <Route
+            path="/treatment/varicose-veins"
+            element={<VaricoseVeins />}
+          />
+          <Route
+            path="/treatment/vascular-testing"
+            element={<VascularTesting />}
+          />
+          <Route
+            path="/treatment/nutrition-counseling"
+            element={<NutritionCounseling />}
+          />
+          <Route
+  path="*"
+  element={
+    <div style={{ padding: "50px" }}>
+      Route Not Found
+    </div>
+  }
+/>  
         </Routes>
+        <FloatingContact />
+        <BackToTop />
+        <ScrollToTop />
       </main>
       <Footer />
     </div>
@@ -109,8 +148,13 @@ function AppReadyGate() {
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <AppReadyGate />
+
+    <BrowserRouter basename="/design/drankurshahheartspecialist">
+        <RouteLoader />
+      <AppointmentProvider>
+        <AppReadyGate />
+      </AppointmentProvider>
+
     </BrowserRouter>
   )
 }

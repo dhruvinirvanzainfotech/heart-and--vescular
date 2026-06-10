@@ -1,7 +1,9 @@
-import { Link } from 'react-router-dom'
+import { useState } from 'react'
 import RevealSection from './RevealSection'
+import AppointmentModal from './AppointmentModal'
 
 export default function AdsSection() {
+  const [apptOpen, setApptOpen] = useState(false);
   const cards = [
     {
       image: '/image/doctor.jpg',
@@ -20,8 +22,8 @@ export default function AdsSection() {
       title: 'Comprehensive Heart Evaluation',
       desc: 'EKG, stress testing, echocardiography and complete cardiac monitoring solutions.',
       cta: {
-        label: 'Explore Services',
-        to: '/services/cardiac',
+        label: 'Explore treatments',
+        to: '/treatments/cardiac',
       },
     },
 
@@ -32,13 +34,14 @@ export default function AdsSection() {
       desc: 'Advanced vascular imaging and non-invasive diagnostics for healthier outcomes.',
       cta: {
         label: 'View Vascular',
-        to: '/services/vascular',
+        to: '/treatments/vascular',
       },
     },
   ]
 
   return (
     <RevealSection>
+      {apptOpen && <AppointmentModal onClose={() => setApptOpen(false)} />}
       <section className="relative py-16 px-5 bg-gradient-to-b from-cyan-50 to-white overflow-hidden">
 
         {/* BACKGROUND BLUR */}
@@ -50,38 +53,10 @@ export default function AdsSection() {
 
           {/* HEADER */}
           <div className="text-center mb-12">
-
-            <span className="
-              inline-block
-              text-cyan-600
-              text-[15px]
-              font-semibold
-              tracking-[3px]
-              uppercase
-              mb-3
-            ">
-              Featured Care
-            </span>
-
-            <h2 className="
-              text-3xl
-              md:text-4xl
-              font-bold
-              text-slate-800
-              mb-4
-              leading-tight
-            ">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-800 mb-4 leading-tight">
               Expert Care With Modern Technology
             </h2>
-
-            <p className="
-              text-cyan-900
-              text-[14px]
-              max-w-2xl
-              mx-auto
-              leading-relaxed
-              font-semibold
-            ">
+            <p className="text-cyan-900 text-[14px] max-w-2xl mx-auto leading-relaxed font-semibold">
               Personalized cardiac and vascular care with advanced diagnostics and compassionate treatment.
             </p>
           </div>
@@ -194,27 +169,53 @@ export default function AdsSection() {
                   </p>
 
                   {/* BUTTON */}
-                  <Link
-                    to={card.cta.to}
-                    className="
-                      w-full
-                      text-center
-                      py-3
-                      rounded-full
-                      bg-cyan-900
-                      hover:bg-cyan-600
-                      text-white
-                      text-[13px]
-                      font-semibold
-                      transition-all
-                      duration-300
-                      no-underline
-                      hover:shadow-lg
-                      hover:shadow-cyan-200
-                    "
-                  >
-                    {card.cta.label} →
-                  </Link>
+                  {card.cta.label === 'Book an Appointment' ? (
+                    <button
+                      onClick={() => setApptOpen(true)}
+                      className="
+                        w-full
+                        text-center
+                        py-3
+                        rounded-full
+                        bg-cyan-900
+                        hover:bg-cyan-600
+                        text-white
+                        text-[13px]
+                        font-semibold
+                        transition-all
+                        duration-300
+                        border-none
+                        cursor-pointer
+                        hover:shadow-lg
+                        hover:shadow-cyan-200
+                      "
+                    >
+                      {card.cta.label} →
+                    </button>
+                  ) : (
+                    <a
+                      href={card.cta.to}
+                      className="
+                        w-full
+                        text-center
+                        py-3
+                        rounded-full
+                        bg-cyan-900
+                        hover:bg-cyan-600
+                        text-white
+                        text-[13px]
+                        font-semibold
+                        transition-all
+                        duration-300
+                        no-underline
+                        hover:shadow-lg
+                        hover:shadow-cyan-200
+                        block
+                      "
+                    >
+                      {card.cta.label} →
+                    </a>
+                  )}
                 </div>
               </div>
             ))}

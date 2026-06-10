@@ -1,0 +1,303 @@
+/* =========================
+   PREMIUM FOOTER
+========================= */
+
+.footer {
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(
+      rgba(3, 10, 18, 0.95),
+      rgba(3, 10, 18, 0.98)
+    ),
+    url("/image/banner1.jpg") center center/cover;
+  color: #fff;
+  border-radius: 50px 50px 0 0;
+  margin-top: 80px;
+}
+
+/* =========================
+   GLOW EFFECTS
+========================= */
+
+.footer-glow1,
+.footer-glow2 {
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  filter: blur(120px);
+  pointer-events: none;
+}
+
+.footer-glow1 {
+  top: -100px;
+  left: -100px;
+  background: rgba(34, 211, 238, 0.18);
+}
+
+.footer-glow2 {
+  bottom: -100px;
+  right: -100px;
+  background: rgba(125, 211, 252, 0.15);
+}
+
+/* =========================
+   CONTAINER
+========================= */
+
+.footer-container {
+  position: relative;
+  z-index: 2;
+  max-width: 1320px;
+  margin: auto;
+  padding: 80px 30px 40px;
+}
+
+/* =========================
+   GRID
+========================= */
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1.2fr 1.2fr;
+  gap: 50px;
+  align-items: flex-start;
+  margin-bottom: 60px;
+}
+
+.footer-col {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* =========================
+   LOGO
+========================= */
+
+.footer-logo {
+  width: 280px;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 24px;
+}
+
+/* =========================
+   ABOUT TEXT
+========================= */
+
+.footer-about-text {
+  color: #cbd5e1;
+  font-size: 16px;
+  line-height: 1.8;
+  margin-bottom: 30px;
+  text-align: justify;
+}
+
+/* =========================
+   SOCIAL
+========================= */
+
+.footer-social {
+  display: flex;
+  gap: 12px;
+}
+
+.social-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: white;
+  transition: all 0.35s ease;
+}
+
+.social-icon:hover {
+  background: #22d3ee;
+  color: #00111a;
+  transform: translateY(-4px);
+}
+
+/* =========================
+   HEADINGS
+========================= */
+
+.footer-heading {
+  color: #4de6ff;
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0 0 12px;
+}
+
+.footer-underline {
+  width: 48px;
+  height: 3px;
+  background: #4de6ff;
+  border-radius: 50px;
+  margin-bottom: 28px;
+}
+
+/* =========================
+   LINKS
+========================= */
+
+.footer-link {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  text-align:start;
+  justify-content: center;
+  color: #e2e8f0;
+  text-decoration: none;
+
+  font-size: 14px;
+  line-height: 1.7;
+
+  padding: 6px 0;
+  transition: all 0.3s ease;
+}
+
+.footer-link:hover {
+  color: #4de6ff;
+  transform: translateX(5px);
+}
+
+.arrow {
+  flex-shrink: 0;
+  font-size: 16px;
+}
+
+/* =========================
+   CONTACT INFO
+========================= */
+
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+
+  margin-bottom: 20px;
+
+  color: #e2e8f0;
+  text-decoration: none;
+
+  font-size: 15px;
+  line-height: 1.7;
+
+  word-break: break-word;
+}
+
+.contact-icon {
+  color: #4de6ff;
+  flex-shrink: 0;
+  margin-top: 4px;
+  font-size: 18px;
+}
+
+.contact-item:hover {
+  color: #4de6ff;
+}
+
+/* =========================
+   BOTTOM BAR
+========================= */
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.12);
+  padding-top: 24px;
+
+  text-align: center;
+  color: #94a3b8;
+
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.highlight {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+.footer-bottom a {
+  color: #dc2626;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.footer-bottom a:hover {
+  color: #fff;
+}
+
+/* =========================
+   LARGE TABLET
+========================= */
+
+@media (max-width: 1200px) {
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+  }
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 768px) {
+  .footer {
+    border-radius: 35px 35px 0 0;
+  }
+
+  .footer-container {
+    padding: 60px 20px 30px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .footer-logo {
+    width: 240px;
+  }
+
+  .footer-heading {
+    font-size: 20px;
+  }
+
+  .footer-about-text,
+  .footer-link,
+  .contact-item {
+    font-size: 15px;
+  }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 480px) {
+  .footer-container {
+    padding: 50px 18px 25px;
+  }
+
+  .footer-logo {
+    width: 220px;
+  }
+
+  .footer-heading {
+    font-size: 19px;
+  }
+
+  .footer-bottom {
+    font-size: 14px;
+  }
+}

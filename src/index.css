@@ -5,6 +5,8 @@
   --color-brand-dark: #a93226;
   --color-navy: #1a1a2e;
   --color-navy2: #0f3460;
+  --font-sans: 'Poppins', sans-serif;
+  --font-body: 'Poppins', sans-serif;
 }
 
 /* Custom keyframes needed for splash screen */
@@ -114,11 +116,23 @@
 .animate-ripple     { animation: ripple 2s ease-out infinite; }
 
 html { scroll-behavior: smooth; }
-* { box-sizing: border-box; }
-html, body, #root { min-height: 100%; font-family: 'Manrope', 'Inter', 'Segoe UI', system-ui, sans-serif; }
-body { margin: 0; }
+* { box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+html, body, #root {
+  min-height: 100%;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden; /* prevent horizontal scroll from fixed-width elements */
+}
+
+img, video {
+  max-width: 100%;
+  height: auto;
+}
+
 :target { scroll-margin-top: 110px; }
 
 /* Ensure anchor navigation and manual scroll positions don't hide content behind the sticky header */
-html { scroll-padding-top: 110px; }
 

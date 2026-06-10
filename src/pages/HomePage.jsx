@@ -1,21 +1,22 @@
 import Hero from '../components/Hero'
-import HomeServices from '../components/HomeServices'
 import About from '../components/About'
-import WhyUs from '../components/WhyUs'
-import AdsSection from '../components/AdsSection'
+import HomeServices from '../components/HomeServices'
+// import WhyUs from '../components/WhyUs'
+import Testimonials from '../components/Testimonials'
 
+import StatsCounter from '../components/StatsCounter'
+import Gallery from '../components/Gallery'
 export default function HomePage() {
   return (
     <>
       <Hero />
-      <HomeServices />
       <About />
-      <WhyUs />
-      <AdsSection />
+      <HomeServices />
+      {/* <WhyUs /> */}
+      <Testimonials />
+      
+      <StatsCounter />
+     <Gallery />
     </>
   )
 }
-
-
-
-

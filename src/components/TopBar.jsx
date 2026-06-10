@@ -4,141 +4,45 @@ import { IoTimeOutline } from "react-icons/io5";
 
 export default function TopBar() {
   return (
-    <div
-      className="
-        w-full
-        bg-black
-        from-[#ec4899]
-        to-[#db2777]
-        text-white
-        px-4
-        sm:px-6
-        md:px-10
-        py-3
-      "
-    >
-      <div
-        className="
-          max-w-7xl
-          mx-auto
-          flex
-          flex-col
-          lg:flex-row
-          items-center
-          justify-between
-          gap-3
-        "
-      >
+    <div className="hidden md:block w-full bg-red-700 text-white py-3 px-4 sm:px-6 lg:px-10">
+      <div className="max-w-[1600px] mx-auto">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-4 lg:gap-6">
 
-        {/* LEFT SIDE */}
-        <div
-          className="
-            flex
-            flex-wrap
-            items-center
-            justify-center
-            lg:justify-start
-            gap-4
-            text-[13px]
-            sm:text-[14px]
-            font-medium
-          "
-        >
+          {/* LEFT SIDE - Contact Info */}
+          <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-5 text-[13px] sm:text-sm font-medium w-full lg:w-auto">
 
-          {/* PHONE */}
-          <a
-            href="tel:7185550101"
-            className="
-              flex
-              items-center
-              gap-2
-              text-white
-              no-underline
-              hover:opacity-80
-              transition-all
-            "
-          >
-            <div
-              className="
-                w-8
-                h-8
-                rounded-full
-                bg-white/20
-                flex
-                items-center
-                justify-center
-              "
+            {/* PHONE */}
+            <a
+              href="tel:+19173002728"
+              className="flex items-center gap-2 hover:opacity-80 transition-all duration-200 group"
             >
-              <IoMdCall size={16} />
-            </div>
+              <IoMdCall size={18} className="shrink-0" />
+              <span className="group-hover:underline">(917) 300-2728</span>
+            </a>
 
-            <span>917-300-2728</span>
-          </a>
+            {/* Divider */}
+            <div className="hidden sm:block w-px h-5 bg-white/40" />
 
-          {/* DIVIDER */}
-          <div className="hidden sm:block w-[1px] h-5 bg-white/30"></div>
-
-          {/* EMAIL */}
-          <a
-            href="mailto:info@drankurshah.com"
-            className="
-              flex
-              items-center
-              gap-2
-              text-white
-              no-underline
-              hover:opacity-80
-              transition-all
-            "
-          >
-            <div
-              className="
-                w-8
-                h-8
-                rounded-full
-                bg-white/20
-                flex
-                items-center
-                justify-center
-              "
+            {/* EMAIL */}
+            <a
+              href="mailto:drankur@completeheartandvascularcare.com"
+              className="flex items-center gap-2 hover:opacity-80 transition-all duration-200 group break-words text-center sm:text-left"
             >
-              <MdEmail size={16} />
-            </div>
-
-            <span>info@drankurshah.com</span>
-          </a>
-        </div>
-
-        {/* RIGHT SIDE */}
-        <div
-          className="
-            flex
-            items-center
-            gap-2
-            text-[13px]
-            sm:text-[14px]
-            font-medium
-            text-center
-          "
-        >
-
-          <div
-            className="
-              w-8
-              h-8
-              rounded-full
-              bg-white/20
-              flex
-              items-center
-              justify-center
-            "
-          >
-            <IoTimeOutline size={16} />
+              <MdEmail size={18} className="shrink-0" />
+              <span className="group-hover:underline">
+                drankur@completeheartandvascularcare.com
+              </span>
+            </a>
           </div>
 
-          <span>
-            Mon – Fri: 9am – 5pm &nbsp; | &nbsp; Sat: 9am – 1pm
-          </span>
+          {/* RIGHT SIDE - Working Hours */}
+          <div className="flex items-center justify-center gap-2 text-[13px] sm:text-sm font-medium text-center lg:text-left">
+            <IoTimeOutline size={18} className="shrink-0" />
+            <span>
+              Mon – Fri: 9am – 5pm &nbsp;|&nbsp; Sat: 9am – 1pm
+            </span>
+          </div>
+
         </div>
       </div>
     </div>

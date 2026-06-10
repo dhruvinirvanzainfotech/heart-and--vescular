@@ -1,5 +1,9 @@
 import { useState } from 'react'
-
+import { FaLocationDot } from "react-icons/fa6";
+import { IoCall } from "react-icons/io5";
+import { FaFax } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
+import { IoTime } from "react-icons/io5";
 
 const locations = [
   {
@@ -33,19 +37,41 @@ export default function Locations() {
       </div>
 
       {/* Location tabs */}
-      <div className="max-w-6xl mx-auto px-6 mb-6 flex gap-3">
-        {locations.map((l, i) => (
-          <button key={l.id} onClick={() => setActive(i)}
-            className={`px-5 py-2.5 rounded-full text-sm font-semibold border-2 transition-all cursor-pointer ${
-              active === i
-                ? 'bg-[#00bcd4] border-[#00bcd4] text-white shadow-md'
-                : 'bg-white border-slate-200 text-slate-600 hover:border-[#00bcd4] hover:text-[#00838f]'
-            }`}>
-             {l.name}
-          </button>
-        ))}
-      </div>
+  <div className="w-full max-w-7xl mx-auto px-6 mb-7 overflow-x-auto">
+  <div className="flex flex-nowrap gap-3 min-w-max">
+    
+    {locations.map((l, i) => (
+      <button
+        key={l.id}
+        onClick={() => setActive(i)}
+        className={`
+          flex
+          items-center
+          gap-2
+          px-6
+          py-3
+          rounded-full
+          text-sm
+          font-semibold
+          border-2
+          whitespace-nowrap
+          transition-all
+          duration-300
+          cursor-pointer
+          ${
+            active === i
+              ? "bg-cyan-900 border-cyan-900 text-white shadow-md"
+              : "bg-white border-slate-200 text-slate-600 hover:border-cyan-600 hover:text-cyan-700"
+          }
+        `}
+      >
+        <FaLocationDot />
+        {l.name}
+      </button>
+    ))}
 
+  </div>
+</div>
       {/* Map + Details */}
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 rounded-2xl overflow-hidden shadow-xl border border-slate-200">
@@ -76,7 +102,7 @@ export default function Locations() {
               {/* Office name */}
               <div className="flex items-center gap-3 mb-6 pb-5 border-b border-slate-100">
                 <div className="w-10 h-10 bg-[#00838f] border-2 border-[#00bcd4] rounded-xl flex items-center justify-center text-xl">
-                  📍
+                     <FaLocationDot />
                 </div>
                 <div>
                   <h3 className="text-lg font-bold text-[#1a1a2e]">{loc.name}</h3>
@@ -87,7 +113,8 @@ export default function Locations() {
               {/* Contact rows */}
               <div className="space-y-4 mb-7">
                 <div className="flex items-start gap-4">
-                  <div className="w-9 h-9 bg-[#e0f7fa] rounded-lg flex items-center justify-center text-base flex-shrink-0">📞</div>
+                  <div className="w-9 h-9 bg-[#e0f7fa] rounded-lg flex items-center justify-center text-base flex-shrink-0"><IoCall />
+</div>
                   <div>
                     <div className="text-xs font-bold text-slate-400 uppercase tracking-wide mb-0.5">Phone</div>
                     <a href={`tel:${loc.phone.replace(/\D/g,'')}`} className="text-[#1a1a2e] font-semibold text-sm hover:text-[#00bcd4] transition-colors no-underline">{loc.phone}</a>
@@ -95,7 +122,8 @@ export default function Locations() {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="w-9 h-9 bg-[#e0f7fa] rounded-lg flex items-center justify-center text-base flex-shrink-0">📠</div>
+                  <div className="w-9 h-9 bg-[#e0f7fa] rounded-lg flex items-center justify-center text-base flex-shrink-0"><FaFax />
+</div>
                   <div>
                     <div className="text-xs font-bold text-slate-400 uppercase tracking-wide mb-0.5">Fax</div>
                     <span className="text-[#1a1a2e] font-semibold text-sm">{loc.fax}</span>
@@ -103,7 +131,8 @@ export default function Locations() {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="w-9 h-9 bg-[#e0f7fa] rounded-lg flex items-center justify-center text-base flex-shrink-0">📧</div>
+                  <div className="w-9 h-9 bg-[#e0f7fa] rounded-lg flex items-center justify-center text-base flex-shrink-0"><MdEmail />
+</div>
                   <div>
                     <div className="text-xs font-bold text-slate-400 uppercase tracking-wide mb-0.5">Email</div>
                     <a href={`mailto:${loc.email}`} className="text-[#1a1a2e] font-semibold text-sm hover:text-[#00bcd4] transition-colors no-underline">{loc.email}</a>
@@ -112,7 +141,8 @@ export default function Locations() {
 
                 {/* Hours */}
                 <div className="flex items-start gap-4">
-                  <div className="w-9 h-9 bg-[#e0f7fa] rounded-lg flex items-center justify-center text-base flex-shrink-0">🕐</div>
+                  <div className="w-9 h-9 bg-[#e0f7fa] rounded-lg flex items-center justify-center text-base flex-shrink-0"><IoTime />
+</div>
                   <div>
                     <div className="text-xs font-bold text-slate-400 uppercase tracking-wide mb-2">Office Hours</div>
                     <div className="space-y-1">

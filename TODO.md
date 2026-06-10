@@ -1,7 +1,5 @@
 # TODO
-
-## Responsive Navbar + TopBar
-- [ ] Implement mobile menu panel in `src/components/Navbar.jsx` (hamburger opens panel; mobile Services dropdown works on tap).
-- [ ] Improve `src/components/TopBar.jsx` responsiveness for very small screens (padding + font sizing + clean wrapping).
-- [ ] Run dev/test build and verify on mobile widths (<lg, <sm).
+- [ ] Update `src/components/Hero.jsx` for full mobile responsiveness (height/typography/buttons/arrows/stats).
+- [ ] Verify carousel layout on small screens (375px), tablet, and desktop.
+- [ ] Run dev build and check for overflow/clipping issues.
 

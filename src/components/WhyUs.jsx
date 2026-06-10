@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { useAppointment } from "./AppointmentContext";
 
 const features = [
   {
@@ -24,6 +24,8 @@ const features = [
 ];
 
 export default function WhyUs() {
+  const openModal = useAppointment();
+
   return (
     <section className="relative py-20 bg-[#f8fcfd] overflow-hidden">
 
@@ -198,8 +200,8 @@ export default function WhyUs() {
               {/* BUTTONS */}
               <div className="flex flex-wrap gap-4">
 
-                <Link
-                  to="/appointment"
+                <button
+                  onClick={openModal}
                   className="
                     inline-flex
                     items-center
@@ -211,7 +213,9 @@ export default function WhyUs() {
                     hover:bg-slate-800
                     text-white
                     text-sm
-                    font-semisemibold                    no-underline
+                    font-semisemibold
+                    border-none
+                    cursor-pointer
                     transition-all
                     duration-300
                     hover:-translate-y-1
@@ -222,30 +226,7 @@ export default function WhyUs() {
                   <span className="group-hover:translate-x-1 transition-all">
                     →
                   </span>
-                </Link>
-
-                <Link
-                  to="/services"
-                  className="
-                    inline-flex
-                    items-center
-                    gap-2
-                    px-7
-                    py-4
-                    rounded-full
-                    border
-                    border-slate-300
-                    text-slate-700
-                    text-sm
-                    font-bold                    no-underline
-                    hover:bg-white
-                    hover:-translate-y-1
-                    transition-all
-                    duration-300
-                  "
-                >
-                  Explore Services
-                </Link>
+                </button>
               </div>
             </div>
 

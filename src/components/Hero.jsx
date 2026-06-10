@@ -1,43 +1,84 @@
-import { useState, useEffect, useCallback } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect, useCallback, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import AppointmentModal from "./AppointmentModal";
+import Slider1 from "../image/banner.png";
+import Slider2 from "../image/banner2.png";
+import Slider3 from "../image/banner3.png";
+import { ArrowRight, CalendarPlus } from "lucide-react";
+
+import "./Hero.css";
 
 const slides = [
   {
     id: 0,
-    image: "/image/benner4.jpg",
-    tag: "Heart & Vascular Care",
-    title: "Advanced Cardiac",
-    subtitle: "Treatment Center",
-    desc: "Modern heart and vascular treatments with expert medical care and advanced technology.",
+    image: Slider1,
+    tag: "Welcome to Heart & Vascular Care of New York",
+    title: "Expert Heart &",
+    subtitle: "Vascular Care",
+    desc: null,
+    overlay: "from-slate-950/60 via-slate-900/30 to-transparent",
   },
   {
     id: 1,
-    image: "/image/banner3.jpg",
-    tag: "Expert Cardiology",
-    title: "Trusted By",
-    subtitle: "Thousands Patients",
-    desc: "Professional cardiac diagnosis and treatment designed for every patient.",
+    image: Slider2,
+    tag: "Comprehensive Heart Diagnostics",
+    title: "Advanced Cardiac",
+    subtitle: "Testing & Treatment",
+    desc: "From EKG and stress testing to echocardiography, we provide comprehensive heart diagnostics and personalized treatment plans.",
+    overlay: "from-slate-950/80 via-slate-900/60 to-slate-900/20",
   },
   {
     id: 2,
-    image: "/image/banner2.jpg",
-    tag: "Vascular Wellness",
-    title: "Professional",
-    subtitle: "Vein Care",
-    desc: "Advanced vascular and vein treatments with modern healthcare solutions.",
-  },
-  {
-    id: 3,
-    image: "/image/banner1.jpg",
-    tag: "Expert Doctors",
-    title: "Personalized Care",
-    subtitle: "For Every Patient",
-    desc: "Compassionate and advanced treatment plans tailored to your needs.",
+    image: Slider3,
+    tag: "Specialized Vein & Vascular Care",
+    title: "Advanced Vein &",
+    subtitle: "Vascular Treatment",
+    desc: "Expert care for varicose veins, vascular conditions, and lymphedema using modern minimally invasive procedures.",
+    overlay: "from-slate-950/80 via-slate-900/60 to-slate-900/20",
   },
 ];
 
+function useCount(end, ref, duration = 2000) {
+  const [count, setCount] = useState(0);
+  useEffect(() => {
+    setCount(0);
+    const el = ref.current;
+    if (!el) return;
+    let id;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        observer.disconnect();
+        let cur = 0;
+        const steps = 60;
+        const inc = end / steps;
+        id = setInterval(() => {
+          cur += inc;
+          if (cur >= end) {
+            setCount(end);
+            clearInterval(id);
+          } else setCount(Math.floor(cur));
+        }, duration / steps);
+      },
+      { threshold: 0.1 }
+    );
+    observer.observe(el);
+    return () => {
+      observer.disconnect();
+      clearInterval(id);
+    };
+  }, [end, ref, duration]);
+  return count;
+}
+
 export default function Hero() {
+  const navigate = useNavigate();
   const [current, setCurrent] = useState(0);
+  const [apptOpen, setApptOpen] = useState(false);
+  const statsRef = useRef(null);
+
+  const years = useCount(5, statsRef);
+  const patients = useCount(5000, statsRef);
 
   const nextSlide = useCallback(() => {
     setCurrent((prev) => (prev + 1) % slides.length);
@@ -53,290 +94,100 @@ export default function Hero() {
   }, [nextSlide]);
 
   return (
-    <section className="relative h-[70vh] sm:h-[80vh] lg:h-[88vh] min-h-[520px] sm:min-h-[620px] w-full overflow-hidden bg-white">
+    <>
+      {apptOpen && <AppointmentModal onClose={() => setApptOpen(false)} />}
 
+      <section className="hero-section">
+        {slides.map((slide, index) => (
+          <div
+            key={slide.id}
+            className={`slide ${index === current ? "active" : ""}`}
+          >
+            <img src={slide.image} alt="" className="slide-image" />
 
-      {/* SLIDES */}
-      {slides.map((slide, index) => (
-        <div
-          key={slide.id}
-          className={`absolute inset-0 transition-all duration-1000 ${
-            index === current
-              ? "opacity-1000 scale-100 z-20"
-              : "opacity-0 scale-120 z-10"
-          }`}
-        >
-          {/* IMAGE */}
-          <img
-            src={slide.image}
-            alt=""
-            className="
-              w-full
-              h-full
-              object-cover
-              object-center
-              animate-[slowZoom_14s_linear_infinite]
-              brightness-[0.95]
-              contrast-[1.1]
-              saturate-[1.05]
-            "
-          />
+            <div className={`absolute inset-0 bg-gradient-to-r ${slide.overlay}`} />
 
-          {/* DARK PROFESSIONAL OVERLAY */}
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-900/70 to-slate-900/20"></div>
+            <div className="hero-content">
+              <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-12 w-full">
+                <div className="max-w-3xl">
+                  {/* Tag */}
+                  <div className="mb-4 inline-flex items-center gap-3 animate-fadeUp">
+                    <span className="w-10 h-[2px] bg-cyan-400 rounded-full" />
+                    <span className="uppercase tracking-[3px] text-[#00bcd4] text-xs sm:text-sm font-bold">
+                      {slide.tag}
+                    </span>
+                  </div>
 
-          {/* CYAN GLOW */}
-         
-          {/* CONTENT */}
-          <div className="absolute inset-0 z-30 flex items-center">
-            <div className="max-w-7xl mx-auto px-5 lg:px-12 w-full">
+                  {/* Title */}
+                  <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] mb-5 animate-fadeUp animation-delay-1">
+                    {slide.title}
+                    <br />
+                    <span className="text-cyan-400">{slide.subtitle}</span>
+                  </h1>
 
-              <div className="max-w-4xl">
+                  {/* Description / Doctor Info */}
+                  {slide.id === 0 ? (
+                    <div className="animate-fadeUp animation-delay-2 mb-8">
+                      <div className="inline-block bg-white/10 backdrop-blur-md border border-black/30 rounded-2xl px-6 py-5 width-3px">
+                        <h2 className="text-white text-xl sm:text-2xl font-bold">Dr. Ankur Shah</h2>
+                        <p className="text-red-800 text-3xl">MD, RPVI</p>
+                        <p className="text-slate-200 text-sm">Heart & Vascular Specialist</p>
+                      </div>
+                    </div>
+                  ) : (
+                    <p className="text-slate-100 text-base sm:text-lg leading-relaxed max-w-xl mb-8 animate-fadeUp animation-delay-2">
+                      {slide.desc}
+                    </p>
+                  )}
 
-                {/* TAG */}
-                <div className="mb-5 inline-flex items-center gap-3 animate-[fadeUp_1s_ease]">
+                  {/* Buttons */}
+                  <div className="flex flex-wrap gap-4 animate-fadeUp animation-delay-3">
+                    {slide.id === 0 && (
+                      <button
+                        onClick={() => setApptOpen(true)}
+                        className="px-7 py-4 rounded-full bg-cyan-500 hover:bg-cyan-400 text-white font-semibold text-base sm:text-lg flex items-center gap-2 transition-all hover:-translate-y-1"
+                      >
+                        <CalendarPlus size={22} />
+                        Book an Appointment
+                      </button>
+                    )}
 
-                  <span className="w- h-[2px] bg-cyan-400 rounded-full"></span>
-
-                  <span
-                    className="
-                      uppercase
-                      tracking-[3px]
-                      text-[#00838f]
-                      text-[12px]
-                      font-bold
-                    "
-                  >
-                    {slide.tag}
-                  </span>
-                </div>
-
-                {/* TITLE */}
-                <h1
-                  className="
-                    text-white
-                    text-4xl
-                    md:text-6xl
-                    font-bold
-                    leading-[1.1]
-                    mb-5
-                    animate-[fadeUp_1.2s_ease]
-                  "
-                >
-                  {slide.title}
-
-                  <br />
-
-                  <span className="text-[#00838f] bg-transparent">
-                    {slide.subtitle}
-                  </span>
-                </h1>
-
-                {/* DESCRIPTION */}
-                <p
-                  className="
-                    text-slate-200
-                    text-[20px]
-                    leading-relaxed
-                    max-w-xl
-                    mb-9
-                    animate-[fadeUp_1.4s_ease]
-                  "
-                >
-                  {slide.desc}
-                </p>
-
-                {/* BUTTONS */}
-                <div className="flex flex-wrap gap-4 animate-[fadeUp_1.6s_ease]">
-
-                  {/* BUTTON 1 */}
-                  <Link
-                    to="/appointment"
-                    className="
-                      px-8
-                      py-4
-                      rounded-full
-                      bg-cyan-500
-                      text-
-                      text-[17px]
-                      font-semibold
-                      no-underline
-                      transition-all
-                      duration-300
-                      hover:bg-cyan-400
-                      hover:-translate-y-1
-                      hover:shadow-[0_15px_35px_rgba(8,145,178,0.35)]
-                    "
-                  >
-                    Book an Appointment
-                  </Link>
-
-                  {/* BUTTON 2 */}
-                  <Link
-                    to="/services"
-                    className="
-                      px-8
-                      py-4
-                      rounded-full
-                      bg-white/10
-                      backdrop-blur-md
-                      border
-                      border-green/20
-                      text-white
-                      text-[17px]
-                      font-semibold
-                      no-underline
-                      transition-all
-                      duration-300
-                      hover:bg-white
-                      hover:text-slate-900
-                      hover:-translate-y-1
-                      hover:shadow-xl
-                    "
-                  >
-                    Explore Services
-                  </Link>
+                    {(slide.id === 1 || slide.id === 2) && (
+                      <button
+                        onClick={() => navigate("#")}
+                        className="px-7 py-4 rounded-full bg-cyan-500 hover:bg-cyan-400 text-white font-semibold text-base sm:text-lg flex items-center gap-2 transition-all hover:-translate-y-1"
+                      >
+                        {slide.id === 1 ? "Contact Us" : "View More"}
+                        <ArrowRight size={22} className="group-hover:translate-x-1 transition" />
+                      </button>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+        ))}
+
+        {/* Slider Controls */}
+        <button onClick={prevSlide} className="hero-control left">←</button>
+        <button onClick={nextSlide} className="hero-control right">→</button>
+
+        {/* Floating Stats */}
+        <div
+          ref={statsRef}
+          className="hidden lg:flex absolute bottom-8 right-8 z-40 bg-white-600/80 border border-black/20 rounded-2xl px-7 py-5 items-center gap-7 backdrop-blur-md"
+        >
+          <div>
+            <h3 className="text-red text-3xl font-bold">{years}+</h3>
+            <p className="text-white-500 text-sm">Years Experience</p>
+          </div>
+          <div className="w-px h-12 bg-cyan-400/30" />
+          <div>
+            <h3 className="text-red text-3xl font-bold">{patients.toLocaleString()}+</h3>
+            <p className="text-white-600 text-sm">Patients Treated</p>
+          </div>
         </div>
-      ))}
-
-      {/* LEFT BUTTON */}
-      <button
-        onClick={prevSlide}
-        className="
-          absolute
-          left-5
-          top-1/2
-          -translate-y-1/2
-          z-40
-          w-12
-          h-12
-          rounded-full
-          bg-black-900/80
-          border
-          border-white-400/30
-          text-white
-          backdrop-blur-md
-          transition-all
-          duration-300
-          hover:bg-white
-          hover:text-black
-          hover:scale-110
-          shadow-lg
-        "
-      >
-        ←
-      </button>
-
-      {/* RIGHT BUTTON */}
-      <button
-        onClick={nextSlide}
-        className="
-          absolute
-          right-5
-          top-1/2
-          -translate-y-1/2
-          z-40
-          w-12
-          h-12
-          rounded-full
-          bg-slate-900/80
-          border
-          border-white
-          text-white
-          backdrop-blur-md
-          transition-all
-          duration-300
-          hover:bg-white
-          hover:text-black
-          hover:scale-110
-          shadow-lg
-        "
-      >
-        →
-      </button>
-
-      {/* DOTS */}
-      
-
-      {/* FLOATING STATS */}
-      <div
-        className="
-          hidden
-          lg:flex
-          absolute
-          bottom-8
-          right-8
-          z-40
-          bg-slate-900/70
-           border
-          border-white
-          rounded-2xl
-          px-7
-          py-5
-          items-center
-          gap-7
-          shadow-[0_210px_510px_rgba(0,0,0,0.3)]
-        "
-      >
-        {/* CARD */}
-        <div>
-          <h3 className="text-white text-3xl font-bold">
-            15+
-          </h3>
-
-          <p className="text-red-300 text-sm mt-1">
-            Years Experience
-          </p>
-        </div>
-
-        <div className="w-px h-12 bg-cyan-400/20"></div>
-
-        {/* CARD */}
-        <div>
-          <h3 className="text-white text-3xl font-bold">
-            5000+
-          </h3>
-
-          <p className="text-red-300 text-sm mt-1">
-            Patients Treated
-          </p>
-        </div>
-      </div>
-
-      {/* ANIMATIONS */}
-      <style>
-        {`
-          @keyframes fadeUp {
-            from {
-              opacity: 0;
-              transform: translateY(30px);
-            }
-
-            to {
-              opacity: 1;
-              transform: translateY(0);
-            }
-          }
-
-          @keyframes slowZoom {
-            0% {
-              transform: scale(1);
-            }
-
-            50% {
-              transform: scale(1.04);
-            }
-
-            100% {
-              transform: scale(1);
-            }
-          }
-        `}
-      </style>
-    </section>
+      </section>
+    </>
   );
 }

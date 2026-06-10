@@ -1,0 +1,388 @@
+/* =========================
+   NAVBAR
+========================= */
+
+.main-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  background: #fff;
+  border-bottom: 1px solid #e5e7eb;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.navbar-container {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Logo */
+.logo {
+  flex-shrink: 0;
+}
+
+.logo-img {
+  width: 300px;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* Desktop Menu */
+.desktop-menu {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  margin-left: 60px;
+  margin-right: 40px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #1f2937;
+  font-size: 16.5px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  position: relative;
+}
+
+.nav-link:hover {
+  color: #0a7485;
+}
+
+.nav-link:hover::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #ef4444;
+}
+
+/* =========================
+   DROPDOWN - Smooth Hover
+========================= */
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-btn {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #1f2937;
+  font-size: 16.5px;
+  font-weight: 500;
+  white-space: nowrap;
+  padding: 8px 0;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(15px);
+  min-width: 340px;
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+  
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Safety zone */
+.dropdown:hover .dropdown-menu::before {
+  content: '';
+  position: absolute;
+  top: -25px;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background: transparent;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 16px 24px;
+  text-decoration: none;
+  color: #374151;
+  line-height: 1.6;
+  transition: all 0.25s ease;
+}
+
+.dropdown-menu a:hover {
+  background: #f3f4f6;
+  color: #0a7485;
+  padding-left: 30px;
+}
+
+/* Book Button */
+.book-btn {
+  flex-shrink: 0;
+  min-width: 260px;
+  background: #09aec4;
+  color: #fff;
+  height: 52px;
+  padding: 0 28px;
+  border-radius: 50px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 17px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.book-btn:hover {
+  background: #0d615c;
+  transform: translateY(-2px);
+}
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #1f2937;
+  font-size: 28px;
+  padding: 8px;
+}
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+.mobile-menu {
+  position: fixed;
+  top: 85px;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border-top: 1px solid #e5e7eb;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: all 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1000;
+}
+
+.mobile-menu.open {
+  max-height: 750px;
+  opacity: 1;
+}
+
+.mobile-nav-links {
+  list-style: none;
+  padding: 10px 0;
+  margin: 0;
+}
+
+.mobile-nav-links a {
+  display: block;
+  padding: 16px 24px;
+  text-decoration: none;
+  color: #1f2937;
+  font-size: 17px;
+  font-weight: 500;
+  border-bottom: 1px solid #f1f5f9;
+  transition: all 0.2s ease;
+}
+
+.mobile-nav-links a:hover {
+  background: #f8fafc;
+  padding-left: 32px;
+}
+
+/* Mobile Dropdown */
+.mobile-dropdown-btn {
+  width: 100%;
+  background: none;
+  border: none;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  font-size: 17px;
+  font-weight: 500;
+  color: #1f2937;
+  border-bottom: 1px solid #f1f5f9;
+  cursor: pointer;
+}
+
+.mobile-dropdown {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  background: #f8fafc;
+}
+
+.mobile-dropdown.open {
+  max-height: 500px;
+}
+
+.mobile-dropdown a {
+  display: block;
+  padding: 14px 50px;
+  color: #1f2937;
+  font-size: 16px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.mobile-dropdown li:last-child a {
+  border-bottom: none;
+}
+
+/* Arrow */
+.rotate-arrow {
+  transition: transform 0.3s ease;
+}
+
+.rotate-arrow.active {
+  transform: rotate(180deg);
+}
+
+/* Mobile Book Button */
+.mobile-book-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #09aec4;
+  color: white;
+  padding: 16px 24px;
+  margin: 20px 24px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+  width: calc(100% - 48px);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1024px) {
+  .desktop-menu,
+  .book-btn {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logo-img {
+    width: 260px;
+  }
+
+  .navbar-container {
+    height: 85px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 16px;
+  }
+  .logo-img {
+    width: 220px;
+  }
+}
+
+/* =========================
+   HERO SLIDER ARROWS
+========================= */
+
+.hero-control {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  border: none;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+  font-size: 20px;
+}
+
+.hero-control:hover {
+  background: #09aec4;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.hero-control.left {
+  left: 20px;
+}
+
+.hero-control.right {
+  right: 20px;
+}
+
+@media (max-width: 768px) {
+  .hero-control {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+  .hero-control.left { left: 12px; }
+  .hero-control.right { right: 12px; }
+}
