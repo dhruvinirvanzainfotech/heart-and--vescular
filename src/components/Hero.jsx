@@ -4,7 +4,7 @@ import AppointmentModal from "./AppointmentModal";
 import Slider1 from "../image/banner.png";
 import Slider2 from "../image/banner2.png";
 import Slider3 from "../image/banner3.png";
-import { ArrowRight, CalendarPlus } from "lucide-react";
+import { ArrowRight, CalendarPlus, ChevronLeft, ChevronRight } from "lucide-react";
 
 import "./Hero.css";
 
@@ -110,7 +110,6 @@ export default function Hero() {
             <div className="hero-content">
               <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-12 w-full">
                 <div className="max-w-3xl">
-                  {/* Tag */}
                   <div className="mb-4 inline-flex items-center gap-3 animate-fadeUp">
                     <span className="w-10 h-[2px] bg-cyan-400 rounded-full" />
                     <span className="uppercase tracking-[3px] text-[#00bcd4] text-xs sm:text-sm font-bold">
@@ -118,17 +117,15 @@ export default function Hero() {
                     </span>
                   </div>
 
-                  {/* Title */}
                   <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] mb-5 animate-fadeUp animation-delay-1">
                     {slide.title}
                     <br />
                     <span className="text-cyan-400">{slide.subtitle}</span>
                   </h1>
 
-                  {/* Description / Doctor Info */}
                   {slide.id === 0 ? (
                     <div className="animate-fadeUp animation-delay-2 mb-8">
-                      <div className="inline-block bg-white/10 backdrop-blur-md border border-black/30 rounded-2xl px-6 py-5 width-3px">
+                      <div className="inline-block bg-white/10 backdrop-blur-md border border-black/30 rounded-2xl px-6 py-5">
                         <h2 className="text-white text-xl sm:text-2xl font-bold">Dr. Ankur Shah</h2>
                         <p className="text-red-800 text-3xl">MD, RPVI</p>
                         <p className="text-slate-200 text-sm">Heart & Vascular Specialist</p>
@@ -140,7 +137,6 @@ export default function Hero() {
                     </p>
                   )}
 
-                  {/* Buttons */}
                   <div className="flex flex-wrap gap-4 animate-fadeUp animation-delay-3">
                     {slide.id === 0 && (
                       <button
@@ -158,7 +154,7 @@ export default function Hero() {
                         className="px-7 py-4 rounded-full bg-cyan-500 hover:bg-cyan-400 text-white font-semibold text-base sm:text-lg flex items-center gap-2 transition-all hover:-translate-y-1"
                       >
                         {slide.id === 1 ? "Contact Us" : "View More"}
-                        <ArrowRight size={22} className="group-hover:translate-x-1 transition" />
+                        <ArrowRight size={22} />
                       </button>
                     )}
                   </div>
@@ -169,22 +165,35 @@ export default function Hero() {
         ))}
 
         {/* Slider Controls */}
-        <button onClick={prevSlide} className="hero-control left">←</button>
-        <button onClick={nextSlide} className="hero-control right">→</button>
+        <button
+          onClick={prevSlide}
+          className="hero-control left"
+          aria-label="Previous slide"
+        >
+          <ChevronLeft size={28} strokeWidth={3} />
+        </button>
+
+        <button
+          onClick={nextSlide}
+          className="hero-control right"
+          aria-label="Next slide"
+        >
+          <ChevronRight size={28} strokeWidth={3} />
+        </button>
 
         {/* Floating Stats */}
         <div
           ref={statsRef}
-          className="hidden lg:flex absolute bottom-8 right-8 z-40 bg-white-600/80 border border-black/20 rounded-2xl px-7 py-5 items-center gap-7 backdrop-blur-md"
+          className="hidden lg:flex absolute bottom-8 right-8 z-40 bg-white/10 border border-black/20 rounded-2xl px-7 py-5 items-center gap-7 backdrop-blur-md"
         >
           <div>
-            <h3 className="text-red text-3xl font-bold">{years}+</h3>
-            <p className="text-white-500 text-sm">Years Experience</p>
+            <h3 className="text-black-500 text-3xl font-bold">{years}+</h3>
+            <p className="text-black-300 text-sm">Years Experience</p>
           </div>
           <div className="w-px h-12 bg-cyan-400/30" />
           <div>
-            <h3 className="text-red text-3xl font-bold">{patients.toLocaleString()}+</h3>
-            <p className="text-white-600 text-sm">Patients Treated</p>
+            <h3 className="text-black-500 text-3xl font-bold">{patients.toLocaleString()}+</h3>
+            <p className="text-black-300 text-sm">Patients Treated</p>
           </div>
         </div>
       </section>

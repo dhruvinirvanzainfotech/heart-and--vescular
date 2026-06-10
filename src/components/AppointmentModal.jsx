@@ -47,7 +47,7 @@ export default function AppointmentModal({ onClose }) {
         <div className="bg-[#00bcd4] px-6 py-5 rounded-t-2xl flex items-center justify-between">
           <div>
             <h2 className="text-white text-lg font-bold">Book Appointment</h2>
-            <p className="text-white/80 text-xs mt-0.5">Dr. Ankur Shah, MD · Cardiologist</p>
+            <p className="text-white/80 text-xs mt-0.5">Dr. Ankur Shah, MD · Heart & Vascular Specialist</p>
           </div>
           <button
             onClick={onClose}

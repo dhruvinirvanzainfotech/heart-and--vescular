@@ -537,16 +537,7 @@
     font-size: 15px;
   }
 }
-/* =========================
-   WHY CHOOSE US
-========================= */
-/* =========================
-   WHY CHOOSE US
-========================= */
 
-/* =========================
-   WHY CHOOSE US
-========================= */
 
 .why-section {
   padding: 20px 23px;
@@ -563,9 +554,8 @@
   color: #068096;
 }
 .why-grid {
-  max-width: 1000px;
-  margin: auto;
-
+  
+  width:px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 

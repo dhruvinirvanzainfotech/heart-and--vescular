@@ -18,7 +18,7 @@
 }
 
 .navbar-container {
-  height: 100px;
+  height: 110px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -30,8 +30,8 @@
 }
 
 .logo-img {
-  width: 300px;
-  height: auto;
+  width: 310px;
+  height: 100px;
   object-fit: contain;
   display: block;
 }
@@ -175,8 +175,9 @@
 }
 
 .book-btn:hover {
-  background: #0d615c;
+  background: #0c0c0ce7;
   transform: translateY(-2px);
+ 
 }
 
 /* Hamburger */
