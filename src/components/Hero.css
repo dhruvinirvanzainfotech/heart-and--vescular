@@ -65,7 +65,7 @@
 }
 
 .hero-text {
-  max-width: 700px;
+  max-width: 800px;
 }
 
 /* Text Styles */
@@ -107,6 +107,8 @@
   font-size: 18px;
   line-height: 1.8;
   margin-bottom: 30px;
+    text-align: justify;
+
 }
 
 .doctor-card {
@@ -219,7 +221,7 @@
 /* Stats */
 .hero-stats {
   position: absolute;
-  right: 40px;
+  right: 20px;
   bottom: 40px;
   z-index: 50;
   display: flex;

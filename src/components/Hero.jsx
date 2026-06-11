@@ -185,7 +185,7 @@ export default function Hero() {
         <div className="hero-stats" ref={statsRef}>
           <div className="stats-item">
             <h3>{years}+</h3>
-            <p>Years Experience</p>
+            <p>Years of Experience</p>
           </div>
           <div className="stats-divider"></div>
           <div className="stats-item">

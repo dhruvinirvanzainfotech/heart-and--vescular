@@ -102,19 +102,20 @@
 /* MOBILE */
 @media (max-width: 768px) {
   .floating-wrapper {
-    right: 15px;
-    top: 200px;
+    right: 20px;
+    bottom: 150px;
   }
 
   .floating-main {
-    width: 46px;
-    height: 46px;
+    width: 45px;
+    height: 45px;
     
   }
 
   .floating-btn {
     width: 45px;
     height: 45px;
+    padding: auto;
   }
 
   .floating-btn svg,
