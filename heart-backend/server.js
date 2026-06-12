@@ -1,11 +1,19 @@
+const path = require("path");
+require("dotenv").config({ path: path.join(__dirname, ".env") });
+
 const express = require("express");
 const mysql = require("mysql2");
 const cors = require("cors");
+const { Resend } = require("resend");
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
+
+/* ================= DEBUG ================= */
+
+console.log("ADMIN_EMAIL =>", process.env.ADMIN_EMAIL);
 
 /* ================= DATABASE ================= */
 
@@ -25,6 +33,10 @@ db.connect((err) => {
   }
 });
 
+/* ================= EMAIL (RESEND) ================= */
+
+const resend = new Resend(process.env.RESEND_API_KEY);
+
 /* ================= CREATE APPOINTMENT ================= */
 
 app.post("/appointment", (req, res) => {
@@ -43,32 +55,47 @@ app.post("/appointment", (req, res) => {
     VALUES (?, ?, ?, ?, ?, ?)
   `;
 
-  db.query(
-    sql,
-    [
-      name,
-      phone,
-      email,
-      appointment_date,
-      treatment,
-      message,
-    ],
-    (err, result) => {
-      if (err) {
-        console.log(err);
-        return res.status(500).json({
-          success: false,
-          message: "Insert Failed",
-        });
-      }
-
-      res.json({
-        success: true,
-        message: "Appointment Saved",
-        id: result.insertId,
+  db.query(sql, [name, phone, email, appointment_date, treatment, message], async (err, result) => {
+    if (err) {
+      console.log("❌ DB ERROR:", err);
+      return res.status(500).json({
+        success: false,
+        message: "Insert Failed",
       });
     }
-  );
+
+    /* ================= SEND EMAIL ================= */
+    try {
+      const { error } = await resend.emails.send({
+        from: "Clinic <onboarding@resend.dev>",
+        to: process.env.ADMIN_EMAIL,
+        subject: "New Appointment Booking",
+        html: `
+          <h2>New Appointment Received</h2>
+          <p><b>Name:</b> ${name}</p>
+          <p><b>Phone:</b> ${phone}</p>
+          <p><b>Email:</b> ${email}</p>
+          <p><b>Date:</b> ${appointment_date}</p>
+          <p><b>Treatment:</b> ${treatment}</p>
+          <p><b>Message:</b> ${message}</p>
+        `,
+      });
+
+      if (error) {
+        console.log("❌ EMAIL ERROR:", error);
+      } else {
+        console.log("📧 EMAIL SENT SUCCESS");
+      }
+    } catch (e) {
+      console.log("❌ EMAIL EXCEPTION:", e);
+    }
+
+    res.json({
+      success: true,
+      message: "Appointment Saved Successfully",
+      id: result.insertId,
+    });
+  });
 });
 
 /* ================= GET ALL APPOINTMENTS ================= */
@@ -79,9 +106,7 @@ app.get("/appointment", (req, res) => {
   db.query(sql, (err, result) => {
     if (err) {
       console.log(err);
-      return res.status(500).json({
-        success: false,
-      });
+      return res.status(500).json({ success: false });
     }
 
     res.json(result);
@@ -91,17 +116,13 @@ app.get("/appointment", (req, res) => {
 /* ================= GET SINGLE APPOINTMENT ================= */
 
 app.get("/appointment/:id", (req, res) => {
-  const { id } = req.params;
-
   db.query(
     "SELECT * FROM appointments WHERE id=?",
-    [id],
+    [req.params.id],
     (err, result) => {
       if (err) {
         console.log(err);
-        return res.status(500).json({
-          success: false,
-        });
+        return res.status(500).json({ success: false });
       }
 
       res.json(result[0]);
@@ -109,11 +130,9 @@ app.get("/appointment/:id", (req, res) => {
   );
 });
 
-/* ================= UPDATE ================= */
+/* ================= UPDATE APPOINTMENT ================= */
 
 app.put("/appointment/:id", (req, res) => {
-  const { id } = req.params;
-
   const {
     name,
     phone,
@@ -124,8 +143,7 @@ app.put("/appointment/:id", (req, res) => {
   } = req.body;
 
   const sql = `
-    UPDATE appointments
-    SET
+    UPDATE appointments SET
       name=?,
       phone=?,
       email=?,
@@ -137,19 +155,10 @@ app.put("/appointment/:id", (req, res) => {
 
   db.query(
     sql,
-    [
-      name,
-      phone,
-      email,
-      appointment_date,
-      treatment,
-      message,
-      id,
-    ],
-    (err, result) => {
+    [name, phone, email, appointment_date, treatment, message, req.params.id],
+    (err) => {
       if (err) {
         console.log("UPDATE ERROR:", err);
-
         return res.status(500).json({
           success: false,
           message: "Update Failed",
@@ -164,18 +173,15 @@ app.put("/appointment/:id", (req, res) => {
   );
 });
 
-/* ================= DELETE ================= */
+/* ================= DELETE APPOINTMENT ================= */
 
 app.delete("/appointment/:id", (req, res) => {
-  const { id } = req.params;
-
   db.query(
     "DELETE FROM appointments WHERE id=?",
-    [id],
-    (err, result) => {
+    [req.params.id],
+    (err) => {
       if (err) {
         console.log(err);
-
         return res.status(500).json({
           success: false,
           message: "Delete Failed",
