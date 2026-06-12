@@ -23,6 +23,9 @@ import NutritionCounseling from './pages/NutritionCounseling'
 import RouteLoader from "./components/RouteLoader";
 import GalleryPage from './pages/GalleryPage';
 import Insurance from './components/Insurance'
+import AdminLayout from "./pages/Admin/AdminLayout";
+import Dashboard from "./pages/Admin/Dashboard";
+import Appointments from "./pages/Admin/Appointments";
 
 
 function Layout() {
@@ -32,45 +35,60 @@ function Layout() {
       <TopBar />
       <Navbar />
       <main className="flex-1">
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/aboutpage" element={<AboutPage />} />
-          <Route path="/contactpage" element={<ContactPage />} />
+       <Routes>
 
+  <Route path="/" element={<HomePage />} />
+  <Route path="/about" element={<AboutPage />} />
+  <Route path="/aboutpage" element={<AboutPage />} />
+  <Route path="/contactpage" element={<ContactPage />} />
 
-          <Route path="/treatments" element={<ServicesPage />} />
-          <Route path="/treatments/:id" element={<ServiceDetailPage />} />
-          <Route path="/locations" element={<LocationsPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="/appointment" element={<AppointmentPage />} />
-          <Route path="/gallery" element={<GalleryPage />} />
-          <Route path="/insurance" element={<Insurance />}  />
-          <Route
-            path="/treatment/cardiactesting"
-            element={<CardiacTesting />}
-          />
-          <Route
-            path="/treatment/varicose-veins"
-            element={<VaricoseVeins />}
-          />
-          <Route
-            path="/treatment/vascular-testing"
-            element={<VascularTesting />}
-          />
-          <Route
-            path="/treatment/nutrition-counseling"
-            element={<NutritionCounseling />}
-          />
-          <Route
-  path="*"
-  element={
-    <div style={{ padding: "50px" }}>
-      Route Not Found
-    </div>
-  }
-/>  
-        </Routes>
+  <Route path="/treatments" element={<ServicesPage />} />
+  <Route path="/treatments/:id" element={<ServiceDetailPage />} />
+
+  <Route path="/locations" element={<LocationsPage />} />
+  <Route path="/contact" element={<ContactPage />} />
+  <Route path="/appointment" element={<AppointmentPage />} />
+  <Route path="/gallery" element={<GalleryPage />} />
+  <Route path="/insurance" element={<Insurance />} />
+
+  {/* Treatment Pages */}
+  <Route
+    path="/treatment/cardiactesting"
+    element={<CardiacTesting />}
+  />
+
+  <Route
+    path="/treatment/varicose-veins"
+    element={<VaricoseVeins />}
+  />
+
+  <Route
+    path="/treatment/vascular-testing"
+    element={<VascularTesting />}
+  />
+
+  <Route
+    path="/treatment/nutrition-counseling"
+    element={<NutritionCounseling />}
+  />
+
+  {/* ADMIN PANEL */}
+  <Route path="/admin" element={<AdminLayout />}>
+    <Route index element={<Dashboard />} />
+    <Route path="appointments" element={<Appointments />} />
+  </Route>
+
+  {/* 404 */}
+  <Route
+    path="*"
+    element={
+      <div style={{ padding: "50px" }}>
+        Route Not Found
+      </div>
+    }
+  />
+
+</Routes>
         <FloatingContact />
         <BackToTop />
         <ScrollToTop />
