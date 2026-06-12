@@ -8,10 +8,15 @@ export default function Appointments() {
   const [modal, setModal] = useState({ open: false, mode: "view", item: null });
   const [form, setForm] = useState({});
 
-  const load = async () => {
+ const load = async () => {
+  try {
     const res = await axios.get("http://localhost:5000/appointment");
+    console.log("API RESPONSE:", res.data);
     setData(res.data);
-  };
+  } catch (err) {
+    console.log("API ERROR:", err);
+  }
+};
 
   useEffect(() => {
     load();
