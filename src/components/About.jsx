@@ -32,7 +32,7 @@ export default function About() {
           <div className="about-experience-box">
             <div className="absolute -top-2 -left-2 -right-2 -bottom-2 border-2 border-dashed border-red-700 rounded-[28px]" />
             <h3 className="text-[38px] font-extrabold relative z-10">5+</h3>
-            <p className="text-[15px] relative z-10">Years Experience</p>
+            <p className="text-[15px] relative z-10">Years of Experience</p>
           </div>
         </div>
 
@@ -53,7 +53,7 @@ export default function About() {
 
           <p className="text-slate-600 text-[15px] leading-8 mb-8 text-justify">
             At our center, we focus on{" "}
-            <span className="font-semibold text-[#00bcd4]">preventive cardiology</span>, accurate diagnosis, and advanced treatment solutions for various heart and vascular diseases.
+           At our center, we focus on Cardiac Testing & Treatment, Nutrition Counseling, Vascular Testing and Treatment, Varicose Veins, Ulcer and Lymphedema Treatment Center.
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">

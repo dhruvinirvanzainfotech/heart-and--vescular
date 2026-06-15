@@ -128,8 +128,9 @@
 
 .actions {
   display: flex;
-  gap: 12px;
+  gap: 15px;
   align-items: center;
+  justify-content: center;
 }
 
 .actions svg {
@@ -294,27 +295,101 @@
 
 /* RESPONSIVE */
 
-@media(max-width:768px){
+/* =========================
+   RESPONSIVE
+========================= */
 
-  .main-content{
-    margin-left:0;
-    padding:15px;
+@media (max-width: 992px) {
+
+  .sidebar {
+    display: none;
   }
 
-  .sidebar{
-    display:none;
+  .main-content {
+    margin-left: 0;
+    padding: 20px;
   }
 
-  .form-grid{
-    grid-template-columns:1fr;
+  .modal-box {
+    width: 95%;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .main-content {
+    padding: 15px;
   }
 
-  .full-width{
-    grid-column:span 1;
+  .appointments h2 {
+    font-size: 22px;
   }
 
-  .table{
-    display:block;
-    overflow-x:auto;
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .full-width {
+    grid-column: span 1;
+  }
+
+  .modal-actions {
+    flex-direction: column;
+  }
+
+  .btn-save,
+  .btn-close {
+    width: 100%;
+  }
+
+  .table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .actions {
+    height: auto;
+    gap: 12px;
+    justify-content: center;
+  }
+
+  .modal-box {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .main-content {
+    padding: 10px;
+  }
+
+  .appointments h2 {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .modal-box {
+    width: 98%;
+    padding: 15px;
+  }
+
+  .modal-box h3 {
+    font-size: 20px;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .actions svg {
+    width: 18px;
+    height: 18px;
   }
 }

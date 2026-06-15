@@ -7,12 +7,12 @@ import "swiper/css/pagination";
 
 const testimonials = [
   {
-    name: "Sharon Spencer",
-    text: "This place is small and sometimes there's no place to sit. They do NOT honor appointments. You make an appointment and you dont get seen until an hour or more later. It is a walk in first come first serve office. That is not how you treat patients.",
+    name: "Monir",
+    text: "Doctor is good , he may talk less.",
   },
   {
-    name: "Marilyn Brito",
-    text: "The staff is polite, caring and exceptional! Dr Shah is very professiona. polite and provided simple explantions. I did waited a bit , but that was understandable, i did Not had an appointment appointment. Thanks Dr Shah it was a great experience",
+    name: "Domingo Rivera",
+    text: "One of the best for cardiologist recommend",
   },
   {
     name: "Marie Venza",

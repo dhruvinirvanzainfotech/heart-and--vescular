@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { HeartPulse } from "lucide-react";
 import "./TreatmentSidebar.css";
 
-import DoctorProfileCard from "./DoctorProfileCard";
+
 import AppointmentModal from "./AppointmentModal";
 
 export default function TreatmentSidebar() {
@@ -55,11 +55,7 @@ export default function TreatmentSidebar() {
         </li>
       </ul>
 
-      <DoctorProfileCard
-        openAppointmentModal={() =>
-          setShowAppointmentModal(true)
-        }
-      />
+      
 
       {showAppointmentModal && (
         <AppointmentModal

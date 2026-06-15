@@ -54,6 +54,7 @@
   padding: 0;
 }
 
+/* FIXED underline issue */
 .nav-link {
   text-decoration: none;
   color: #1f2937;
@@ -62,24 +63,32 @@
   transition: all 0.3s ease;
   white-space: nowrap;
   position: relative;
+  padding-bottom: 6px;
+  justify-content: right;
 }
 
 .nav-link:hover {
   color: #0a7485;
 }
 
-.nav-link:hover::after {
+.nav-link::after {
   content: '';
   position: absolute;
-  bottom: -6px;
-  left: 0;
-  width: 100%;
-  height: 2px;
+  bottom: 0;
+  right: 30px;
+  width: 0%;
+  height: 1px;
   background: #ef4444;
+  transition: width 0.3s ease;
+  justify-content: right;
+}
+
+.nav-link:hover::after {
+  width: 100%;
 }
 
 /* =========================
-   DROPDOWN - Smooth Hover
+   DROPDOWN - FIXED SPACING
 ========================= */
 
 .dropdown {
@@ -105,20 +114,21 @@
   position: absolute;
   top: 100%;
   left: 50%;
-  transform: translateX(-50%) translateY(15px);
-  min-width: 340px;
+  transform: translateX(-50%) translateY(10px);
+  min-width: 300px;
   background: #fff;
-  border-radius: 14px;
+  border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-  
+
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  
-  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+
+  transition: all 0.3s ease;
 }
 
+/* show dropdown */
 .dropdown:hover .dropdown-menu {
   opacity: 1;
   visibility: visible;
@@ -126,30 +136,55 @@
   transform: translateX(-50%) translateY(0);
 }
 
-/* Safety zone */
-.dropdown:hover .dropdown-menu::before {
+/* REMOVE extra hover gap issue */
+.dropdown-menu::before {
   content: '';
   position: absolute;
-  top: -25px;
+  top: -15px;
   left: 0;
   right: 0;
-  height: 40px;
+  height: 15px;
   background: transparent;
 }
 
+/* FIXED dropdown spacing */
 .dropdown-menu a {
   display: block;
-  padding: 16px 24px;
+  padding: 14px 25px;
   text-decoration: none;
   color: #374151;
-  line-height: 1.6;
-  transition: all 0.25s ease;
+  line-height: 1.4;
+  font-size: 15px;
+  transition: all 0.2s ease;
+  border-bottom: 1px solid #f1f5f9;
+  position: relative; /* important */
+}
+
+/* underline animation */
+.dropdown-menu a::after {
+  content: "";
+  position: absolute;
+  left: 25px;
+  bottom: 8px;
+  width: 0%;
+  height: 2px;
+  background: #0a7485;
+  transition: width 0.3s ease;
+}
+
+.dropdown-menu a:hover::after {
+  width: calc(100% - 50px);
+}
+
+/* remove last border */
+.dropdown-menu a:last-child {
+  border-bottom: none;
 }
 
 .dropdown-menu a:hover {
   background: #f3f4f6;
   color: #0a7485;
-  padding-left: 30px;
+  padding-left: 22px; /* small smooth effect instead of big jump */
 }
 
 /* Book Button */
@@ -177,7 +212,6 @@
 .book-btn:hover {
   background: #0c0c0ce7;
   transform: translateY(-2px);
- 
 }
 
 /* Hamburger */
@@ -206,7 +240,7 @@
   overflow: hidden;
   max-height: 0;
   opacity: 0;
-  transition: all 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.45s ease;
   z-index: 1000;
 }
 
@@ -215,53 +249,143 @@
   opacity: 1;
 }
 
-.mobile-nav-links {
-  list-style: none;
-  padding: 10px 0;
-  margin: 0;
-}
+.floating-book-btn {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
 
-.mobile-nav-links a {
-  display: block;
-  padding: 16px 24px;
-  text-decoration: none;
-  color: #1f2937;
-  font-size: 17px;
-  font-weight: 500;
-  border-bottom: 1px solid #f1f5f9;
-  transition: all 0.2s ease;
-}
+  background: #09aec4;
+  color: white;
 
-.mobile-nav-links a:hover {
-  background: #f8fafc;
-  padding-left: 32px;
-}
+  padding: 12px 18px;
+  border-radius: 8px 0 0 8px;
 
-/* Mobile Dropdown */
-.mobile-dropdown-btn {
-  width: 100%;
-  background: none;
-  border: none;
-  text-align: left;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 16px 24px;
-  font-size: 17px;
-  font-weight: 500;
-  color: #1f2937;
-  border-bottom: 1px solid #f1f5f9;
+  font-weight: 600;
+  font-size: 14px;
+
+  z-index: 999999;
   cursor: pointer;
 }
+/* BUTTON ROTATION */
+.floating-book-btn.rotate {
+  animation: spin 0.6s ease;
+}
+
+@keyframes spin {
+  0% { transform: translateY(-50%) rotate(0deg); }
+  100% { transform: translateY(-50%) rotate(360deg); }
+}
+
+/* MODAL ANIMATION */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-box {
+  background: #fff;
+  width: 410px;
+  padding: 20px;
+  border-radius: 12px;
+  transform: scale(0.8);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.modal-box.show {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.modal-overlay.show {
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+/* =========================
+   MOBILE HAMBURGER FIX
+========================= */
+
+/* show hamburger only on mobile */
+@media (max-width: 1024px) {
+  .hamburger {
+    display: block;
+  }
+
+  .desktop-menu,
+  .book-btn {
+    display: none;
+  }
+}
+
+/* =========================
+   MOBILE MENU FIX (IMPORTANT)
+========================= */
+
+.mobile-menu {
+  position: fixed;
+  top: 85px;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  border-top: 1px solid #e5e7eb;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  z-index: 9999;
+
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+
+  transform: translateY(-10px);
+  transition: all 0.4s ease;
+}
+
+/* OPEN STATE */
+.mobile-menu.open {
+  max-height: 100vh;
+  opacity: 1;
+  transform: translateY(0);
+  overflow-y: auto;
+}
+
+/* =========================
+   MOBILE MENU LINKS
+========================= */
+
+.mobile-menu a,
+.mobile-menu button {
+  width: 100%;
+  display: block;
+  padding: 15px 20px;
+  font-size: 15px;
+  border-bottom: 1px solid #f1f5f9;
+  background: none;
+  text-align: left;
+  color: #1f2937;
+}
+
+/* hover effect */
+.mobile-menu a:hover {
+  background: #f3f4f6;
+  color: #0a7485;
+}
+
+/* =========================
+   MOBILE DROPDOWN FIX
+========================= */
 
 .mobile-dropdown {
-  list-style: none;
-  padding: 0;
-  margin: 0;
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.4s ease;
-  background: #f8fafc;
+  transition: max-height 0.3s ease;
 }
 
 .mobile-dropdown.open {
@@ -269,121 +393,16 @@
 }
 
 .mobile-dropdown a {
-  display: block;
-  padding: 14px 50px;
-  color: #1f2937;
-  font-size: 16px;
-  border-bottom: 1px solid #f1f5f9;
-}
-
-.mobile-dropdown li:last-child a {
-  border-bottom: none;
-}
-
-/* Arrow */
-.rotate-arrow {
-  transition: transform 0.3s ease;
-}
-
-.rotate-arrow.active {
-  transform: rotate(180deg);
-}
-
-/* Mobile Book Button */
-.mobile-book-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  background: #09aec4;
-  color: white;
-  padding: 16px 24px;
-  margin: 20px 24px;
-  border-radius: 50px;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 17px;
-  border: none;
-  cursor: pointer;
-  width: calc(100% - 48px);
+  padding-left: 35px;
+  font-size: 14px;
 }
 
 /* =========================
-   RESPONSIVE
+   MOBILE SAFE TOP OFFSET
 ========================= */
 
-@media (max-width: 1024px) {
-  .desktop-menu,
-  .book-btn {
-    display: none;
-  }
-
-  .hamburger {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .logo-img {
-    width: 260px;
-  }
-
-  .navbar-container {
-    height: 85px;
-  }
-}
-
 @media (max-width: 768px) {
-  .container {
-    padding: 0 16px;
+  .mobile-menu {
+    top: 80px;
   }
-  .logo-img {
-    width: 220px;
-  }
-}
-
-/* =========================
-   HERO SLIDER ARROWS
-========================= */
-
-.hero-control {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.6);
-  color: white;
-  border: none;
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 10;
-  transition: all 0.3s ease;
-  font-size: 20px;
-}
-
-.hero-control:hover {
-  background: #09aec4;
-  transform: translateY(-50%) scale(1.1);
-}
-
-.hero-control.left {
-  left: 20px;
-}
-
-.hero-control.right {
-  right: 20px;
-}
-
-@media (max-width: 768px) {
-  .hero-control {
-    width: 40px;
-    height: 40px;
-    font-size: 18px;
-  }
-  .hero-control.left { left: 12px; }
-  .hero-control.right { right: 12px; }
 }

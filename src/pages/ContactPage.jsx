@@ -74,8 +74,10 @@ export default function ContactPage() {
             <form className="contact-form">
 
               <input type="text" placeholder="Full Name" />
-              <input type="email" placeholder="Email Address" />
-              <input type="tel" placeholder="Phone Number" />
+              <div className="form-row">
+  <input name="email" placeholder="Email *" />
+  <input name="phone" placeholder="Phone *" />
+</div>
               <textarea rows="6" placeholder="Your Message"></textarea>
 
               <button type="submit">Send Message</button>

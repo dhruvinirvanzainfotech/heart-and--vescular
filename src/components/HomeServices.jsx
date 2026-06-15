@@ -51,7 +51,7 @@ export default function HomeServices() {
 
         <h2 className="text-slate-800 text-3xl md:text-4xl font-bold mt-3 leading-tight">
           Expert Heart &
-          <span className="text-cyan-600"> Vascular Care</span>
+          <span className="text-red-700"> Vascular Care</span>
         </h2>
 
         <p className="text-slate-500 max-w-2xl mx-auto mt-4 text-[15px] leading-7">

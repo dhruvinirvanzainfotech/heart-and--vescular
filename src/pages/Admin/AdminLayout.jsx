@@ -6,8 +6,8 @@ export default function AdminLayout() {
 
       <aside className="sidebar">
         <div className="sidebar-header">
-          <h2>CRM Admin</h2>
-          <p>Dr. Ankur Shah</p>
+         
+          <p>Dr. Ankur Shah Heart and Vescular Specialist </p> 
         </div>
 
         <nav>

@@ -35,47 +35,70 @@ const slides = [
   },
 ];
 
-function useCount(end, ref, duration = 2000) {
+/* =========================
+   COUNTER HOOK (FIXED)
+========================= */
+function useCount(end, ref, key, duration = 2000) {
   const [count, setCount] = useState(0);
+
   useEffect(() => {
-    setCount(0);
+    const alreadyDone = sessionStorage.getItem(key);
+
+    // If already animated once → show final value directly
+    if (alreadyDone) {
+      setCount(end);
+      return;
+    }
+
     const el = ref.current;
     if (!el) return;
-    let id;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry.isIntersecting) return;
-        observer.disconnect();
-        let cur = 0;
-        const steps = 60;
-        const inc = end / steps;
-        id = setInterval(() => {
-          cur += inc;
-          if (cur >= end) {
-            setCount(end);
-            clearInterval(id);
-          } else setCount(Math.floor(cur));
-        }, duration / steps);
-      },
-      { threshold: 0.1 }
-    );
+
+    let intervalId;
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return;
+
+      observer.disconnect();
+
+      let current = 0;
+      const steps = 60;
+      const increment = end / steps;
+
+      intervalId = setInterval(() => {
+        current += increment;
+
+        if (current >= end) {
+          current = end;
+          clearInterval(intervalId);
+          sessionStorage.setItem(key, "done");
+        }
+
+        setCount(Math.floor(current));
+      }, duration / steps);
+    }, { threshold: 0.2 });
+
     observer.observe(el);
+
     return () => {
       observer.disconnect();
-      clearInterval(id);
+      clearInterval(intervalId);
     };
-  }, [end, ref, duration]);
+  }, [end, ref, key, duration]);
+
   return count;
 }
 
+/* =========================
+   HERO COMPONENT
+========================= */
 export default function Hero() {
   const navigate = useNavigate();
   const [current, setCurrent] = useState(0);
   const [apptOpen, setApptOpen] = useState(false);
   const statsRef = useRef(null);
 
-  const years = useCount(5, statsRef);
-  const patients = useCount(5000, statsRef);
+  const years = useCount(5, statsRef, "years-counter");
+  const patients = useCount(5000, statsRef, "patients-counter");
 
   const nextSlide = useCallback(() => {
     setCurrent((prev) => (prev + 1) % slides.length);
@@ -91,12 +114,15 @@ export default function Hero() {
     return () => clearInterval(timer);
   }, [nextSlide]);
 
-  // Restart animation when slide changes
+  // Reset animations on slide change
   useEffect(() => {
     const timeout = setTimeout(() => {
       const activeSlide = document.querySelector(".slide.active");
       if (activeSlide) {
-        const elements = activeSlide.querySelectorAll(".hero-tag, .hero-title, .doctor-card, .hero-desc, .hero-buttons");
+        const elements = activeSlide.querySelectorAll(
+          ".hero-tag, .hero-title, .doctor-card, .hero-desc, .hero-buttons"
+        );
+
         elements.forEach((el) => {
           el.style.animation = "none";
           void el.offsetWidth;
@@ -124,6 +150,7 @@ export default function Hero() {
             <div className="hero-content">
               <div className="hero-container">
                 <div className="hero-text">
+
                   <div className="hero-tag">
                     <span className="tag-line"></span>
                     <span className="tag-text">{slide.tag}</span>
@@ -139,7 +166,9 @@ export default function Hero() {
                     <div className="doctor-card">
                       <h2>Dr. Ankur Shah</h2>
                       <p className="doctor-degree">MD, RPVI</p>
-                      <p className="doctor-specialist">Heart & Vascular Specialist</p>
+                      <p className="doctor-specialist">
+                        Heart & Vascular Specialist
+                      </p>
                     </div>
                   ) : (
                     <p className="hero-desc">{slide.desc}</p>
@@ -152,13 +181,13 @@ export default function Hero() {
                         className="hero-btn"
                       >
                         <CalendarPlus size={20} />
-                        Book Appointment
+                        Book an Appointment
                       </button>
                     )}
 
                     {(slide.id === 1 || slide.id === 2) && (
                       <button
-                        onClick={() => navigate("#")}
+                        onClick={() => navigate("/contact")}
                         className="hero-btn"
                       >
                         {slide.id === 1 ? "Contact Us" : "View More"}
@@ -166,6 +195,7 @@ export default function Hero() {
                       </button>
                     )}
                   </div>
+
                 </div>
               </div>
             </div>
@@ -181,13 +211,15 @@ export default function Hero() {
           <ChevronRight size={28} />
         </button>
 
-        {/* Animated Stats */}
+        {/* Stats */}
         <div className="hero-stats" ref={statsRef}>
           <div className="stats-item">
             <h3>{years}+</h3>
             <p>Years of Experience</p>
           </div>
+
           <div className="stats-divider"></div>
+
           <div className="stats-item">
             <h3>{patients.toLocaleString()}+</h3>
             <p>Patients Treated</p>
