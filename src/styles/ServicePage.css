@@ -149,11 +149,12 @@
 }
 
 .why-card p {
-  color: #64748b;
-  margin: 0;
+  color: #111111;
+  margin: 20px;
   line-height: 1.7;
   transition: 0.4s;
-   font-size: 13px;
+   font-size: 14px !important;
+   font-weight: 1px !important;
 }
 
 .why-card:hover h4,

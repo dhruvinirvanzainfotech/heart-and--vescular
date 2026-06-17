@@ -10,6 +10,7 @@
   color:#fff;
   position:fixed;
   height:100vh;
+  overflow-y: auto;
 }
 
 .sidebar-header{
@@ -53,32 +54,6 @@
   padding:30px;
 }
 
-.page-title{
-  margin-bottom:20px;
-}
-
-.dashboard-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:20px;
-}
-
-.dashboard-card{
-  background:#fff;
-  padding:25px;
-  border-radius:15px;
-  box-shadow:0 5px 20px rgba(0,0,0,.08);
-}
-
-.dashboard-card h3{
-  color:#64748b;
-}
-
-.dashboard-card h1{
-  color:#06b6d4;
-  margin-top:10px;
-  font-size:40px;
-}
 /* =========================
    APPOINTMENTS PAGE
 ========================= */
@@ -94,7 +69,6 @@
 }
 
 /* TABLE */
-
 .table {
   width: 100%;
   border-collapse: collapse;
@@ -111,7 +85,7 @@
 
 .table th,
 .table td {
-  padding: 14px;
+  padding: 14px 12px;
   text-align: left;
   border-bottom: 1px solid #e2e8f0;
 }
@@ -122,13 +96,13 @@
 
 .table td {
   color: #334155;
+  vertical-align: middle;
 }
 
 /* ACTION ICONS */
-
 .actions {
   display: flex;
-  gap: 15px;
+  gap: 12px;
   align-items: center;
   justify-content: center;
 }
@@ -136,10 +110,12 @@
 .actions svg {
   cursor: pointer;
   transition: .3s;
+  width: 20px;
+  height: 20px;
 }
 
 .actions svg:hover {
-  transform: scale(1.15);
+  transform: scale(1.25);
 }
 
 .actions svg:nth-child(1) {
@@ -155,17 +131,23 @@
 }
 
 /* =========================
-   MODAL
+   MODAL WITH ANIMATION
 ========================= */
 
 .modal {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,.55);
+  background: rgba(0,0,0,0.65);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 9999;
+  animation: fadeIn 0.3s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .modal-box {
@@ -174,18 +156,24 @@
   background: white;
   border-radius: 18px;
   padding: 30px;
-  box-shadow: 0 10px 40px rgba(0,0,0,.25);
-  animation: popup .25s ease;
+  box-shadow: 0 15px 50px rgba(0,0,0,.3);
+  position: relative;
+  z-index: 10000;
+  max-height: 92vh;
+  overflow-y: auto;
+  
+  /* Nice Sticky Popup Animation */
+  animation: popupScale 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
-@keyframes popup {
-  from{
-    opacity:0;
-    transform:translateY(20px);
+@keyframes popupScale {
+  from {
+    opacity: 0;
+    transform: translateY(50px) scale(0.8);
   }
-  to{
-    opacity:1;
-    transform:translateY(0);
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 }
 
@@ -193,15 +181,10 @@
   margin-bottom: 25px;
   color: #0f172a;
   font-size: 24px;
+  text-align: center;
 }
 
 /* FORM GRID */
-
-.modal-box form {
-  display: flex;
-  flex-direction: column;
-}
-
 .form-grid {
   display: grid;
   grid-template-columns: repeat(2,1fr);
@@ -232,61 +215,66 @@
   border-radius: 10px;
   font-size: 15px;
   outline: none;
-  transition: .3s;
+  transition: all .3s;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
   border-color: #06b6d4;
-  box-shadow: 0 0 0 3px rgba(6,182,212,.15);
+  box-shadow: 0 0 0 4px rgba(6,182,212,.18);
 }
 
 .form-group textarea {
-  resize: none;
+  resize: vertical;
   min-height: 120px;
 }
 
 /* VIEW MODE */
-
 .modal-box input:disabled,
 .modal-box textarea:disabled,
 .modal-box select:disabled {
   background: #f8fafc;
   color: #334155;
+  cursor: not-allowed;
 }
 
 /* BUTTONS */
-
 .modal-actions {
-  margin-top: 25px;
+  margin-top: 30px;
   display: flex;
   justify-content: flex-end;
-  gap: 10px;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
 .btn-save {
   background: #06b6d4;
   color: white;
   border: none;
-  padding: 12px 22px;
+  padding: 12px 28px;
   border-radius: 10px;
   cursor: pointer;
   font-weight: 600;
+  font-size: 15px;
 }
 
 .btn-save:hover {
   background: #0891b2;
+  transform: translateY(-2px);
 }
 
 .btn-close {
   background: #e2e8f0;
   color: #0f172a;
   border: none;
-  padding: 12px 22px;
+  padding: 12px 28px;
   border-radius: 10px;
   cursor: pointer;
   font-weight: 600;
+  font-size: 15px;
 }
 
 .btn-close:hover {
@@ -294,102 +282,20 @@
 }
 
 /* RESPONSIVE */
-
-/* =========================
-   RESPONSIVE
-========================= */
-
 @media (max-width: 992px) {
-
-  .sidebar {
-    display: none;
-  }
-
-  .main-content {
-    margin-left: 0;
-    padding: 20px;
-  }
-
-  .modal-box {
-    width: 95%;
-    max-height: 90vh;
-    overflow-y: auto;
-  }
+  .sidebar { display: none; }
+  .main-content { margin-left: 0; padding: 20px; }
 }
 
 @media (max-width: 768px) {
-
-  .main-content {
-    padding: 15px;
-  }
-
-  .appointments h2 {
-    font-size: 22px;
-  }
-
-  .form-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .full-width {
-    grid-column: span 1;
-  }
-
-  .modal-actions {
-    flex-direction: column;
-  }
-
-  .btn-save,
-  .btn-close {
-    width: 100%;
-  }
-
-  .table {
-    display: block;
-    overflow-x: auto;
-    white-space: nowrap;
-  }
-
-  .actions {
-    height: auto;
-    gap: 12px;
-    justify-content: center;
-  }
-
-  .modal-box {
-    padding: 20px;
-  }
+  .form-grid { grid-template-columns: 1fr; }
+  .modal-box { padding: 24px; }
 }
 
 @media (max-width: 480px) {
-
-  .main-content {
-    padding: 10px;
-  }
-
-  .appointments h2 {
-    font-size: 20px;
-    text-align: center;
-  }
-
   .modal-box {
     width: 98%;
-    padding: 15px;
+    padding: 20px;
   }
-
-  .modal-box h3 {
-    font-size: 20px;
-  }
-
-  .form-group input,
-  .form-group select,
-  .form-group textarea {
-    font-size: 14px;
-    padding: 10px;
-  }
-
-  .actions svg {
-    width: 18px;
-    height: 18px;
-  }
+  .modal-box h3 { font-size: 21px; }
 }
