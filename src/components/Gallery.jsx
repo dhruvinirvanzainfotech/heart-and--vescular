@@ -32,7 +32,7 @@ export default function Gallery() {
           
 
           <h2 className="text-3xl md:text-5xl font-bold text-black-700">
-            Our Gallery
+            Our  <span className="text-red-700">Gallery</span>
           </h2>
 
           <p className="mt-4 text-slate-600 max-w-2xl mx-auto">

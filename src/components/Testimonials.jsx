@@ -26,6 +26,12 @@ const testimonials = [
     name: "Rudolph Persaud",
     text: "This is a great place, Dr takes care of you and hi staff He is an excellent Dr",
   },
+  {
+    name: "Rudolph Persaud",
+    text: "This is a great place, Dr takes care of you and hi staff He is an excellent Dr",
+  },
+  
+  
 ];
 
 export default function Testimonials() {

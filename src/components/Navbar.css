@@ -1,7 +1,6 @@
 /* =========================
-   NAVBAR
+   NAVBAR BASE
 ========================= */
-
 .main-navbar {
   position: sticky;
   top: 0;
@@ -24,7 +23,9 @@
   justify-content: space-between;
 }
 
-/* Logo */
+/* =========================
+   LOGO
+========================= */
 .logo {
   flex-shrink: 0;
 }
@@ -36,13 +37,14 @@
   display: block;
 }
 
-/* Desktop Menu */
+/* =========================
+   DESKTOP MENU
+========================= */
 .desktop-menu {
   flex: 1;
   display: flex;
   justify-content: center;
-  margin-left: 60px;
-  margin-right: 40px;
+  margin: 0 40px;
 }
 
 .nav-links {
@@ -54,17 +56,16 @@
   padding: 0;
 }
 
-/* FIXED underline issue */
+/* Nav Link with Fixed Underline */
 .nav-link {
   text-decoration: none;
   color: #1f2937;
   font-size: 16.5px;
   font-weight: 500;
-  transition: all 0.3s ease;
-  white-space: nowrap;
   position: relative;
   padding-bottom: 6px;
-  justify-content: right;
+  white-space: nowrap;
+  transition: color 0.3s ease;
 }
 
 .nav-link:hover {
@@ -75,12 +76,11 @@
   content: '';
   position: absolute;
   bottom: 0;
-  right: 30px;
-  width: 0%;
-  height: 1px;
+  left: 0;
+  width: 0;
+  height: 2px;
   background: #ef4444;
   transition: width 0.3s ease;
-  justify-content: right;
 }
 
 .nav-link:hover::after {
@@ -88,25 +88,22 @@
 }
 
 /* =========================
-   DROPDOWN - FIXED SPACING
+   DESKTOP DROPDOWN
 ========================= */
-
 .dropdown {
   position: relative;
-  display: inline-block;
 }
 
 .dropdown-btn {
   display: flex;
   align-items: center;
   gap: 7px;
-  background: transparent;
+  background: none;
   border: none;
   cursor: pointer;
   color: #1f2937;
   font-size: 16.5px;
   font-weight: 500;
-  white-space: nowrap;
   padding: 8px 0;
 }
 
@@ -118,17 +115,16 @@
   min-width: 300px;
   background: #fff;
   border-radius: 12px;
-  overflow: hidden;
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-
   transition: all 0.3s ease;
+  overflow: hidden;
+  padding: 8px 0;
+  border: 1px solid #7c7c7e;
 }
 
-/* show dropdown */
 .dropdown:hover .dropdown-menu {
   opacity: 1;
   visibility: visible;
@@ -136,37 +132,37 @@
   transform: translateX(-50%) translateY(0);
 }
 
-/* REMOVE extra hover gap issue */
-.dropdown-menu::before {
-  content: '';
-  position: absolute;
-  top: -15px;
-  left: 0;
-  right: 0;
-  height: 15px;
-  background: transparent;
-}
-
-/* FIXED dropdown spacing */
 .dropdown-menu a {
   display: block;
-  padding: 14px 25px;
+  padding: 7px 25px;
   text-decoration: none;
   color: #374151;
-  line-height: 1.4;
   font-size: 15px;
+  border-bottom: 2px solid #070707;
   transition: all 0.2s ease;
-  border-bottom: 1px solid #f1f5f9;
-  position: relative; /* important */
+  position: relative;
+   border: 2px black;
+   border-radius: 10px;
 }
 
-/* underline animation */
+.dropdown-menu a:last-child {
+  border-bottom: none;
+}
+
+.dropdown-menu a:hover {
+  background: #f3f4f6;
+  color: #0a7485;
+  padding-left: 30px;
+   border-radius: 10px;
+}
+
+/* Optional underline inside dropdown */
 .dropdown-menu a::after {
   content: "";
   position: absolute;
   left: 25px;
   bottom: 8px;
-  width: 0%;
+  width: 0;
   height: 2px;
   background: #0a7485;
   transition: width 0.3s ease;
@@ -176,45 +172,9 @@
   width: calc(100% - 50px);
 }
 
-/* remove last border */
-.dropdown-menu a:last-child {
-  border-bottom: none;
-}
-
-.dropdown-menu a:hover {
-  background: #f3f4f6;
-  color: #0a7485;
-  padding-left: 22px; /* small smooth effect instead of big jump */
-}
-
-/* Book Button */
-.book-btn {
-  flex-shrink: 0;
-  min-width: 260px;
-  background: #09aec4;
-  color: #fff;
-  height: 52px;
-  padding: 0 28px;
-  border-radius: 50px;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  font-size: 17px;
-  font-weight: 600;
-  white-space: nowrap;
-  transition: all 0.3s ease;
-  border: none;
-  cursor: pointer;
-}
-
-.book-btn:hover {
-  background: #0c0c0ce7;
-  transform: translateY(-2px);
-}
-
-/* Hamburger */
+/* =========================
+   HAMBURGER
+========================= */
 .hamburger {
   display: none;
   background: none;
@@ -226,110 +186,79 @@
 }
 
 /* =========================
-   MOBILE MENU
+   FLOATING BOOK BUTTON
 ========================= */
-
-.mobile-menu {
-  position: fixed;
-  top: 85px;
-  left: 0;
-  right: 0;
-  background: #fff;
-  border-top: 1px solid #e5e7eb;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  max-height: 0;
-  opacity: 0;
-  transition: all 0.45s ease;
-  z-index: 1000;
-}
-
-.mobile-menu.open {
-  max-height: 750px;
-  opacity: 1;
-}
-
 .floating-book-btn {
   position: fixed;
   right: 0;
   top: 50%;
   transform: translateY(-50%);
-
-  background: #09aec4;
-  color: white;
-
-  padding: 12px 18px;
-  border-radius: 8px 0 0 8px;
-
-  font-weight: 600;
-  font-size: 14px;
-
-  z-index: 999999;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #0891b2;
+  color: #f5f1f1;
+  height: 62px;
+  width: 62px;
+  overflow: hidden;
+  border-radius: 12px 0 0 12px;
   cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 9999;
+  box-shadow: 0 10px 30px rgba(9, 174, 196, 0.35);
+  border: none;
 }
-/* BUTTON ROTATION */
+
+.floating-book-btn:hover {
+  width: 260px;
+  background: #0891b2;
+  box-shadow: 0 15px 40px rgba(10, 116, 133, 0.45);
+}
+
+.floating-icon {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  margin: 12px;
+  transition: transform 0.5s ease;
+}
+
+.floating-book-btn:hover .floating-icon {
+  transform: rotate(360deg);
+}
+
+/* Remove old floating-logo styles if not needed */
+.floating-logo {
+  display: none; /* Hide old image if still present */
+}
+
+.floating-text {
+  white-space: nowrap;
+  font-weight: 600;
+  font-size: 15.5px;
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: all 0.4s ease;
+  padding-right: 20px;
+}
+
+.floating-book-btn:hover .floating-text {
+  opacity: 1;
+  transform: translateX(0);
+}
+
 .floating-book-btn.rotate {
-  animation: spin 0.6s ease;
+  animation: spin 0.6s ease forwards;
 }
 
 @keyframes spin {
-  0% { transform: translateY(-50%) rotate(0deg); }
-  100% { transform: translateY(-50%) rotate(360deg); }
-}
-
-/* MODAL ANIMATION */
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.6);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.modal-box {
-  background: #fff;
-  width: 410px;
-  padding: 20px;
-  border-radius: 12px;
-  transform: scale(0.8);
-  opacity: 0;
-  transition: all 0.3s ease;
-}
-
-.modal-box.show {
-  transform: scale(1);
-  opacity: 1;
-}
-
-.modal-overlay.show {
-  animation: fadeIn 0.3s ease;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-/* =========================
-   MOBILE HAMBURGER FIX
-========================= */
-
-/* show hamburger only on mobile */
-@media (max-width: 1024px) {
-  .hamburger {
-    display: block;
-  }
-
-  .desktop-menu,
-  .book-btn {
-    display: none;
-  }
+  from { transform: translateY(-50%) rotate(0deg); }
+  to { transform: translateY(-50%) rotate(360deg); }
 }
 
 /* =========================
-   MOBILE MENU FIX (IMPORTANT)
+   MOBILE MENU
 ========================= */
-
 .mobile-menu {
   position: fixed;
   top: 85px;
@@ -337,18 +266,15 @@
   width: 100%;
   background: #fff;
   border-top: 1px solid #e5e7eb;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-  z-index: 9999;
-
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   max-height: 0;
   opacity: 0;
   overflow: hidden;
-
   transform: translateY(-10px);
   transition: all 0.4s ease;
+  z-index: 9999;
 }
 
-/* OPEN STATE */
 .mobile-menu.open {
   max-height: 100vh;
   opacity: 1;
@@ -356,53 +282,140 @@
   overflow-y: auto;
 }
 
-/* =========================
-   MOBILE MENU LINKS
-========================= */
-
 .mobile-menu a,
 .mobile-menu button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   width: 100%;
-  display: block;
-  padding: 15px 20px;
-  font-size: 15px;
+  padding: 18px 20px;
   border-bottom: 1px solid #f1f5f9;
   background: none;
   text-align: left;
   color: #1f2937;
+  font-size: 15.5px;
+  font-weight: 500;
+  cursor: pointer;
 }
 
-/* hover effect */
-.mobile-menu a:hover {
+.mobile-menu a:hover,
+.mobile-menu button:hover {
   background: #f3f4f6;
   color: #0a7485;
 }
 
-/* =========================
-   MOBILE DROPDOWN FIX
-========================= */
+/* Mobile Dropdown Button */
+.mobile-dropdown-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 18px 20px;
+  border-bottom: 1px solid #f1f5f9;
+  background: none;
+  color: #1f2937;
+  font-size: 15.5px;
+  font-weight: 500;
+  cursor: pointer;
+}
 
+.mobile-dropdown-btn:hover {
+  background: #f3f4f6;
+  color: #0a7485;
+}
+
+.mobile-dropdown-btn svg {
+  transition: transform 0.3s ease;
+}
+
+.mobile-dropdown-btn[aria-expanded="true"] svg {
+  transform: rotate(180deg);
+}
+
+/* Mobile Dropdown Items */
 .mobile-dropdown {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.3s ease;
+  transition: max-height 0.35s ease;
+  background: #f8fafc;
 }
 
 .mobile-dropdown.open {
-  max-height: 500px;
+  max-height: 600px;
 }
 
 .mobile-dropdown a {
-  padding-left: 35px;
-  font-size: 14px;
+  padding: 16px 20px 16px 50px !important;
+  font-size: 14.5px;
+  font-weight: 400;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.mobile-dropdown a:last-child {
+  border-bottom: none;
+}
+
+.mobile-dropdown a:hover {
+  background: #e6f0f2;
+  color: #0a7485;
 }
 
 /* =========================
-   MOBILE SAFE TOP OFFSET
+   MODAL
 ========================= */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+}
+
+.modal-box {
+  width: 410px;
+  max-width: 95%;
+  background: #fff;
+  padding: 25px;
+  border-radius: 16px;
+  transform: scale(0.75);
+  opacity: 0;
+  transition: all 0.3s ease;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+}
+
+.modal-box.show {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 1024px) {
+  .desktop-menu,
+  .book-btn {
+    display: none;
+  }
+  .hamburger {
+    display: block;
+  }
+}
 
 @media (max-width: 768px) {
+  .navbar-container {
+    height: 80px;
+  }
+  .logo-img {
+    width: 220px;
+    height: auto;
+  }
   .mobile-menu {
     top: 80px;
+  }
+  .floating-book-btn {
+    height: 55px;
+    width: 55px;
   }
 }

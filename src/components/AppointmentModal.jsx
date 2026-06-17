@@ -7,13 +7,17 @@ const treatments = [
   { label: "Varicose Veins, Ulcer and Lymphedema Treatment Center", id: "varicose" },
   { label: "Nutrition Counseling", id: "nutrition" },
 ];
-
+const getCurrentDateTime = () => {
+  const now = new Date();
+  now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+  return now.toISOString().slice(0, 16);
+};
 export default function AppointmentModal({ onClose }) {
   const [form, setForm] = useState({
     name: "",
     phone: "",
     email: "",
-    appointment_date: "",
+    appointment_date: getCurrentDateTime(),
     treatment: "",
     message: "",
   });
@@ -30,14 +34,19 @@ export default function AppointmentModal({ onClose }) {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
+  const validateForm = () => {
+    if (!form.name || !form.phone || !form.email) {
+      setError("Please fill required fields");
+      return false;
+    }
+    return true;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
 
-    if (!form.name || !form.phone || !form.email) {
-      setError("Please fill required fields");
-      return;
-    }
+    if (!validateForm()) return;
 
     setLoading(true);
 
@@ -51,82 +60,113 @@ export default function AppointmentModal({ onClose }) {
       const data = await res.json();
 
       if (!data.success) {
-        setError("Booking failed");
+        setError("Booking failed. Try again.");
         return;
       }
 
       alert("Appointment Booked Successfully!");
       onClose();
     } catch (err) {
-      setError("Server error");
+      setError("Server error. Please try again later.");
     } finally {
       setLoading(false);
     }
   };
 
   const openWhatsApp = () => {
-    const message = `
-New Appointment Request
+    if (!form.name || !form.phone) {
+      setError("Please fill name and phone before WhatsApp");
+      return;
+    }
 
-Name: ${form.name}
-Email: ${form.email}
-Phone: ${form.phone}
-Treatment: ${form.treatment}
-Message: ${form.message}
+    const message = `
+🩺 New Appointment Request
+
+👤 Name: ${form.name}
+📧 Email: ${form.email}
+📞 Phone: ${form.phone}
+🏥 Treatment: ${form.treatment || "Not selected"}
+📅 Date: ${form.appointment_date || "Not selected"}
+📝 Message: ${form.message || "No message"}
     `.trim();
 
     const url = `https://api.whatsapp.com/send/?phone=919173002728&text=${encodeURIComponent(message)}`;
+
     window.open(url, "_blank");
   };
 
   return (
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-box show" onClick={(e) => e.stopPropagation()}>
 
-    
-  <div className="modal-overlay" onClick={onClose}>
-  <div className="modal-box show" onClick={(e) => e.stopPropagation()}>
+        {/* CLOSE BUTTON */}
+        <button className="close-btn" onClick={onClose}>
+          ✕
+        </button>
 
-      <button className="close-btn" onClick={onClose}>
-        ✕
-      </button>
+        <h5 className="modal-title">Book An Appointment</h5>
 
-      <h2 className="modal-title">Book Appointment</h2>
+        <form onSubmit={handleSubmit} className="appointment-form">
 
-      <form onSubmit={handleSubmit} className="appointment-form">
+          <div className="form-row">
+            <input
+              name="name"
+              placeholder="Full Name *"
+              onChange={handleChange}
+            />
 
-        <input name="name" placeholder="Full Name *" onChange={handleChange} />
-        <input name="email" placeholder="Email *" onChange={handleChange} />
-        <input name="phone" placeholder="Phone *" onChange={handleChange} />
+            <input
+              name="email"
+              placeholder="Email *"
+              onChange={handleChange}
+            />
+          </div>
 
-        <input type="date" name="appointment_date" onChange={handleChange} />
+          <div className="form-row">
+            <input
+              name="phone"
+              placeholder="Phone *"
+              onChange={handleChange}
+            />
 
-        <select name="treatment" onChange={handleChange}>
-          <option value="">Select Treatment</option>
-          {treatments.map((t) => (
-            <option key={t.id} value={t.label}>
-              {t.label}
-            </option>
-          ))}
-        </select>
+            <input
+              type="datetime-local"
+              name="appointment_date"
+              value={form.appointment_date}
+              min={getCurrentDateTime()}
+              onChange={handleChange}
+            />
+          </div>
 
-        <textarea name="message" placeholder="Message" onChange={handleChange} />
+          <select name="treatment" onChange={handleChange}>
+            <option value="">Select Treatment</option>
+            {treatments.map((t) => (
+              <option key={t.id} value={t.label}>
+                {t.label}
+              </option>
+            ))}
+          </select>
 
-        {error && <p className="error">{error}</p>}
+          <textarea
+            name="message"
+            placeholder="Message"
+            onChange={handleChange}
+          />
 
-        <div className="button-group">
+          {error && <p className="error">{error}</p>}
 
-          <button type="submit" disabled={loading}>
-            {loading ? "Processing..." : "Book an Appointment"}
-          </button>
+          <div className="button-group">
+            <button type="submit" disabled={loading}>
+              {loading ? "Processing..." : "Book an Appointment"}
+            </button>
 
-          <button type="button" onClick={openWhatsApp}>
-            send on WhatsApp
-          </button>
+            <button type="button" onClick={openWhatsApp}>
+              Send on WhatsApp
+            </button>
+          </div>
 
-        </div>
-
-      </form>
-
+        </form>
+      </div>
     </div>
-  </div>
-);
+  );
 }
