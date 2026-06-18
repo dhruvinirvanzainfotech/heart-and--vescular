@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import Aboutmain from "../image/image.png";
 import "./About.css";   // ← Make sure this line is here
 import Counter from "../pages/Counter";
+import { Stethoscope } from "lucide-react";
+import { ArrowRight} from "lucide-react";
 export default function About() {
   return (
     <section
@@ -9,9 +11,9 @@ export default function About() {
       className="about-section"
     >
       {/* Background Decorations */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-cyan-200/20 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-0 right-0 w-[300px] h-[500px] bg-sky-200/20 rounded-full blur-3xl"></div>
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-cyan-100/10 rounded-full blur-3xl"></div>
+      <div className="absolute top-0 left-0 w-96 h-96 bg-cyan-200/20 rounded-full blur-1xl"></div>
+      <div className="absolute bottom-0 right-0 w-[200px] h-[500px] bg-sky-200/20 rounded-full blur-3xl"></div>
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[600px] bg-cyan-100/10 rounded-full blur-3xl"></div>
 
       <div className="relative z-10 max-w-6xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
 
@@ -40,9 +42,12 @@ export default function About() {
 
         {/* RIGHT SIDE */}
         <div>
-          <span className="inline-block text-[#000] text-sm font-bold uppercase tracking-[3px] mb-4">
-            About Doctor
-          </span>
+          <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-gradient-to-r from-white-60 to-white-50 border border-cyan-200 shadow-md mb-4">
+  <Stethoscope size={18} className="text-black-600" />
+  <span className="text-cyan-800 text-sm font-bold uppercase tracking-[3px]">
+    About Doctor
+  </span>
+</div>
 
           <h2 className="text-3xl md:text-4xl font-bold leading-tight mb-6 text-red-700 animate-left-right">
             Welcome To{" "}
@@ -82,7 +87,9 @@ export default function About() {
             to="/about"
             className="inline-flex items-center gap-2 bg-[#00bcd4] hover:bg-[#0097a7] text-white font-semibold px-8 py-3 rounded-full shadow-lg transition-all duration-300 hover:-translate-y-1"
           >
+          
             View More
+             <ArrowRight size={28} />
           </Link>
         </div>
       </div>

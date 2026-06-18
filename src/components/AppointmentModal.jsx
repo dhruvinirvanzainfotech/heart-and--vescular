@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import "./AppointmentModal.css";
+import { useNavigate } from "react-router-dom";
 
 const treatments = [
   { label: "Cardiac Testing & Treatment", id: "cardiac" },
@@ -7,12 +8,16 @@ const treatments = [
   { label: "Varicose Veins, Ulcer and Lymphedema Treatment Center", id: "varicose" },
   { label: "Nutrition Counseling", id: "nutrition" },
 ];
+
 const getCurrentDateTime = () => {
+  
   const now = new Date();
   now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
   return now.toISOString().slice(0, 16);
 };
-export default function AppointmentModal({ onClose }) {
+
+export default function AppointmentModal({ onClose, onSuccess }) {
+  const navigate = useNavigate();
   const [form, setForm] = useState({
     name: "",
     phone: "",
@@ -24,34 +29,41 @@ export default function AppointmentModal({ onClose }) {
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState(false);
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
-    return () => (document.body.style.overflow = "auto");
+    return () => { document.body.style.overflow = "auto"; };
   }, []);
 
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setForm(prev => ({ ...prev, [name]: value }));
+    if (error) setError("");
   };
 
   const validateForm = () => {
-    if (!form.name || !form.phone || !form.email) {
-      setError("Please fill required fields");
-      return false;
-    }
-    return true;
+    if (!form.name.trim()) return "Name is required";
+    if (!form.phone.trim()) return "Phone is required";
+    if (!form.email.trim()) return "Email is required";
+    if (!form.appointment_date) return "Please select appointment date & time";
+    return null;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
+    setSuccess(false);
 
-    if (!validateForm()) return;
+    const validationError = validateForm();
+    if (validationError) {
+      setError(validationError);
+      return;
+    }
 
     setLoading(true);
-
     try {
-      const res = await fetch("http://localhost:5000/appointment", {
+      const res = await fetch("http://localhost:5000/api/appointment", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
@@ -59,23 +71,29 @@ export default function AppointmentModal({ onClose }) {
 
       const data = await res.json();
 
-      if (!data.success) {
-        setError("Booking failed. Try again.");
-        return;
-      }
+      if (res.ok) {
+        setSuccess(true);
+        alert("Appointment Booked Successfully!");
 
-      alert("Appointment Booked Successfully!");
-      onClose();
+        onSuccess?.();
+
+        setTimeout(() => {
+          navigate("/admin/AppointmentDashboard");
+        }, 1200);
+      } else {
+        setError(data.message || "Booking failed.");
+      }
     } catch (err) {
-      setError("Server error. Please try again later.");
+      console.error(err);
+      setError("Server error. Please try again.");
     } finally {
       setLoading(false);
     }
   };
 
   const openWhatsApp = () => {
-    if (!form.name || !form.phone) {
-      setError("Please fill name and phone before WhatsApp");
+    if (!form.name.trim() || !form.phone.trim()) {
+      setError("Please fill Name and Phone before sending on WhatsApp");
       return;
     }
 
@@ -91,81 +109,52 @@ export default function AppointmentModal({ onClose }) {
     `.trim();
 
     const url = `https://api.whatsapp.com/send/?phone=919173002728&text=${encodeURIComponent(message)}`;
-
     window.open(url, "_blank");
   };
 
   return (
     <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-box show" onClick={(e) => e.stopPropagation()}>
-
-        {/* CLOSE BUTTON */}
-        <button className="close-btn" onClick={onClose}>
-          ✕
-        </button>
+      <div className="modal-box show" onClick={e => e.stopPropagation()}>
+        <button className="close-btn" onClick={onClose}>✕</button>
 
         <h5 className="modal-title">Book An Appointment</h5>
 
-        <form onSubmit={handleSubmit} className="appointment-form">
+        {success ? (
+          <div className="success-message">✅ Appointment booked successfully!</div>
+        ) : (
+          <form onSubmit={handleSubmit} className="appointment-form">
+            {/* Form fields same as before */}
+            <div className="form-row">
+              <input name="name" placeholder="Full Name *" value={form.name} onChange={handleChange} required />
+              <input name="email" type="email" placeholder="Email *" value={form.email} onChange={handleChange} required />
+            </div>
 
-          <div className="form-row">
-            <input
-              name="name"
-              placeholder="Full Name *"
-              onChange={handleChange}
-            />
+            <div className="form-row">
+              <input name="phone" type="tel" placeholder="Phone Number *" value={form.phone} onChange={handleChange} required />
+              <input type="datetime-local" name="appointment_date" value={form.appointment_date} min={getCurrentDateTime()} onChange={handleChange} required />
+            </div>
 
-            <input
-              name="email"
-              placeholder="Email *"
-              onChange={handleChange}
-            />
-          </div>
+            <select name="treatment" value={form.treatment} onChange={handleChange}>
+              <option value="">Select Treatment</option>
+              {treatments.map(t => (
+                <option key={t.id} value={t.label}>{t.label}</option>
+              ))}
+            </select>
 
-          <div className="form-row">
-            <input
-              name="phone"
-              placeholder="Phone *"
-              onChange={handleChange}
-            />
+            <textarea name="message" placeholder="Additional Message (Optional)" value={form.message} onChange={handleChange} />
 
-            <input
-              type="datetime-local"
-              name="appointment_date"
-              value={form.appointment_date}
-              min={getCurrentDateTime()}
-              onChange={handleChange}
-            />
-          </div>
+            {error && <p className="error">{error}</p>}
 
-          <select name="treatment" onChange={handleChange}>
-            <option value="">Select Treatment</option>
-            {treatments.map((t) => (
-              <option key={t.id} value={t.label}>
-                {t.label}
-              </option>
-            ))}
-          </select>
-
-          <textarea
-            name="message"
-            placeholder="Message"
-            onChange={handleChange}
-          />
-
-          {error && <p className="error">{error}</p>}
-
-          <div className="button-group">
-            <button type="submit" disabled={loading}>
-              {loading ? "Processing..." : "Book an Appointment"}
-            </button>
-
-            <button type="button" onClick={openWhatsApp}>
-              Send on WhatsApp
-            </button>
-          </div>
-
-        </form>
+            <div className="button-group">
+              <button type="submit" disabled={loading} className="btn-book">
+                {loading ? "Processing..." : "Book an Appointment"}
+              </button>
+              <button type="button" onClick={openWhatsApp} className="btn-whatsapp">
+                Send on WhatsApp
+              </button>
+            </div>
+          </form>
+        )}
       </div>
     </div>
   );

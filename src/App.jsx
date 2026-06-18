@@ -1,33 +1,34 @@
-import { useEffect, useRef, useState, useCallback } from 'react'
-import { BrowserRouter, Routes, Route, useLocation, Outlet } from 'react-router-dom'
-import { AppointmentProvider } from './components/AppointmentContext'
-import SplashScreen from './components/SplashScreen'
-import TopBar from './components/TopBar'
-import Navbar from './components/Navbar'
-import Footer from './components/Footer'
-import HomePage from './pages/HomePage'
-import AboutPage from './pages/AboutPage'
-import ServicesPage from './pages/ServicesPage'
-import ServiceDetailPage from './pages/ServiceDetailPage'
-import LocationsPage from './pages/LocationsPage'
-import ContactPage from './pages/ContactPage'
-import AppointmentPage from './pages/AppointmentPage'
-import BackToTop from './components/BackToTop'
-import ScrollToTop from './components/ScrollToTop'
-import FloatingContact from './components/FloatingContact'
-import CardiacTesting from "./pages/CardiacTesting"
-import VaricoseVeins from './pages/VaricoseVeins'
-import VascularTesting from './pages/VascularTesting'
-import NutritionCounseling from './pages/NutritionCounseling'
-import TestimonialsPage from './pages/TestimonialsPage'
-import RouteLoader from "./components/RouteLoader"
-import GalleryPage from './pages/GalleryPage'
-import Insurance from './components/Insurance'
+import { useEffect, useRef, useState, useCallback } from 'react';
+import { BrowserRouter, Routes, Route, useLocation, Outlet } from 'react-router-dom';
+import { AppointmentProvider } from './components/AppointmentContext';
+import SplashScreen from './components/SplashScreen';
+import TopBar from './components/TopBar';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import HomePage from './pages/HomePage';
+import AboutPage from './pages/AboutPage';
+import ServicesPage from './pages/ServicesPage';
+import ServiceDetailPage from './pages/ServiceDetailPage';
+import LocationsPage from './pages/LocationsPage';
+import ContactPage from './pages/ContactPage';
+import AppointmentPage from './pages/AppointmentPage';
+import BackToTop from './components/BackToTop';
+import ScrollToTop from './components/ScrollToTop';
+import FloatingContact from './components/FloatingContact';
+import CardiacTesting from "./pages/CardiacTesting";
+import VaricoseVeins from './pages/VaricoseVeins';
+import VascularTesting from './pages/VascularTesting';
+import NutritionCounseling from './pages/NutritionCounseling';
+import TestimonialsPage from './pages/TestimonialsPage';
+import RouteLoader from "./components/RouteLoader";
+import GalleryPage from './pages/GalleryPage';
+import Insurance from './components/Insurance';
 
 // Admin
-import AdminLayout from "./pages/Admin/AdminLayout"
-import Dashboard from "./pages/Admin/Dashboard"
-import Appointments from "./pages/Admin/Appointments"
+import AdminLayout from "./pages/Admin/AdminLayout";
+import Dashboard from "./pages/Admin/Dashboard";
+import Appointments from "./pages/Admin/Appointments";
+import AppointmentDashboard from './pages/AppointmentDashboard';   // ← Properly Imported
 
 function PublicLayout() {
   return (
@@ -35,61 +36,61 @@ function PublicLayout() {
       <TopBar />
       <Navbar />
       <main className="flex-1">
-        <Outlet />                    {/* ← This is important! Shows page content */}
+        <Outlet />
       </main>
       <FloatingContact />
       <BackToTop />
       <ScrollToTop />
       <Footer />
     </div>
-  )
+  );
 }
 
 function ScrollRestorer({ ready }) {
-  const location = useLocation()
-  const hasRestoredRef = useRef(false)
+  const location = useLocation();
+  const hasRestoredRef = useRef(false);
 
   useEffect(() => {
-    if (!ready) return
-    if (hasRestoredRef.current) return
+    if (!ready) return;
+    if (hasRestoredRef.current) return;
 
-    const key = `hv_scroll_y:${location.pathname}${location.search}`
+    const key = `hv_scroll_y:${location.pathname}${location.search}`;
     try {
-      const savedYRaw = sessionStorage.getItem(key)
-      const savedY = savedYRaw ? Number(savedYRaw) : 0
+      const savedYRaw = sessionStorage.getItem(key);
+      const savedY = savedYRaw ? Number(savedYRaw) : 0;
       if (Number.isFinite(savedY) && savedY >= 0) {
-        hasRestoredRef.current = true
-        window.scrollTo({ top: savedY, left: 0, behavior: 'auto' })
+        hasRestoredRef.current = true;
+        window.scrollTo({ top: savedY, left: 0, behavior: 'auto' });
       }
-    } catch (e) {}
-  }, [ready, location.pathname, location.search])
+    } catch (e) { }
+  }, [ready, location.pathname, location.search]);
 
   useEffect(() => {
-    hasRestoredRef.current = false
-  }, [location.pathname, location.search])
+    hasRestoredRef.current = false;
+  }, [location.pathname, location.search]);
 
   useEffect(() => {
-    const keyForCurrentRoute = `hv_scroll_y:${location.pathname}${location.search}`
+    const keyForCurrentRoute = `hv_scroll_y:${location.pathname}${location.search}`;
     const save = () => {
       try {
-        sessionStorage.setItem(keyForCurrentRoute, String(window.scrollY || 0))
-      } catch (e) {}
-    }
+        sessionStorage.setItem(keyForCurrentRoute, String(window.scrollY || 0));
+      } catch (e) { }
+    };
 
-    window.addEventListener('beforeunload', save)
+    window.addEventListener('beforeunload', save);
     document.addEventListener('visibilitychange', () => {
-      if (document.visibilityState === 'hidden') save()
-    })
+      if (document.visibilityState === 'hidden') save();
+    });
 
-    return () => window.removeEventListener('beforeunload', save)
-  }, [location.pathname, location.search])
+    return () => window.removeEventListener('beforeunload', save);
+  }, [location.pathname, location.search]);
 
-  return null
+  return null;
 }
 
 function AppReadyGate() {
-  const [ready, setReady] = useState(false)
-  const onDone = useCallback(() => setReady(true), [])
+  const [ready, setReady] = useState(false);
+  const onDone = useCallback(() => setReady(true), []);
 
   return (
     <>
@@ -97,7 +98,7 @@ function AppReadyGate() {
       <ScrollRestorer ready={ready} />
       <div className={`transition-opacity duration-700 ${ready ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
         <Routes>
-          {/* PUBLIC ROUTES - With Header, TopBar, Footer */}
+          {/* PUBLIC ROUTES */}
           <Route path="/*" element={<PublicLayout />}>
             <Route index element={<HomePage />} />
             <Route path="about" element={<AboutPage />} />
@@ -111,6 +112,7 @@ function AppReadyGate() {
             <Route path="gallery" element={<GalleryPage />} />
             <Route path="insurance" element={<Insurance />} />
             <Route path="testimonialspage" element={<TestimonialsPage />} />
+
             {/* Treatment Pages */}
             <Route path="treatment/cardiactesting" element={<CardiacTesting />} />
             <Route path="treatment/varicose-veins" element={<VaricoseVeins />} />
@@ -118,10 +120,15 @@ function AppReadyGate() {
             <Route path="treatment/nutrition-counseling" element={<NutritionCounseling />} />
           </Route>
 
-          {/* ADMIN ROUTES - NO Header, NO Footer */}
+          {/* ADMIN ROUTES */}
+          {/* ADMIN ROUTES */}
           <Route path="/admin" element={<AdminLayout />}>
             <Route index element={<Dashboard />} />
             <Route path="appointments" element={<Appointments />} />
+<Route
+  path="AppointmentDashboard"
+  element={<AppointmentDashboard />}
+/>
           </Route>
 
           {/* 404 */}
@@ -129,16 +136,16 @@ function AppReadyGate() {
         </Routes>
       </div>
     </>
-  )
+  );
 }
 
 export default function App() {
   return (
-    <BrowserRouter basename="/design/drankurshahheartspecialist">
+    <BrowserRouter>
       <RouteLoader />
       <AppointmentProvider>
         <AppReadyGate />
       </AppointmentProvider>
     </BrowserRouter>
-  )
+  );
 }

@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Eye, Edit, Trash2 } from "lucide-react";
+import { Eye, Trash2 } from "lucide-react";
 import "./Appointments.css";
 
 export default function Appointments() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const API_URL = "http://localhost:5000/api/appointment";
 
   const [modal, setModal] = useState({
     open: false,
@@ -23,7 +24,7 @@ export default function Appointments() {
   const load = async () => {
     setLoading(true);
     try {
-      const res = await axios.get("http://localhost:5000/appointment");
+      const res = await axios.get(API_URL);
       setData(res.data || []);
     } catch (err) {
       console.error(err);
@@ -69,7 +70,7 @@ export default function Appointments() {
     if (!form.id) return alert("Missing ID");
 
     try {
-      await axios.put(`http://localhost:5000/appointment/${form.id}`, form);
+      await axios.put(`${API_URL}/${form.id}`, form)
       alert("Updated successfully!");
       closeModal();
       load();
@@ -82,10 +83,22 @@ export default function Appointments() {
   const remove = async (id) => {
     if (!window.confirm("Delete this appointment?")) return;
     try {
-      await axios.delete(`http://localhost:5000/appointment/${id}`);
+      await axios.delete(`${API_URL}/${id}`);
       load();
     } catch (err) {
       console.error(err);
+    }
+  };
+  const updateStatus = async (id, status) => {
+    try {
+      await axios.patch(`${API_URL}/${id}/status`, {
+        status,
+      });
+
+      load(); // refresh table
+    } catch (err) {
+      console.error(err);
+      alert("Status update failed");
     }
   };
 
@@ -95,6 +108,7 @@ export default function Appointments() {
 
       {loading && <p>Loading...</p>}
 
+      <div className="table-wrapper"></div>
       <table className="table">
         <thead>
           <tr>
@@ -105,6 +119,7 @@ export default function Appointments() {
             <th>Date</th>
             <th>Treatment</th>
             <th>Message</th>
+            <th>Status</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -118,9 +133,15 @@ export default function Appointments() {
               <td>{formatDate(item.appointment_date)}</td>
               <td>{item.treatment}</td>
               <td>{item.message?.slice(0, 40)}...</td>
+              <td>
+                <span className={`status ${item.status?.toLowerCase()}`}>
+                  {item.status || "Pending"}
+                </span>
+              </td>
+
               <td className="actions">
                 <Eye onClick={() => openModal(item, "view")} title="View" />
-                <Edit onClick={() => openModal(item, "edit")} title="Edit" />
+                {/* <Edit onClick={() => openModal(item, "edit")} title="Edit" /> */}
                 <Trash2 onClick={() => remove(item.id)} title="Delete" />
               </td>
             </tr>
@@ -130,16 +151,16 @@ export default function Appointments() {
 
       {/* ==================== MODAL ==================== */}
       {modal.open && (
-        <div 
-          className="modal" 
+        <div
+          className="modal"
           onClick={closeModal}           // Click on backdrop = close
         >
-          <div 
-            className="modal-box" 
+          <div
+            className="modal-box"
             onClick={(e) => e.stopPropagation()}   // Prevent closing when clicking inside
           >
             <h3>
-              {modal.mode === "edit" ? "Edit Appointment" : "View Appointment"}
+              {/* {modal.mode === "edit" ? "Edit Appointment" : "View Appointment"} */}
             </h3>
 
             <form onSubmit={save}>
@@ -180,7 +201,7 @@ export default function Appointments() {
                   <input
                     type="date"
                     name="appointment_date"
-                    value={form.appointment_date || ""}
+                    value={formatDate(form.appointment_date)}
                     onChange={handleChange}
                     disabled={modal.mode === "view"}
                   />
@@ -196,8 +217,8 @@ export default function Appointments() {
                     >
                       <option value="">Select</option>
                       <option value="Cardiac Testing & Treatment">Cardiac Testing & Treatment</option>
-                      <option value="Vascular Testing and Treatment">Vascular Testing and Treatment</option>
-                      <option value="Varicose Veins Treatment">Varicose Veins Treatment</option>
+                      <option value="Vascular Testing and Treatment">Varicose Veins, Ulcer and Lymphedema Treatment Center</option>
+                      <option value="Varicose Veins Treatment">Vascular Testing and Treatment</option>
                       <option value="Nutrition Counseling">Nutrition Counseling</option>
                     </select>
                   ) : (

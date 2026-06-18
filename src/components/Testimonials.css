@@ -1,0 +1,126 @@
+/* Testimonials.css */
+.testimonials-section {
+  padding: 60px 20px;
+  background: linear-gradient(135deg, #dff6f7 0%, #fad7d7 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.testimonials-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Heading */
+.testimonials-heading {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.testimonials-heading span {
+  color: #0c0c0c;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.testimonials-heading h2 {
+  font-size: 42px;
+  font-weight: 700;
+  color: #371e24;
+  margin: 12px 0;
+}
+
+.testimonials-heading .highlight {
+  color: #141314;
+}
+
+/* Swiper */
+.testimonials-swiper {
+  padding-bottom: 60px;
+}
+
+/* Card */
+.testimonial-card {
+  height: 270px ;
+  padding: 1px;
+}
+
+.testimonial-card-inner {
+  background: white;
+  border-radius: 20px;
+  padding: 32px 28px 24px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: all 0.4s ease;
+  min-height: 260px !important;
+}
+
+.testimonial-card-inner:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12);
+}
+
+/* Big Quote */
+.testimonial-quote {
+  font-size: 6px;
+  line-height: 1;
+  color: #310404;
+  opacity: 0.15;
+  position: absolute;
+  top: 20px;
+  left: 25px;
+}
+
+/* Text */
+.testimonial-text {
+  flex-grow: 1;
+  color: #374151;
+  line-height: 1.65;
+  font-size: 15.5px;
+  margin-top: 40px;
+  text-align: left;
+}
+
+/* User Info */
+.testimonial-user {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #f3e8ff;
+}
+
+.testimonial-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-cover: cover;
+}
+
+.testimonial-name {
+  font-weight: 600;
+  color: #1e2937;
+  font-size: 17px;
+}
+
+/* Swiper Pagination */
+.testimonials-swiper .swiper-pagination {
+  top: 290px;
+}
+
+.testimonials-swiper .swiper-pagination-bullet {
+  width: 9px;
+  height: 9px;
+  background: #e0d0f0;
+}
+
+.testimonials-swiper .swiper-pagination-bullet-active {
+  background: #0694a7;
+  width: 28px;
+}

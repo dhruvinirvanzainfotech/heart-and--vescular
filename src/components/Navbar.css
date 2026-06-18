@@ -29,10 +29,10 @@
 .logo {
   flex-shrink: 0;
 }
-
 .logo-img {
-  width: 310px;
-  height: 100px;
+  width: 310px !important;
+  max-width: none !important;
+  height: 150px !important;
   object-fit: contain;
   display: block;
 }

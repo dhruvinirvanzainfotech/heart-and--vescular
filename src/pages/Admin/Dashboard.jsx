@@ -7,7 +7,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/appointment")
+      .get("http://localhost:5000/api/appointment")
       .then((res) => setAppointments(res.data))
       .catch((err) => console.log(err));
   }, []);
@@ -17,12 +17,10 @@ export default function Dashboard() {
       <h1 className="page-title">Dashboard</h1>
 
       <div className="dashboard-grid">
-
         <div className="dashboard-card">
           <h3>Total Appointments</h3>
           <h1>{appointments.length}</h1>
         </div>
-
       </div>
     </div>
   );

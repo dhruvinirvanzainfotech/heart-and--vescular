@@ -1,4 +1,6 @@
 import { NavLink, Outlet } from "react-router-dom";
+import logo from "../../image/logo3.png";
+import "./AdminLayout.css";
 
 export default function AdminLayout() {
   return (
@@ -6,10 +8,8 @@ export default function AdminLayout() {
 
       <aside className="sidebar">
         <div className="sidebar-header">
-         
-          <p>Dr. Ankur Shah Heart and Vescular Specialist </p> 
-        </div>
-
+  <img src={logo} alt="Company Logo" className="admin-logo" />
+</div>
         <nav>
           <NavLink to="/admin" end>
             Dashboard
